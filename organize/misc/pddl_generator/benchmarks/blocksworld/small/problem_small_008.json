@@ -1,0 +1,16 @@
+{
+  "problem_name": "blocksworld-small-008",
+  "domain": "blocksworld",
+  "size_category": "small",
+  "characteristic_type": "mixed_goal",
+  "num_objects": 5,
+  "num_locations": 2,
+  "complexity_score": 0.19999999999999998,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 1156042
+}

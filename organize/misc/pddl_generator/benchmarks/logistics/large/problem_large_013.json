@@ -1,0 +1,16 @@
+{
+  "problem_name": "logistics-large-013",
+  "domain": "logistics",
+  "size_category": "large",
+  "characteristic_type": "clustered_destinations",
+  "num_objects": 15,
+  "num_locations": 12,
+  "complexity_score": 0.4,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 1155042
+}

@@ -1,0 +1,1227 @@
+[t=0.000151s, 808 KB] reading input...
+[t=0.005631s, 984 KB] done reading input!
+[t=0.005649s, 984 KB] building causal graph...done! [t=0.000298s]
+[t=0.009113s, 1432 KB] Initializing merge-and-shrink heuristic...
+[t=0.009130s, 1432 KB] Running merge-and-shrink algorithm...
+[t=0.009137s, 1432 KB] Merge strategy options:
+[t=0.009143s, 1432 KB] Type: merge_gnn
+
+[t=0.009151s, 1432 KB] Options related to size limits and shrinking: 
+[t=0.009156s, 1432 KB] Transition system size limit: 200000
+[t=0.009161s, 1432 KB] Transition system size limit right before merge: 200000
+[t=0.009166s, 1432 KB] Threshold to trigger shrinking right before merge: 1
+
+[t=0.009173s, 1432 KB] Shrink strategy options: 
+[t=0.009178s, 1432 KB] Type: bisimulation
+[t=0.009183s, 1432 KB] Bisimulation type: exact
+[t=0.009188s, 1432 KB] At limit: return
+
+[t=0.009195s, 1432 KB] Pruning unreachable states: yes
+[t=0.009200s, 1432 KB] Pruning irrelevant states: yes
+
+[t=0.009207s, 1432 KB] Label reduction options:
+[t=0.009212s, 1432 KB] Before merging: disabled
+[t=0.009216s, 1432 KB] Before shrinking: enabled
+[t=0.009221s, 1432 KB] Method: all transition systems with fixpoint computation
+[t=0.009226s, 1432 KB] System order: random
+
+[t=0.009233s, 1432 KB] Main loop max time in seconds: inf
+
+
+[t=0.009248s, 1432 KB] Building atomic transition systems... 
+[t=0.009694s, 1432 KB] M&S algorithm timer: 0.000568s (after computation of atomic factors)
+
+[SIGNALS::GNN] Active systems: 23
+[SIGNALS::GNN] Computed 20 features for 23 nodes
+[SIGNALS::GNN] Interaction graph: 253 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.000000, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=-1
+[SIGNALS::DEBUG]   total_states=156 (prev=0)
+[SIGNALS::DEBUG]   h_star=21 (prev=0, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.875000
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (0, 1)
+[SIGNALS::GNN] ✅ Observation exported for iteration -1
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_-1.json
+[M&S] ✅ Exported initial GNN observation (iteration -1)
+[t=0.201167s, 1840 KB] Starting main loop without a time limit.
+
+[GNN::INIT] MergeStrategyGNN initialized
+[M&S::MAIN] fd_output_dir: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 0 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_0.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 0] ========================================
+[GNN::ITERATION 0] Waiting for merge decision at:
+[GNN::ITERATION 0]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_0.json
+[GNN::ITERATION 0] ✅ Decision file found!
+[GNN::ITERATION 0] ✅ JSON parsed successfully
+[GNN::ITERATION 0] Merge decision: (0, 22)
+[GNN::ITERATION 0] ✅ ACK written to:
+[GNN::ITERATION 0]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_0.json
+[GNN::ITERATION 0] ========================================
+[GNN::ITERATION 0] ✅ Returning (0, 22)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (0, 22)
+[M&S::MAIN] Merge indices validated: both are active
+[t=0.287771s, 1840 KB] Next pair of indices: (0, 22)
+[t=0.287783s, 1840 KB] M&S algorithm main loop timer: 0.086619s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=2, ts2_size=2
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=0
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=23
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 0...
+[SIGNALS::GNN] Active systems: 22
+[SIGNALS::GNN] Computed 20 features for 22 nodes
+[SIGNALS::GNN] Interaction graph: 231 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.000000, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=0
+[SIGNALS::DEBUG]   total_states=156 (prev=0)
+[SIGNALS::DEBUG]   h_star=21 (prev=0, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.875000
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (1, 2)
+[SIGNALS::GNN] ✅ Observation exported for iteration 0
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_0.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_0.json
+[t=0.488481s, 1908 KB] M&S algorithm main loop timer: 0.287326s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 1 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_1.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 1] ========================================
+[GNN::ITERATION 1] Waiting for merge decision at:
+[GNN::ITERATION 1]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_1.json
+[GNN::ITERATION 1] ✅ Decision file found!
+[GNN::ITERATION 1] ✅ JSON parsed successfully
+[GNN::ITERATION 1] Merge decision: (1, 23)
+[GNN::ITERATION 1] ✅ ACK written to:
+[GNN::ITERATION 1]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_1.json
+[GNN::ITERATION 1] ========================================
+[GNN::ITERATION 1] ✅ Returning (1, 23)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (1, 23)
+[M&S::MAIN] Merge indices validated: both are active
+[t=0.738741s, 1908 KB] Next pair of indices: (1, 23)
+[t=0.738754s, 1908 KB] M&S algorithm main loop timer: 0.537591s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=2, ts2_size=4
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=0
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=24
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 1...
+[SIGNALS::GNN] Active systems: 21
+[SIGNALS::GNN] Computed 20 features for 21 nodes
+[SIGNALS::GNN] Interaction graph: 210 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.012821, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=1
+[SIGNALS::DEBUG]   total_states=158 (prev=156)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.869231
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (2, 3)
+[SIGNALS::GNN] ✅ Observation exported for iteration 1
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_1.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_1.json
+[t=0.920877s, 1908 KB] M&S algorithm main loop timer: 0.719722s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 2 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_2.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 2] ========================================
+[GNN::ITERATION 2] Waiting for merge decision at:
+[GNN::ITERATION 2]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_2.json
+[GNN::ITERATION 2] ✅ Decision file found!
+[GNN::ITERATION 2] ✅ JSON parsed successfully
+[GNN::ITERATION 2] Merge decision: (2, 24)
+[GNN::ITERATION 2] ✅ ACK written to:
+[GNN::ITERATION 2]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_2.json
+[GNN::ITERATION 2] ========================================
+[GNN::ITERATION 2] ✅ Returning (2, 24)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (2, 24)
+[M&S::MAIN] Merge indices validated: both are active
+[t=1.008211s, 1908 KB] Next pair of indices: (2, 24)
+[t=1.008226s, 1908 KB] M&S algorithm main loop timer: 0.807063s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=2, ts2_size=8
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=0
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=25
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 2...
+[SIGNALS::GNN] Active systems: 20
+[SIGNALS::GNN] Computed 20 features for 20 nodes
+[SIGNALS::GNN] Interaction graph: 190 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.037975, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=2
+[SIGNALS::DEBUG]   total_states=164 (prev=158)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.857911
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (3, 4)
+[SIGNALS::GNN] ✅ Observation exported for iteration 2
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_2.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_2.json
+[t=1.191103s, 1908 KB] M&S algorithm main loop timer: 0.989947s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 3 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_3.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 3] ========================================
+[GNN::ITERATION 3] Waiting for merge decision at:
+[GNN::ITERATION 3]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_3.json
+[GNN::ITERATION 3] ✅ Decision file found!
+[GNN::ITERATION 3] ✅ JSON parsed successfully
+[GNN::ITERATION 3] Merge decision: (3, 19)
+[GNN::ITERATION 3] ✅ ACK written to:
+[GNN::ITERATION 3]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_3.json
+[GNN::ITERATION 3] ========================================
+[GNN::ITERATION 3] ✅ Returning (3, 19)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (3, 19)
+[M&S::MAIN] Merge indices validated: both are active
+[t=1.326963s, 1908 KB] Next pair of indices: (3, 19)
+[t=1.326978s, 1908 KB] M&S algorithm main loop timer: 1.125815s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=2, ts2_size=12
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=0
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=26
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 3...
+[SIGNALS::GNN] Active systems: 19
+[SIGNALS::GNN] Computed 20 features for 19 nodes
+[SIGNALS::GNN] Interaction graph: 171 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.060976, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=3
+[SIGNALS::DEBUG]   total_states=174 (prev=164)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.847561
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (4, 5)
+[SIGNALS::GNN] ✅ Observation exported for iteration 3
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_3.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_3.json
+[t=1.475156s, 1908 KB] M&S algorithm main loop timer: 1.274000s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 4 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_4.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 4] ========================================
+[GNN::ITERATION 4] Waiting for merge decision at:
+[GNN::ITERATION 4]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_4.json
+[GNN::ITERATION 4] ✅ Decision file found!
+[GNN::ITERATION 4] ✅ JSON parsed successfully
+[GNN::ITERATION 4] Merge decision: (4, 25)
+[GNN::ITERATION 4] ✅ ACK written to:
+[GNN::ITERATION 4]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_4.json
+[GNN::ITERATION 4] ========================================
+[GNN::ITERATION 4] ✅ Returning (4, 25)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (4, 25)
+[M&S::MAIN] Merge indices validated: both are active
+[t=1.621306s, 1908 KB] Next pair of indices: (4, 25)
+[t=1.621319s, 1908 KB] M&S algorithm main loop timer: 1.420155s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=2, ts2_size=16
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=1.640198s, 1908 KB] M&S algorithm main loop timer: 1.439045s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=27
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 4...
+[SIGNALS::GNN] Active systems: 18
+[SIGNALS::GNN] Computed 20 features for 18 nodes
+[SIGNALS::GNN] Interaction graph: 153 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.080460, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=4
+[SIGNALS::DEBUG]   total_states=188 (prev=174)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.838793
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (5, 6)
+[SIGNALS::GNN] ✅ Observation exported for iteration 4
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_4.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_4.json
+[t=1.746617s, 1908 KB] M&S algorithm main loop timer: 1.545462s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 5 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_5.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 5] ========================================
+[GNN::ITERATION 5] Waiting for merge decision at:
+[GNN::ITERATION 5]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_5.json
+[GNN::ITERATION 5] ✅ Decision file found!
+[GNN::ITERATION 5] ✅ JSON parsed successfully
+[GNN::ITERATION 5] Merge decision: (5, 27)
+[GNN::ITERATION 5] ✅ ACK written to:
+[GNN::ITERATION 5]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_5.json
+[GNN::ITERATION 5] ========================================
+[GNN::ITERATION 5] ✅ Returning (5, 27)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (5, 27)
+[M&S::MAIN] Merge indices validated: both are active
+[t=1.838119s, 1908 KB] Next pair of indices: (5, 27)
+[t=1.838134s, 1908 KB] M&S algorithm main loop timer: 1.636971s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=2, ts2_size=32
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=0
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=28
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 5...
+[SIGNALS::GNN] Active systems: 17
+[SIGNALS::GNN] Computed 20 features for 17 nodes
+[SIGNALS::GNN] Interaction graph: 136 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.159574, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=5
+[SIGNALS::DEBUG]   total_states=218 (prev=188)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.803191
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (6, 7)
+[SIGNALS::GNN] ✅ Observation exported for iteration 5
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_5.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_5.json
+[t=1.941502s, 1908 KB] M&S algorithm main loop timer: 1.740347s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 6 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_6.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 6] ========================================
+[GNN::ITERATION 6] Waiting for merge decision at:
+[GNN::ITERATION 6]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_6.json
+[GNN::ITERATION 6] ✅ Decision file found!
+[GNN::ITERATION 6] ✅ JSON parsed successfully
+[GNN::ITERATION 6] Merge decision: (6, 16)
+[GNN::ITERATION 6] ✅ ACK written to:
+[GNN::ITERATION 6]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_6.json
+[GNN::ITERATION 6] ========================================
+[GNN::ITERATION 6] ✅ Returning (6, 16)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (6, 16)
+[M&S::MAIN] Merge indices validated: both are active
+[t=2.138926s, 1908 KB] Next pair of indices: (6, 16)
+[t=2.138940s, 1908 KB] M&S algorithm main loop timer: 1.937777s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=2, ts2_size=12
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=0
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=29
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 6...
+[SIGNALS::GNN] Active systems: 16
+[SIGNALS::GNN] Computed 20 features for 16 nodes
+[SIGNALS::GNN] Interaction graph: 120 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.045872, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=6
+[SIGNALS::DEBUG]   total_states=228 (prev=218)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.854358
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (7, 8)
+[SIGNALS::GNN] ✅ Observation exported for iteration 6
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_6.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_6.json
+[t=2.230405s, 1908 KB] M&S algorithm main loop timer: 2.029252s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 7 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_7.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 7] ========================================
+[GNN::ITERATION 7] Waiting for merge decision at:
+[GNN::ITERATION 7]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_7.json
+[GNN::ITERATION 7] ✅ Decision file found!
+[GNN::ITERATION 7] ✅ JSON parsed successfully
+[GNN::ITERATION 7] Merge decision: (7, 15)
+[GNN::ITERATION 7] ✅ ACK written to:
+[GNN::ITERATION 7]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_7.json
+[GNN::ITERATION 7] ========================================
+[GNN::ITERATION 7] ✅ Returning (7, 15)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (7, 15)
+[M&S::MAIN] Merge indices validated: both are active
+[t=2.320710s, 1908 KB] Next pair of indices: (7, 15)
+[t=2.320722s, 1908 KB] M&S algorithm main loop timer: 2.119559s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=2, ts2_size=12
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=2.335616s, 1908 KB] M&S algorithm main loop timer: 2.134460s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=30
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 7...
+[SIGNALS::GNN] Active systems: 15
+[SIGNALS::GNN] Computed 20 features for 15 nodes
+[SIGNALS::GNN] Interaction graph: 105 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.043860, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=7
+[SIGNALS::DEBUG]   total_states=238 (prev=228)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.855263
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (8, 9)
+[SIGNALS::GNN] ✅ Observation exported for iteration 7
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_7.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_7.json
+[t=2.403481s, 1908 KB] M&S algorithm main loop timer: 2.202325s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 8 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_8.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 8] ========================================
+[GNN::ITERATION 8] Waiting for merge decision at:
+[GNN::ITERATION 8]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_8.json
+[GNN::ITERATION 8] ✅ Decision file found!
+[GNN::ITERATION 8] ✅ JSON parsed successfully
+[GNN::ITERATION 8] Merge decision: (8, 14)
+[GNN::ITERATION 8] ✅ ACK written to:
+[GNN::ITERATION 8]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_8.json
+[GNN::ITERATION 8] ========================================
+[GNN::ITERATION 8] ✅ Returning (8, 14)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (8, 14)
+[M&S::MAIN] Merge indices validated: both are active
+[t=2.486605s, 1908 KB] Next pair of indices: (8, 14)
+[t=2.486620s, 1908 KB] M&S algorithm main loop timer: 2.285457s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=2, ts2_size=12
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=2.501276s, 1908 KB] M&S algorithm main loop timer: 2.300122s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=31
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 8...
+[SIGNALS::GNN] Active systems: 14
+[SIGNALS::GNN] Computed 20 features for 14 nodes
+[SIGNALS::GNN] Interaction graph: 91 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.042017, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=8
+[SIGNALS::DEBUG]   total_states=248 (prev=238)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.856092
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (9, 10)
+[SIGNALS::GNN] ✅ Observation exported for iteration 8
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_8.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_8.json
+[t=2.557501s, 1908 KB] M&S algorithm main loop timer: 2.356346s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 9 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_9.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 9] ========================================
+[GNN::ITERATION 9] Waiting for merge decision at:
+[GNN::ITERATION 9]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_9.json
+[GNN::ITERATION 9] ✅ Decision file found!
+[GNN::ITERATION 9] ✅ JSON parsed successfully
+[GNN::ITERATION 9] Merge decision: (9, 21)
+[GNN::ITERATION 9] ✅ ACK written to:
+[GNN::ITERATION 9]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_9.json
+[GNN::ITERATION 9] ========================================
+[GNN::ITERATION 9] ✅ Returning (9, 21)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (9, 21)
+[M&S::MAIN] Merge indices validated: both are active
+[t=2.689101s, 1908 KB] Next pair of indices: (9, 21)
+[t=2.689115s, 1908 KB] M&S algorithm main loop timer: 2.487952s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=12, ts2_size=2
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=2.702058s, 1908 KB] M&S algorithm main loop timer: 2.500904s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=32
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 9...
+[SIGNALS::GNN] Active systems: 13
+[SIGNALS::GNN] Computed 20 features for 13 nodes
+[SIGNALS::GNN] Interaction graph: 78 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.040323, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=9
+[SIGNALS::DEBUG]   total_states=258 (prev=248)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.856855
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (10, 11)
+[SIGNALS::GNN] ✅ Observation exported for iteration 9
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_9.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_9.json
+[t=2.747167s, 1908 KB] M&S algorithm main loop timer: 2.546010s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 10 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_10.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 10] ========================================
+[GNN::ITERATION 10] Waiting for merge decision at:
+[GNN::ITERATION 10]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_10.json
+[GNN::ITERATION 10] ✅ Decision file found!
+[GNN::ITERATION 10] ✅ JSON parsed successfully
+[GNN::ITERATION 10] Merge decision: (10, 26)
+[GNN::ITERATION 10] ✅ ACK written to:
+[GNN::ITERATION 10]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_10.json
+[GNN::ITERATION 10] ========================================
+[GNN::ITERATION 10] ✅ Returning (10, 26)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (10, 26)
+[M&S::MAIN] Merge indices validated: both are active
+[t=2.838811s, 1908 KB] Next pair of indices: (10, 26)
+[t=2.838827s, 1908 KB] M&S algorithm main loop timer: 2.637664s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=12, ts2_size=24
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=0
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=33
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 10...
+[SIGNALS::GNN] Active systems: 12
+[SIGNALS::GNN] Computed 20 features for 12 nodes
+[SIGNALS::GNN] Interaction graph: 66 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.976744, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=10
+[SIGNALS::DEBUG]   total_states=510 (prev=258)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.554651
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (11, 12)
+[SIGNALS::GNN] ✅ Observation exported for iteration 10
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_10.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_10.json
+[t=2.890635s, 1908 KB] M&S algorithm main loop timer: 2.689479s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 11 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_11.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 11] ========================================
+[GNN::ITERATION 11] Waiting for merge decision at:
+[GNN::ITERATION 11]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_11.json
+[GNN::ITERATION 11] ✅ Decision file found!
+[GNN::ITERATION 11] ✅ JSON parsed successfully
+[GNN::ITERATION 11] Merge decision: (11, 20)
+[GNN::ITERATION 11] ✅ ACK written to:
+[GNN::ITERATION 11]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_11.json
+[GNN::ITERATION 11] ========================================
+[GNN::ITERATION 11] ✅ Returning (11, 20)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (11, 20)
+[M&S::MAIN] Merge indices validated: both are active
+[t=3.136806s, 1908 KB] Next pair of indices: (11, 20)
+[t=3.136818s, 1908 KB] M&S algorithm main loop timer: 2.935654s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=12, ts2_size=2
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=3.148141s, 1908 KB] M&S algorithm main loop timer: 2.946986s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=34
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 11...
+[SIGNALS::GNN] Active systems: 11
+[SIGNALS::GNN] Computed 20 features for 11 nodes
+[SIGNALS::GNN] Interaction graph: 55 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.019608, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=11
+[SIGNALS::DEBUG]   total_states=520 (prev=510)
+[SIGNALS::DEBUG]   h_star=21 (prev=21, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.866176
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (12, 13)
+[SIGNALS::GNN] ✅ Observation exported for iteration 11
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_11.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_11.json
+[t=3.181912s, 1908 KB] M&S algorithm main loop timer: 2.980756s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 12 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_12.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 12] ========================================
+[GNN::ITERATION 12] Waiting for merge decision at:
+[GNN::ITERATION 12]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_12.json
+[GNN::ITERATION 12] ✅ Decision file found!
+[GNN::ITERATION 12] ✅ JSON parsed successfully
+[GNN::ITERATION 12] Merge decision: (28, 29)
+[GNN::ITERATION 12] ✅ ACK written to:
+[GNN::ITERATION 12]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_12.json
+[GNN::ITERATION 12] ========================================
+[GNN::ITERATION 12] ✅ Returning (28, 29)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (28, 29)
+[M&S::MAIN] Merge indices validated: both are active
+[t=3.270175s, 1908 KB] Next pair of indices: (28, 29)
+[t=3.270190s, 1908 KB] M&S algorithm main loop timer: 3.069027s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=64, ts2_size=24
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=3.280326s, 2276 KB] M&S algorithm main loop timer: 3.079174s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=35
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 12...
+[SIGNALS::GNN] Active systems: 10
+[SIGNALS::GNN] Computed 20 features for 10 nodes
+[SIGNALS::GNN] Interaction graph: 45 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=3.784615, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=12
+[SIGNALS::DEBUG]   total_states=1968 (prev=520)
+[SIGNALS::DEBUG]   h_star=22 (prev=21, preservation=1.047619)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.550000
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (12, 13)
+[SIGNALS::GNN] ✅ Observation exported for iteration 12
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_12.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_12.json
+[t=3.310209s, 3340 KB] M&S algorithm main loop timer: 3.109053s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 13 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_13.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 13] ========================================
+[GNN::ITERATION 13] Waiting for merge decision at:
+[GNN::ITERATION 13]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_13.json
+[GNN::ITERATION 13] ✅ Decision file found!
+[GNN::ITERATION 13] ✅ JSON parsed successfully
+[GNN::ITERATION 13] Merge decision: (12, 13)
+[GNN::ITERATION 13] ✅ ACK written to:
+[GNN::ITERATION 13]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_13.json
+[GNN::ITERATION 13] ========================================
+[GNN::ITERATION 13] ✅ Returning (12, 13)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (12, 13)
+[M&S::MAIN] Merge indices validated: both are active
+[t=3.403042s, 3340 KB] Next pair of indices: (12, 13)
+[t=3.403053s, 3340 KB] M&S algorithm main loop timer: 3.201890s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=12, ts2_size=12
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=3.409590s, 3340 KB] M&S algorithm main loop timer: 3.208431s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=36
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 13...
+[SIGNALS::GNN] Active systems: 9
+[SIGNALS::GNN] Computed 20 features for 9 nodes
+[SIGNALS::GNN] Interaction graph: 36 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=1.060976, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=13
+[SIGNALS::DEBUG]   total_states=2088 (prev=1968)
+[SIGNALS::DEBUG]   h_star=22 (prev=22, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.847561
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (17, 18)
+[SIGNALS::GNN] ✅ Observation exported for iteration 13
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_13.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_13.json
+[t=3.428475s, 3340 KB] M&S algorithm main loop timer: 3.227318s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 14 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_14.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 14] ========================================
+[GNN::ITERATION 14] Waiting for merge decision at:
+[GNN::ITERATION 14]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_14.json
+[GNN::ITERATION 14] ✅ Decision file found!
+[GNN::ITERATION 14] ✅ JSON parsed successfully
+[GNN::ITERATION 14] Merge decision: (30, 36)
+[GNN::ITERATION 14] ✅ ACK written to:
+[GNN::ITERATION 14]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_14.json
+[GNN::ITERATION 14] ========================================
+[GNN::ITERATION 14] ✅ Returning (30, 36)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (30, 36)
+[M&S::MAIN] Merge indices validated: both are active
+[t=3.523941s, 3340 KB] Next pair of indices: (30, 36)
+[t=3.523958s, 3340 KB] M&S algorithm main loop timer: 3.322796s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=24, ts2_size=144
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=0
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=37
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 14...
+[SIGNALS::GNN] Active systems: 8
+[SIGNALS::GNN] Computed 20 features for 8 nodes
+[SIGNALS::GNN] Interaction graph: 28 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=2.574713, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=14
+[SIGNALS::DEBUG]   total_states=5376 (prev=2088)
+[SIGNALS::DEBUG]   h_star=22 (prev=22, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.550000
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (17, 18)
+[SIGNALS::GNN] ✅ Observation exported for iteration 14
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_14.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_14.json
+[t=3.556737s, 4236 KB] M&S algorithm main loop timer: 3.355584s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 15 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_15.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 15] ========================================
+[GNN::ITERATION 15] Waiting for merge decision at:
+[GNN::ITERATION 15]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_15.json
+[GNN::ITERATION 15] ✅ Decision file found!
+[GNN::ITERATION 15] ✅ JSON parsed successfully
+[GNN::ITERATION 15] Merge decision: (33, 37)
+[GNN::ITERATION 15] ✅ ACK written to:
+[GNN::ITERATION 15]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_15.json
+[GNN::ITERATION 15] ========================================
+[GNN::ITERATION 15] ✅ Returning (33, 37)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (33, 37)
+[M&S::MAIN] Merge indices validated: both are active
+[t=3.637983s, 4236 KB] Next pair of indices: (33, 37)
+[t=3.638003s, 4236 KB] M&S algorithm main loop timer: 3.436842s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=288, ts2_size=3456
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=3.641251s, 4236 KB] M&S algorithm main loop timer: 3.440091s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[t=3.644798s, 4236 KB] M&S algorithm main loop timer: 3.443637s (after shrinking)
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=1
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=38
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 15...
+[SIGNALS::GNN] Active systems: 7
+[SIGNALS::GNN] Computed 20 features for 7 nodes
+[SIGNALS::GNN] Interaction graph: 21 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=10.000000, is_good=0, is_bad=0
+[SIGNALS::DEBUG] iteration=15
+[SIGNALS::DEBUG]   total_states=53760 (prev=5376)
+[SIGNALS::DEBUG]   h_star=22 (prev=22, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.550000
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (17, 18)
+[SIGNALS::GNN] ✅ Observation exported for iteration 15
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_15.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_15.json
+[t=3.746507s, 24216 KB] M&S algorithm main loop timer: 3.545354s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 16 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_16.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 16] ========================================
+[GNN::ITERATION 16] Waiting for merge decision at:
+[GNN::ITERATION 16]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_16.json
+[GNN::ITERATION 16] ✅ Decision file found!
+[GNN::ITERATION 16] ✅ JSON parsed successfully
+[GNN::ITERATION 16] Merge decision: (31, 38)
+[GNN::ITERATION 16] ✅ ACK written to:
+[GNN::ITERATION 16]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_16.json
+[GNN::ITERATION 16] ========================================
+[GNN::ITERATION 16] ✅ Returning (31, 38)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (31, 38)
+[M&S::MAIN] Merge indices validated: both are active
+[t=3.990134s, 24216 KB] Next pair of indices: (31, 38)
+[t=3.990153s, 24216 KB] M&S algorithm main loop timer: 3.788991s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=24, ts2_size=52128
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=4.002288s, 24216 KB] M&S algorithm main loop timer: 3.801133s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[t=4.128705s, 35176 KB] M&S algorithm main loop timer: 3.927553s (after shrinking)
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=1
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=39
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 16...
+[SIGNALS::GNN] Active systems: 6
+[SIGNALS::GNN] Computed 20 features for 6 nodes
+[SIGNALS::GNN] Interaction graph: 15 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=3.656250, is_good=1, is_bad=0
+[SIGNALS::DEBUG] iteration=16
+[SIGNALS::DEBUG]   total_states=196560 (prev=53760)
+[SIGNALS::DEBUG]   h_star=22 (prev=22, preservation=1.000000)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.550000
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (17, 18)
+[SIGNALS::GNN] ✅ Observation exported for iteration 16
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_16.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_16.json
+[t=4.647517s, 107228 KB] M&S algorithm main loop timer: 4.446361s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 17 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_17.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 17] ========================================
+[GNN::ITERATION 17] Waiting for merge decision at:
+[GNN::ITERATION 17]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_17.json
+[GNN::ITERATION 17] ✅ Decision file found!
+[GNN::ITERATION 17] ✅ JSON parsed successfully
+[GNN::ITERATION 17] Merge decision: (35, 39)
+[GNN::ITERATION 17] ✅ ACK written to:
+[GNN::ITERATION 17]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_17.json
+[GNN::ITERATION 17] ========================================
+[GNN::ITERATION 17] ✅ Returning (35, 39)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (35, 39)
+[M&S::MAIN] Merge indices validated: both are active
+[t=4.703488s, 107228 KB] Next pair of indices: (35, 39)
+[t=4.703502s, 107228 KB] M&S algorithm main loop timer: 4.502339s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=1536, ts2_size=194952
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=4.744485s, 107228 KB] M&S algorithm main loop timer: 4.543331s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[t=5.233598s, 150180 KB] M&S algorithm main loop timer: 5.032445s (after shrinking)
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=1
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=40
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 17...
+[SIGNALS::GNN] Active systems: 5
+[SIGNALS::GNN] Computed 20 features for 5 nodes
+[SIGNALS::GNN] Interaction graph: 10 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=0.902035, is_good=0, is_bad=0
+[SIGNALS::DEBUG] iteration=17
+[SIGNALS::DEBUG]   total_states=177304 (prev=196560)
+[SIGNALS::DEBUG]   h_star=18 (prev=22, preservation=0.818182)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.826764
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (17, 18)
+[SIGNALS::GNN] ✅ Observation exported for iteration 17
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_17.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_17.json
+[t=6.101388s, 199996 KB] M&S algorithm main loop timer: 5.900236s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 18 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_18.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 18] ========================================
+[GNN::ITERATION 18] Waiting for merge decision at:
+[GNN::ITERATION 18]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_18.json
+[GNN::ITERATION 18] ✅ Decision file found!
+[GNN::ITERATION 18] ✅ JSON parsed successfully
+[GNN::ITERATION 18] Merge decision: (34, 40)
+[GNN::ITERATION 18] ✅ ACK written to:
+[GNN::ITERATION 18]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_18.json
+[GNN::ITERATION 18] ========================================
+[GNN::ITERATION 18] ✅ Returning (34, 40)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (34, 40)
+[M&S::MAIN] Merge indices validated: both are active
+[t=6.222278s, 199996 KB] Next pair of indices: (34, 40)
+[t=6.222290s, 199996 KB] M&S algorithm main loop timer: 6.021127s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=24, ts2_size=177232
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=6.545741s, 199996 KB] M&S algorithm main loop timer: 6.344594s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[t=7.434833s, 262220 KB] M&S algorithm main loop timer: 7.233681s (after shrinking)
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=1
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=41
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 18...
+[SIGNALS::GNN] Active systems: 4
+[SIGNALS::GNN] Computed 20 features for 4 nodes
+[SIGNALS::GNN] Interaction graph: 6 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=0.452240, is_good=0, is_bad=0
+[SIGNALS::DEBUG] iteration=18
+[SIGNALS::DEBUG]   total_states=80184 (prev=177304)
+[SIGNALS::DEBUG]   h_star=17 (prev=18, preservation=0.944444)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.989718
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (17, 18)
+[SIGNALS::GNN] ✅ Observation exported for iteration 18
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_18.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_18.json
+[t=7.667377s, 262220 KB] M&S algorithm main loop timer: 7.466222s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 19 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_19.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 19] ========================================
+[GNN::ITERATION 19] Waiting for merge decision at:
+[GNN::ITERATION 19]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_19.json
+[GNN::ITERATION 19] ✅ Decision file found!
+[GNN::ITERATION 19] ✅ JSON parsed successfully
+[GNN::ITERATION 19] Merge decision: (17, 41)
+[GNN::ITERATION 19] ✅ ACK written to:
+[GNN::ITERATION 19]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_19.json
+[GNN::ITERATION 19] ========================================
+[GNN::ITERATION 19] ✅ Returning (17, 41)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (17, 41)
+[M&S::MAIN] Merge indices validated: both are active
+[t=7.769538s, 262220 KB] Next pair of indices: (17, 41)
+[t=7.769553s, 262220 KB] M&S algorithm main loop timer: 7.568390s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=12, ts2_size=80136
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=7.792292s, 262220 KB] M&S algorithm main loop timer: 7.591154s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[t=8.106720s, 262220 KB] M&S algorithm main loop timer: 7.905568s (after shrinking)
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=1
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=42
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 19...
+[SIGNALS::GNN] Active systems: 3
+[SIGNALS::GNN] Computed 20 features for 3 nodes
+[SIGNALS::GNN] Interaction graph: 3 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=2.302754, is_good=0, is_bad=0
+[SIGNALS::DEBUG] iteration=19
+[SIGNALS::DEBUG]   total_states=184644 (prev=80184)
+[SIGNALS::DEBUG]   h_star=15 (prev=17, preservation=0.882353)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.502941
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (18, 32)
+[SIGNALS::GNN] ✅ Observation exported for iteration 19
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_19.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_19.json
+[t=8.615112s, 262220 KB] M&S algorithm main loop timer: 8.413957s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 20 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_20.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 20] ========================================
+[GNN::ITERATION 20] Waiting for merge decision at:
+[GNN::ITERATION 20]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_20.json
+[GNN::ITERATION 20] ✅ Decision file found!
+[GNN::ITERATION 20] ✅ JSON parsed successfully
+[GNN::ITERATION 20] Merge decision: (18, 42)
+[GNN::ITERATION 20] ✅ ACK written to:
+[GNN::ITERATION 20]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_20.json
+[GNN::ITERATION 20] ========================================
+[GNN::ITERATION 20] ✅ Returning (18, 42)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (18, 42)
+[M&S::MAIN] Merge indices validated: both are active
+[t=8.720672s, 262220 KB] Next pair of indices: (18, 42)
+[t=8.720689s, 262220 KB] M&S algorithm main loop timer: 8.519527s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=12, ts2_size=184608
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=8.783426s, 262220 KB] M&S algorithm main loop timer: 8.582272s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[t=9.305468s, 262220 KB] M&S algorithm main loop timer: 9.104315s (after shrinking)
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=1
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=43
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 20...
+[SIGNALS::GNN] Active systems: 2
+[SIGNALS::GNN] Computed 20 features for 2 nodes
+[SIGNALS::GNN] Interaction graph: 1 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=0.720673, is_good=0, is_bad=0
+[SIGNALS::DEBUG] iteration=20
+[SIGNALS::DEBUG]   total_states=133068 (prev=184644)
+[SIGNALS::DEBUG]   h_star=13 (prev=15, preservation=0.866667)
+[SIGNALS::DEBUG]   reachability=1.000000, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.891498
+[SIGNALS::GNN] Enhanced merge quality signals computed for pair (32, 43)
+[SIGNALS::GNN] ✅ Observation exported for iteration 20
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_20.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_20.json
+[t=9.548491s, 262220 KB] M&S algorithm main loop timer: 9.347350s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 21 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision (merge_21.json)...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 21] ========================================
+[GNN::ITERATION 21] Waiting for merge decision at:
+[GNN::ITERATION 21]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_21.json
+[GNN::ITERATION 21] ✅ Decision file found!
+[GNN::ITERATION 21] ✅ JSON parsed successfully
+[GNN::ITERATION 21] Merge decision: (32, 43)
+[GNN::ITERATION 21] ✅ ACK written to:
+[GNN::ITERATION 21]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_21.json
+[GNN::ITERATION 21] ========================================
+[GNN::ITERATION 21] ✅ Returning (32, 43)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (32, 43)
+[M&S::MAIN] Merge indices validated: both are active
+[t=9.769291s, 262220 KB] Next pair of indices: (32, 43)
+[t=9.769308s, 262220 KB] M&S algorithm main loop timer: 9.568146s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=24, ts2_size=133044
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[t=9.806957s, 262220 KB] M&S algorithm main loop timer: 9.605805s (after label reduction)
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=1
+[M&S::MAIN] PHASE 4: Shrinking...
+[t=10.072329s, 262220 KB] M&S algorithm main loop timer: 9.871175s (after shrinking)
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=1
+[M&S::MAIN] PHASE 6: Performing merge...
+[M&S::MAIN] PHASE 6 COMPLETE: merged_index=44
+[M&S::MAIN] PHASE 7: Exporting GNN observation for iteration 21...
+[SIGNALS::GNN] Active systems: 1
+[SIGNALS::GNN] Computed 20 features for 1 nodes
+[SIGNALS::GNN] Interaction graph: 0 edges with 15 features each
+[SIGNALS::DEBUG]   growth_ratio=0.787267, is_good=0, is_bad=0
+[SIGNALS::DEBUG] iteration=21
+[SIGNALS::DEBUG]   total_states=104760 (prev=133068)
+[SIGNALS::DEBUG]   h_star=11 (prev=13, preservation=0.846154)
+[SIGNALS::DEBUG]   reachability=0.701709, dead_ends=0
+[SIGNALS::DEBUG]   weighted_total=0.806987
+[SIGNALS::GNN] ✅ Observation exported for iteration 21
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_21.json
+[M&S::MAIN] PHASE 7 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/observation_21.json
+[t=10.128975s, 262220 KB] M&S algorithm main loop timer: 9.927822s (after merging)
+[t=10.146308s, 262220 KB] M&S algorithm main loop timer: 9.945156s (after pruning)
+
+[t=10.151189s, 262220 KB] End of merge-and-shrink algorithm, statistics:
+[t=10.151216s, 262220 KB] Main loop runtime: 9.950052s
+[t=10.151223s, 262220 KB] Maximum intermediate abstraction size: 194952
+[t=10.151229s, 262220 KB] Final peak memory increase of merge-and-shrink algorithm: 260788 KB
+[t=10.151235s, 262220 KB] Merge-and-shrink algorithm runtime: 10.142107s
+
+[t=10.151244s, 262220 KB] Number of remaining factors: 1
+[t=10.151347s, 262220 KB] Number of factors kept: 1
+[t=10.151357s, 262220 KB] Done initializing merge-and-shrink heuristic.
+
+[t=10.151912s, 262220 KB] Building successor generator...done!
+[t=10.152064s, 262220 KB] peak memory difference for successor generator creation: 0 KB
+[t=10.152071s, 262220 KB] time for successor generation creation: 0.000134s
+[t=10.152080s, 262220 KB] Variables: 23
+[t=10.152087s, 262220 KB] FactPairs: 156
+[t=10.152092s, 262220 KB] Bytes per state: 8
+[t=10.152127s, 262220 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=10.152144s, 262220 KB] New best heuristic value for merge_and_shrink: 11
+[t=10.152150s, 262220 KB] g=0, 1 evaluated, 0 expanded
+[t=10.152156s, 262220 KB] f = 11, 1 evaluated, 0 expanded
+[t=10.152166s, 262220 KB] Initial heuristic value for merge_and_shrink: 11
+[t=10.152171s, 262220 KB] pruning method: none
+[t=10.152189s, 262220 KB] f = 12, 4 evaluated, 1 expanded
+[t=10.152219s, 262220 KB] f = 13, 12 evaluated, 4 expanded
+[t=10.152249s, 262220 KB] New best heuristic value for merge_and_shrink: 10
+[t=10.152254s, 262220 KB] g=3, 21 evaluated, 8 expanded
+[t=10.152275s, 262220 KB] f = 14, 26 evaluated, 11 expanded
+[t=10.152365s, 262220 KB] f = 15, 65 evaluated, 25 expanded
+[t=10.152618s, 262220 KB] f = 16, 182 evaluated, 71 expanded
+[t=10.153014s, 262220 KB] f = 17, 351 evaluated, 136 expanded
+[t=10.153045s, 262220 KB] New best heuristic value for merge_and_shrink: 9
+[t=10.153055s, 262220 KB] g=8, 361 evaluated, 141 expanded
+[t=10.153070s, 262220 KB] New best heuristic value for merge_and_shrink: 8
+[t=10.153076s, 262220 KB] g=9, 364 evaluated, 142 expanded
+[t=10.153947s, 262220 KB] New best heuristic value for merge_and_shrink: 7
+[t=10.153955s, 262220 KB] g=10, 755 evaluated, 270 expanded
+[t=10.153997s, 262220 KB] New best heuristic value for merge_and_shrink: 6
+[t=10.154003s, 262220 KB] g=11, 759 evaluated, 271 expanded
+[t=10.155307s, 262220 KB] f = 18, 1325 evaluated, 490 expanded
+[t=10.159188s, 262220 KB] f = 19, 3107 evaluated, 1156 expanded
+[t=10.174949s, 262220 KB] f = 20, 9823 evaluated, 3680 expanded
+[t=10.207304s, 262220 KB] f = 21, 23080 evaluated, 8794 expanded
+[t=10.314872s, 262220 KB] f = 22, 67323 evaluated, 25478 expanded
+[t=10.530872s, 262220 KB] f = 23, 155579 evaluated, 59644 expanded
+[t=11.205832s, 262220 KB] f = 24, 439756 evaluated, 165328 expanded
+[t=11.206094s, 262220 KB] New best heuristic value for merge_and_shrink: 5
+[t=11.206104s, 262220 KB] g=19, 439813 evaluated, 165395 expanded
+[t=12.794190s, 262220 KB] f = 25, 1029386 evaluated, 392717 expanded
+[t=12.794270s, 262220 KB] New best heuristic value for merge_and_shrink: 4
+[t=12.794279s, 262220 KB] g=21, 1029399 evaluated, 392726 expanded
+[t=16.889826s, 262220 KB] f = 26, 2651473 evaluated, 1025107 expanded
+[t=16.890852s, 262220 KB] New best heuristic value for merge_and_shrink: 3
+[t=16.890865s, 262220 KB] g=23, 2651843 evaluated, 1025326 expanded
+[t=25.513440s, 296976 KB] f = 27, 5838438 evaluated, 2366626 expanded
+[t=46.414138s, 895996 KB] f = 28, 13151545 evaluated, 5574402 expanded
+[t=82.264709s, 1229244 KB] f = 29, 25582145 evaluated, 11628667 expanded

@@ -1,0 +1,201 @@
+========================================================================================================================
+COMPREHENSIVE EVALUATION REPORT - BASELINE COMPARISON
+========================================================================================================================
+
+Timestamp: 2025-12-10T11:44:28.868589
+Total problems: 34
+Planners evaluated: 7
+
+1. PERFORMANCE SUMMARY
+------------------------------------------------------------------------------------------------------------------------
+Planner                   Solve Rate         Avg Time        Med Time        Avg Exp         H* Pres     
+------------------------------------------------------------------------------------------------------------------------
+FD_Add                    0/34 (0.0%)        0.00            0.00            N/A             N/A         
+FD_Blind                  0/34 (0.0%)        0.00            0.00            N/A             N/A         
+FD_LM-Cut                 0/34 (0.0%)        0.00            0.00            N/A             N/A         
+FD_M&S_DFP                0/34 (0.0%)        0.00            0.00            N/A             N/A         
+FD_M&S_SCC                0/34 (0.0%)        0.00            0.00            N/A             N/A         
+FD_Max                    0/34 (0.0%)        0.00            0.00            N/A             N/A         
+GNN                       33/34 (97.1%)      6.27            5.53            0               0.705       
+------------------------------------------------------------------------------------------------------------------------
+
+2. DETAILED STATISTICS
+------------------------------------------------------------------------------------------------------------------------
+
+FD_Add
+  Solved: 0/34 (0.0%)
+  Time (mean ± std): 0.00 ± 0.00s
+  Time (median [Q1, Q3]): 0.00s [0.00, 0.00]
+  Time (IQR): 0.00s
+  Expansions (mean ± std): 0 ± 0
+  Expansions (median): 0
+  Plan cost (mean ± std): 0 ± 0
+  Efficiency score: inf
+  Quality score: 0.0000
+  Solved per second: 0.0000
+  Errors: 34, Timeouts: 0
+  Total time: 0.0s
+
+FD_Blind
+  Solved: 0/34 (0.0%)
+  Time (mean ± std): 0.00 ± 0.00s
+  Time (median [Q1, Q3]): 0.00s [0.00, 0.00]
+  Time (IQR): 0.00s
+  Expansions (mean ± std): 0 ± 0
+  Expansions (median): 0
+  Plan cost (mean ± std): 0 ± 0
+  Efficiency score: inf
+  Quality score: 0.0000
+  Solved per second: 0.0000
+  Errors: 34, Timeouts: 0
+  Total time: 0.0s
+
+FD_LM-Cut
+  Solved: 0/34 (0.0%)
+  Time (mean ± std): 0.00 ± 0.00s
+  Time (median [Q1, Q3]): 0.00s [0.00, 0.00]
+  Time (IQR): 0.00s
+  Expansions (mean ± std): 0 ± 0
+  Expansions (median): 0
+  Plan cost (mean ± std): 0 ± 0
+  Efficiency score: inf
+  Quality score: 0.0000
+  Solved per second: 0.0000
+  Errors: 34, Timeouts: 0
+  Total time: 0.0s
+
+FD_M&S_DFP
+  Solved: 0/34 (0.0%)
+  Time (mean ± std): 0.00 ± 0.00s
+  Time (median [Q1, Q3]): 0.00s [0.00, 0.00]
+  Time (IQR): 0.00s
+  Expansions (mean ± std): 0 ± 0
+  Expansions (median): 0
+  Plan cost (mean ± std): 0 ± 0
+  Efficiency score: inf
+  Quality score: 0.0000
+  Solved per second: 0.0000
+  Errors: 34, Timeouts: 0
+  Total time: 0.0s
+
+FD_M&S_SCC
+  Solved: 0/34 (0.0%)
+  Time (mean ± std): 0.00 ± 0.00s
+  Time (median [Q1, Q3]): 0.00s [0.00, 0.00]
+  Time (IQR): 0.00s
+  Expansions (mean ± std): 0 ± 0
+  Expansions (median): 0
+  Plan cost (mean ± std): 0 ± 0
+  Efficiency score: inf
+  Quality score: 0.0000
+  Solved per second: 0.0000
+  Errors: 34, Timeouts: 0
+  Total time: 0.0s
+
+FD_Max
+  Solved: 0/34 (0.0%)
+  Time (mean ± std): 0.00 ± 0.00s
+  Time (median [Q1, Q3]): 0.00s [0.00, 0.00]
+  Time (IQR): 0.00s
+  Expansions (mean ± std): 0 ± 0
+  Expansions (median): 0
+  Plan cost (mean ± std): 0 ± 0
+  Efficiency score: inf
+  Quality score: 0.0000
+  Solved per second: 0.0000
+  Errors: 34, Timeouts: 0
+  Total time: 0.0s
+
+GNN
+  Solved: 33/34 (97.1%)
+  Time (mean ± std): 6.27 ± 3.55s
+  Time (median [Q1, Q3]): 5.53s [5.09, 5.88]
+  Time (IQR): 0.79s
+  Expansions (mean ± std): 0 ± 0
+  Expansions (median): 0
+  Plan cost (mean ± std): 0 ± 0
+  Efficiency score: 6.2718
+  Quality score: 1.0000
+  Solved per second: 0.1594
+  H* preservation (mean): 0.705
+  H* preservation (median): 0.714
+  Errors: 1, Timeouts: 0
+  Total time: 207.0s
+
+3. RANKINGS BY METRIC
+------------------------------------------------------------------------------------------------------------------------
+
+Ranking by Solve Rate (%):
+  1. GNN                                 97.1%
+  2. FD_LM-Cut                           0.0%
+  3. FD_Blind                            0.0%
+  4. FD_Add                              0.0%
+  5. FD_Max                              0.0%
+  6. FD_M&S_DFP                          0.0%
+  7. FD_M&S_SCC                          0.0%
+
+Ranking by Mean Time (seconds):
+  1. GNN                                 6.27s
+  2. FD_LM-Cut                           N/A
+  3. FD_Blind                            N/A
+  4. FD_Add                              N/A
+  5. FD_Max                              N/A
+  6. FD_M&S_DFP                          N/A
+  7. FD_M&S_SCC                          N/A
+
+Ranking by Mean Expansions:
+  1. FD_LM-Cut                           N/A
+  2. FD_Blind                            N/A
+  3. FD_Add                              N/A
+  4. FD_Max                              N/A
+  5. FD_M&S_DFP                          N/A
+  6. FD_M&S_SCC                          N/A
+  7. GNN                                 N/A
+
+4. PER-PROBLEM BEST PLANNER
+------------------------------------------------------------------------------------------------------------------------
+Problem                                  Best Planner              Time (s)        Expansions     
+------------------------------------------------------------------------------------------------------------------------
+problem_small_00.pddl                    GNN                       25.81           0              
+problem_small_01.pddl                    GNN                       7.45            0              
+problem_small_02.pddl                    GNN                       5.57            0              
+problem_small_03.pddl                    GNN                       7.68            0              
+problem_small_04.pddl                    GNN                       5.42            0              
+problem_small_05.pddl                    GNN                       5.15            0              
+problem_small_06.pddl                    GNN                       5.07            0              
+problem_small_07.pddl                    GNN                       5.88            0              
+problem_small_08.pddl                    GNN                       4.78            0              
+problem_small_09.pddl                    GNN                       5.94            0              
+problem_small_10.pddl                    GNN                       6.43            0              
+problem_small_11.pddl                    GNN                       7.35            0              
+problem_small_12.pddl                    NONE                      inf             0              
+problem_small_13.pddl                    GNN                       7.75            0              
+problem_small_14.pddl                    GNN                       5.31            0              
+problem_small_15.pddl                    GNN                       5.09            0              
+problem_small_16.pddl                    GNN                       5.82            0              
+problem_small_17.pddl                    GNN                       5.57            0              
+problem_small_18.pddl                    GNN                       5.24            0              
+problem_small_19.pddl                    GNN                       6.59            0              
+problem_small_20.pddl                    GNN                       5.75            0              
+problem_small_21.pddl                    GNN                       4.60            0              
+problem_small_22.pddl                    GNN                       5.04            0              
+problem_small_23.pddl                    GNN                       4.95            0              
+problem_small_24.pddl                    GNN                       5.53            0              
+problem_small_25.pddl                    GNN                       5.65            0              
+problem_small_26.pddl                    GNN                       5.11            0              
+problem_small_27.pddl                    GNN                       4.88            0              
+problem_small_28.pddl                    GNN                       5.60            0              
+problem_small_29.pddl                    GNN                       5.74            0              
+problem_small_30.pddl                    GNN                       4.42            0              
+problem_small_31.pddl                    GNN                       5.38            0              
+problem_small_32.pddl                    GNN                       5.39            0              
+problem_small_33.pddl                    GNN                       5.02            0              
+------------------------------------------------------------------------------------------------------------------------
+
+Wins by Planner:
+  GNN                                 33 wins
+
+6. STATISTICAL SIGNIFICANCE TESTS
+------------------------------------------------------------------------------------------------------------------------
+Mann-Whitney U Test Results (p < 0.05 indicates significant difference)
+

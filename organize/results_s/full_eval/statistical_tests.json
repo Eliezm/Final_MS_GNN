@@ -1,0 +1,170 @@
+{
+  "FD_Add_vs_FD_Blind_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_FD_Blind_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_FD_LM-Cut_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_FD_LM-Cut_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_FD_M&S_DFP_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_FD_M&S_DFP_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_FD_M&S_SCC_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_FD_M&S_SCC_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_FD_Max_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_FD_Max_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_GNN_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Add_vs_GNN_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Blind_vs_FD_LM-Cut_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Blind_vs_FD_LM-Cut_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Blind_vs_FD_M&S_DFP_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Blind_vs_FD_M&S_DFP_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Blind_vs_FD_M&S_SCC_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Blind_vs_FD_M&S_SCC_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Blind_vs_FD_Max_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Blind_vs_FD_Max_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Blind_vs_GNN_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Blind_vs_GNN_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_LM-Cut_vs_FD_M&S_DFP_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_LM-Cut_vs_FD_M&S_DFP_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_LM-Cut_vs_FD_M&S_SCC_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_LM-Cut_vs_FD_M&S_SCC_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_LM-Cut_vs_FD_Max_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_LM-Cut_vs_FD_Max_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_LM-Cut_vs_GNN_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_LM-Cut_vs_GNN_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_M&S_DFP_vs_FD_M&S_SCC_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_M&S_DFP_vs_FD_M&S_SCC_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_M&S_DFP_vs_FD_Max_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_M&S_DFP_vs_FD_Max_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_M&S_DFP_vs_GNN_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_M&S_DFP_vs_GNN_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_M&S_SCC_vs_FD_Max_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_M&S_SCC_vs_FD_Max_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_M&S_SCC_vs_GNN_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_M&S_SCC_vs_GNN_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Max_vs_GNN_time": {
+    "significant": false,
+    "reason": "insufficient_data"
+  },
+  "FD_Max_vs_GNN_expansions": {
+    "significant": false,
+    "reason": "insufficient_data"
+  }
+}

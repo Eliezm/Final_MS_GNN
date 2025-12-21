@@ -1,0 +1,19 @@
+{
+  "problem_name": "logistics-small-0203",
+  "domain": "logistics",
+  "difficulty": "small",
+  "num_cities": 11,
+  "num_locations": 55,
+  "num_packages": 10,
+  "num_trucks": 2,
+  "num_airplanes": 2,
+  "goal_archetype": "intra_city",
+  "plan_length": 1253,
+  "optimal_plan_cost": 1253,
+  "planner_time": 71.00022578239441,
+  "planner_success": true,
+  "nodes_expanded": 5202,
+  "plan_cost": 27,
+  "domain_file": "generated_problems\\domains\\logistics.pddl",
+  "problem_file": "generated_problems\\problems\\logistics-small-0203.pddl"
+}

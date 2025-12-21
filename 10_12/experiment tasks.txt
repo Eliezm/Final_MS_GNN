@@ -1,0 +1,86 @@
+IMPORTANT SHIT - EXPERIMENTS ###########
+
+
+TRAINING SHOULD HAPPEN IN AN INTERLEVED WAY - WE NEED TO INTRODUCE PROBLEMS TO PERFORM MERGES ON IN AN ORDER AND A WAY THAT WILL MAXIMIZE THE LEARNING OF THE GNN FOR A MERGE QUALITY STRATEGY
+
+TRAINING SHOULD BE EXPLOITED FOR HUGE STEP COUNTS LIKE 400 THOUSAND STEPS, WE NEED TO EXPLOIT OUR TRAINING SET OF PROBLEMS AS MUCH AS POSSIBLE
+
+
+
+
+Here is the summary of the **"Safety Net" Strategy** for long-haul training:
+* **The Goal (Disaster Recovery):** To ensure that if your server crashes, the power goes out, or you realize 5 days later that the model started overfitting on Day 2, you haven't lost everything. You need to be able to "time travel" back to any point.
+* **The Mechanism (Checkpointing):**
+    * **Frequency:** Do not just save at the end. Save the full model state (weights + optimizer) every **X timesteps** (e.g., every 10,000 steps).
+    * **Versioning:** Save files with unique names like `model_step_10000.zip`, `model_step_20000.zip`. **Never overwrite** the previous save; storage is cheap, compute is expensive.
+* **The "Best Model" Callback:**
+    * Implement a callback that checks performance every few intervals. If the current model has the best reward seen so far, save a specific copy called `best_model.zip`. This ensures you always have the peak performer, even if the training degrades later (catastrophic forgetting).
+* **Resume Capability:**
+    * Your code must be able to load a saved checkpoint and *continue* training exactly where it left off, including the state of the optimizer (learning rate, momentum). This turns a 1-week continuous run into a series of manageable 24-hour sprints.
+
+Here is the summary of the **"Silent Training / Deep Analysis"** workflow:
+* **The Goal (Efficiency):** To stop the training process from spamming the console with millions of lines of text, which slows down the server and makes monitoring impossible.
+* **The Strategy ("Silent Mode"):**
+    * **Console:** Only shows a clean progress bar (TQDM) and critical warnings.
+    * **File:** Silently writes *everything* (every reward, every merge decision, every heuristic change) to a massive `training.log` file on the disk.
+* **The Framework (Post-Mortem):** You don't read the log file manually. You write a dedicated **Analysis Script** (`analyze_logs.py`) that runs *after* training is done. It parses the massive text file and automatically generates graphs (Reward Curves, Bad Merge Counts) and summary reports.
+
+
+Here is the summary of the **Reproducibility (Determinism)** mandate:
+* **The Goal (Scientific Trust):** If you run your experiment today and get 85% accuracy, and run it tomorrow and get 70% accuracy, your research is worthless. You must ensure that every run is an exact clone of the others.
+* **The Mechanism (Seeding):** You cannot just set one seed. You must lock down randomness in *every* library that rolls dice.
+* **The Checklist:** You need to explicitly set the seed in **four** places at the start of every script:
+    1.  `random.seed(42)` (Python standard)
+    2.  `np.random.seed(42)` (NumPy)
+    3.  `torch.manual_seed(42)` (PyTorch weights)
+    4.  **Crucially:** Pass the seed to the Fast Downward environment (so the random walks in the planner are identical).
+* **The "Win":** This allows you (and reviewers) to verify your results. It transforms your work from "I got lucky once" to "This is a stable, repeatable phenomenon."
+
+
+"Physics of the Environment" concept:
+The Metaphor: The hyperparameters of the Fast Downward planner (like memory limits or shrinking strategies) are not just settings; they define the "Physics" of the world your GNN inhabits.
+The Risk:
+Physics too strict: The GNN cannot learn because the environment kills it no matter what it does (e.g., memory is too low).
+Physics too loose: The GNN learns nothing useful because the problem is too easy or the feedback loop is broken.
+The Insight: You are not just training a brain; you are also designing the "universe" it lives in. If the universe is broken, the brain will never develop intelligence.
+
+Hyperparameter Strategy:
+The Principle: Don't grid-search everything. You must distinguish between "The Rules of the Game" (Standard Physics) and "The Difficulty Settings" (Capacity).
+FIX THESE (To Match the Standard "Physics"):
+shrink_strategy = bisimulation: This is the standard "smart" cleanup method. It merges identical states automatically.
+label_reduction = exact: Always keep this. It simplifies the math without losing data.
+prune_unreachable = true: Always remove dead code.
+TUNE THESE (To Test "Capacity"):
+max_states: Increase to 50,000. This is your planner's "brain size." (Currently set too low at 4,000).
+threshold_before_merge: Set to 50,000. Don't force the planner to shrink constantly; only force it when memory is actually full.
+The takeaway: Fixing the first group ensures your planner is mathematically sound. Tuning the second group ensures your GNN has a fair amount of memory to work with compared to the baselines.
+
+
+Here is the summary of your **Experimental Design Strategy**:
+
+This plan outlines a sequence of experiments ranging from basic validation to advanced generalization, designed to rigorously test your GNN's capabilities.
+
+### 1. The "Invariant" Experiment (Cross-Domain Transfer)
+* **The Idea:** Train on one domain (e.g., Blocksworld) and test on a completely different one (e.g., Logistics), or train on both simultaneously.
+* **The Goal:** To test for **Universal Planning Logic**. Does the GNN learn abstract concepts like "avoid dead ends" that apply anywhere, or does it just memorize "stacks blocks"?
+* **The Configurations:**
+    * Train BW $\to$ Test Logistics
+    * Train Logistics $\to$ Test BW
+    * Train Mixed $\to$ Test Mixed
+
+### 2. The Overfit Experiment (Sanity Check)
+* **The Idea:** Train and test on the *exact same* small set of problems for each difficulty level.
+* **The Goal:** To verify **Capacity**. If the model cannot memorize the solution to a problem it has seen 1,000 times, there is a bug in the architecture or the features are insufficient. It sets the "upper bound" of performance.
+
+### 3. The "Actual Learning" Experiment (Generalization)
+* **The Idea:** The standard machine learning setup. Train on a set of problems (Set A), and test on unseen problems of the same difficulty (Set B).
+* **The Goal:** To prove **Interpolation**. Can the model apply its learned strategies to new map layouts it hasn't seen before?
+
+### 4. The Scalability Experiment (Size Extrapolation)
+* **The Idea:** Train only on **Small** problems. Test exclusively on **Large** problems.
+* **The Goal:** To prove **Efficiency**. This is the "Holy Grail" of planning learning—demonstrating that the GNN learns local rules (like "merge leaf nodes") that scale linearly, regardless of how huge the global graph becomes.
+
+### 5. The Curriculum Experiment (The "Grand Plan")
+* **The Idea:** Train dynamically, starting with easy problems and progressively introducing harder ones as the model improves. Evaluate the final model on a diverse test set.
+* **The Goal:** To prove **Stability**. Curriculum learning often prevents the model from getting stuck in bad local optima early on, leading to a smarter final agent than one trained on hard problems from day one.
+

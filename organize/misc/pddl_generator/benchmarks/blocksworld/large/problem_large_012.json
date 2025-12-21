@@ -1,0 +1,16 @@
+{
+  "problem_name": "blocksworld-large-012",
+  "domain": "blocksworld",
+  "size_category": "large",
+  "characteristic_type": "alternating_goal",
+  "num_objects": 15,
+  "num_locations": 4,
+  "complexity_score": 0.7,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 481042
+}

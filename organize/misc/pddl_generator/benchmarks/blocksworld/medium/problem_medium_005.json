@@ -1,0 +1,16 @@
+{
+  "problem_name": "blocksworld-medium-005",
+  "domain": "blocksworld",
+  "size_category": "medium",
+  "characteristic_type": "multiple_stacks",
+  "num_objects": 8,
+  "num_locations": 3,
+  "complexity_score": 0.26666666666666666,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 255042
+}

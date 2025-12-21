@@ -1,0 +1,29 @@
+{
+  "problem": "problem_small_07.pddl",
+  "num_decisions": 1,
+  "decisions": [
+    {
+      "episode_step": 1,
+      "merge_step": 1,
+      "action_index": 110,
+      "chosen_edge": [
+        5,
+        0
+      ],
+      "observation_shape": {
+        "num_nodes": 22,
+        "num_edges": 352,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.02301515190164996,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:25:58.953472",
+      "problem": "problem_small_07.pddl"
+    }
+  ],
+  "export_timestamp": "2025-11-20T15:26:11.934971"
+}

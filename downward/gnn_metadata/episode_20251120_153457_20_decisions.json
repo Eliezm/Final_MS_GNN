@@ -1,0 +1,447 @@
+{
+  "problem": "problem_small_07.pddl",
+  "num_decisions": 20,
+  "decisions": [
+    {
+      "episode_step": 1,
+      "merge_step": 1,
+      "action_index": 215,
+      "chosen_edge": [
+        9,
+        18
+      ],
+      "observation_shape": {
+        "num_nodes": 22,
+        "num_edges": 372,
+        "node_features_dim": 19
+      },
+      "reward_received": 1.0,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:32:50.791259",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 2,
+      "merge_step": 2,
+      "action_index": 247,
+      "chosen_edge": [
+        14,
+        22
+      ],
+      "observation_shape": {
+        "num_nodes": 21,
+        "num_edges": 348,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.9296634529791092,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:32:52.140159",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 3,
+      "merge_step": 3,
+      "action_index": 225,
+      "chosen_edge": [
+        13,
+        21
+      ],
+      "observation_shape": {
+        "num_nodes": 20,
+        "num_edges": 324,
+        "node_features_dim": 19
+      },
+      "reward_received": 1.0,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:32:52.914010",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 4,
+      "merge_step": 4,
+      "action_index": 54,
+      "chosen_edge": [
+        2,
+        23
+      ],
+      "observation_shape": {
+        "num_nodes": 19,
+        "num_edges": 286,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.7549907774699076,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:32:54.285727",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 5,
+      "merge_step": 5,
+      "action_index": 272,
+      "chosen_edge": [
+        26,
+        5
+      ],
+      "observation_shape": {
+        "num_nodes": 18,
+        "num_edges": 250,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.8060554766865258,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:32:55.590568",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 6,
+      "merge_step": 6,
+      "action_index": 37,
+      "chosen_edge": [
+        3,
+        6
+      ],
+      "observation_shape": {
+        "num_nodes": 17,
+        "num_edges": 216,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.02301515190164996,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:32:56.316105",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 7,
+      "merge_step": 7,
+      "action_index": 191,
+      "chosen_edge": [
+        27,
+        12
+      ],
+      "observation_shape": {
+        "num_nodes": 16,
+        "num_edges": 198,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.02800701954851406,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:02.255375",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 8,
+      "merge_step": 8,
+      "action_index": 6,
+      "chosen_edge": [
+        0,
+        15
+      ],
+      "observation_shape": {
+        "num_nodes": 15,
+        "num_edges": 180,
+        "node_features_dim": 19
+      },
+      "reward_received": 1.0,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:03.168194",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 9,
+      "merge_step": 9,
+      "action_index": 12,
+      "chosen_edge": [
+        1,
+        29
+      ],
+      "observation_shape": {
+        "num_nodes": 14,
+        "num_edges": 152,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.7562701402078587,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:09.485334",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 10,
+      "merge_step": 10,
+      "action_index": 51,
+      "chosen_edge": [
+        11,
+        25
+      ],
+      "observation_shape": {
+        "num_nodes": 13,
+        "num_edges": 136,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.22248834992704938,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:11.090192",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 11,
+      "merge_step": 11,
+      "action_index": 45,
+      "chosen_edge": [
+        16,
+        7
+      ],
+      "observation_shape": {
+        "num_nodes": 12,
+        "num_edges": 120,
+        "node_features_dim": 19
+      },
+      "reward_received": 1.0,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:12.246708",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 12,
+      "merge_step": 12,
+      "action_index": 6,
+      "chosen_edge": [
+        4,
+        28
+      ],
+      "observation_shape": {
+        "num_nodes": 11,
+        "num_edges": 98,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.6731976993819069,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:14.914224",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 13,
+      "merge_step": 13,
+      "action_index": 95,
+      "chosen_edge": [
+        34,
+        31
+      ],
+      "observation_shape": {
+        "num_nodes": 10,
+        "num_edges": 78,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.7733007563012635,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:23.520638",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 14,
+      "merge_step": 14,
+      "action_index": 58,
+      "chosen_edge": [
+        32,
+        33
+      ],
+      "observation_shape": {
+        "num_nodes": 9,
+        "num_edges": 60,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.21393419700565336,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:44.287415",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 15,
+      "merge_step": 15,
+      "action_index": 54,
+      "chosen_edge": [
+        36,
+        30
+      ],
+      "observation_shape": {
+        "num_nodes": 8,
+        "num_edges": 44,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.20528803751982755,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:50.766082",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 16,
+      "merge_step": 16,
+      "action_index": 1,
+      "chosen_edge": [
+        8,
+        17
+      ],
+      "observation_shape": {
+        "num_nodes": 7,
+        "num_edges": 36,
+        "node_features_dim": 19
+      },
+      "reward_received": 1.0,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:51.874117",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 17,
+      "merge_step": 17,
+      "action_index": 16,
+      "chosen_edge": [
+        24,
+        37
+      ],
+      "observation_shape": {
+        "num_nodes": 6,
+        "num_edges": 24,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.6301915340712148,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:55.796251",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 18,
+      "merge_step": 18,
+      "action_index": 14,
+      "chosen_edge": [
+        38,
+        10
+      ],
+      "observation_shape": {
+        "num_nodes": 5,
+        "num_edges": 18,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.05090334355166895,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:33:58.975711",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 19,
+      "merge_step": 19,
+      "action_index": 5,
+      "chosen_edge": [
+        20,
+        40
+      ],
+      "observation_shape": {
+        "num_nodes": 4,
+        "num_edges": 12,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.6278478507357734,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:34:05.892760",
+      "problem": "problem_small_07.pddl"
+    },
+    {
+      "episode_step": 20,
+      "merge_step": 20,
+      "action_index": 6,
+      "chosen_edge": [
+        39,
+        19
+      ],
+      "observation_shape": {
+        "num_nodes": 3,
+        "num_edges": 6,
+        "node_features_dim": 19
+      },
+      "reward_received": 0.4959098821465283,
+      "merge_info": {
+        "plan_cost": 0,
+        "num_expansions": 0,
+        "delta_states": 0
+      },
+      "timestamp": "2025-11-20T15:34:12.193982",
+      "problem": "problem_small_07.pddl"
+    }
+  ],
+  "export_timestamp": "2025-11-20T15:34:57.705780"
+}

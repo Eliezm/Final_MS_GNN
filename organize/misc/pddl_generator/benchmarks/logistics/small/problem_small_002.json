@@ -1,0 +1,16 @@
+{
+  "problem_name": "logistics-small-002",
+  "domain": "logistics",
+  "size_category": "small",
+  "characteristic_type": "single_source",
+  "num_objects": 3,
+  "num_locations": 4,
+  "complexity_score": 0.03200000000000001,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 632042
+}

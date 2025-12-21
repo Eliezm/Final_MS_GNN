@@ -1,0 +1,16 @@
+{
+  "problem_name": "logistics-small-007",
+  "domain": "logistics",
+  "size_category": "small",
+  "characteristic_type": "inter_city",
+  "num_objects": 4,
+  "num_locations": 6,
+  "complexity_score": 0.07466666666666667,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 315042
+}

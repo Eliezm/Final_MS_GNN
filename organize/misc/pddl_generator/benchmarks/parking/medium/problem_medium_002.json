@@ -1,0 +1,16 @@
+{
+  "problem_name": "parking-medium-002",
+  "domain": "parking",
+  "size_category": "medium",
+  "characteristic_type": "swapping",
+  "num_objects": 5,
+  "num_locations": 4,
+  "complexity_score": 0.24999999999999997,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 152042
+}

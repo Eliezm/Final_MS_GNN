@@ -1,0 +1,1539 @@
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:884] - [FRAMEWORK] Output directory: results_s\full_eval
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:1355] - 
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:1356] - ========================================================================================================================
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:1357] - // COMPREHENSIVE EVALUATION FRAMEWORK
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:1358] - ========================================================================================================================
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:1359] - 
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:899] - Loading problems: benchmarks/blocksworld/small/problem_*.pddl
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:906] - Found 34 problem(s)
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:1364] - 
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:1365] - ----------------------------------------------------------------------------------------------------
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:1366] - >>> RUNNING BASELINE PLANNERS
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:1367] - ----------------------------------------------------------------------------------------------------
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:1368] - 
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:941] - 
+FD_LM-Cut: Fast Downward with LM-Cut heuristic
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:942] - ----------------------------------------------------------------------
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:945] -   [1/34] problem_small_00.pddl
+2025-12-10 11:40:29,879 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_00.pddl
+2025-12-10 11:40:30,046 - INFO     - [evaluation_comprehensive.py:945] -   [2/34] problem_small_01.pddl
+2025-12-10 11:40:30,046 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_01.pddl
+2025-12-10 11:40:30,172 - INFO     - [evaluation_comprehensive.py:945] -   [3/34] problem_small_02.pddl
+2025-12-10 11:40:30,172 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_02.pddl
+2025-12-10 11:40:30,284 - INFO     - [evaluation_comprehensive.py:945] -   [4/34] problem_small_03.pddl
+2025-12-10 11:40:30,284 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_03.pddl
+2025-12-10 11:40:30,395 - INFO     - [evaluation_comprehensive.py:945] -   [5/34] problem_small_04.pddl
+2025-12-10 11:40:30,395 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_04.pddl
+2025-12-10 11:40:30,522 - INFO     - [evaluation_comprehensive.py:945] -   [6/34] problem_small_05.pddl
+2025-12-10 11:40:30,522 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_05.pddl
+2025-12-10 11:40:30,650 - INFO     - [evaluation_comprehensive.py:945] -   [7/34] problem_small_06.pddl
+2025-12-10 11:40:30,650 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_06.pddl
+2025-12-10 11:40:30,777 - INFO     - [evaluation_comprehensive.py:945] -   [8/34] problem_small_07.pddl
+2025-12-10 11:40:30,777 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_07.pddl
+2025-12-10 11:40:30,888 - INFO     - [evaluation_comprehensive.py:945] -   [9/34] problem_small_08.pddl
+2025-12-10 11:40:30,888 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_08.pddl
+2025-12-10 11:40:31,022 - INFO     - [evaluation_comprehensive.py:945] -   [10/34] problem_small_09.pddl
+2025-12-10 11:40:31,022 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_09.pddl
+2025-12-10 11:40:31,141 - INFO     - [evaluation_comprehensive.py:945] -   [11/34] problem_small_10.pddl
+2025-12-10 11:40:31,141 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_10.pddl
+2025-12-10 11:40:31,268 - INFO     - [evaluation_comprehensive.py:945] -   [12/34] problem_small_11.pddl
+2025-12-10 11:40:31,268 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_11.pddl
+2025-12-10 11:40:31,380 - INFO     - [evaluation_comprehensive.py:945] -   [13/34] problem_small_12.pddl
+2025-12-10 11:40:31,380 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_12.pddl
+2025-12-10 11:40:31,494 - INFO     - [evaluation_comprehensive.py:945] -   [14/34] problem_small_13.pddl
+2025-12-10 11:40:31,494 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_13.pddl
+2025-12-10 11:40:31,603 - INFO     - [evaluation_comprehensive.py:945] -   [15/34] problem_small_14.pddl
+2025-12-10 11:40:31,603 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_14.pddl
+2025-12-10 11:40:31,713 - INFO     - [evaluation_comprehensive.py:945] -   [16/34] problem_small_15.pddl
+2025-12-10 11:40:31,713 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_15.pddl
+2025-12-10 11:40:31,824 - INFO     - [evaluation_comprehensive.py:945] -   [17/34] problem_small_16.pddl
+2025-12-10 11:40:31,824 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_16.pddl
+2025-12-10 11:40:31,936 - INFO     - [evaluation_comprehensive.py:945] -   [18/34] problem_small_17.pddl
+2025-12-10 11:40:31,936 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_17.pddl
+2025-12-10 11:40:32,046 - INFO     - [evaluation_comprehensive.py:945] -   [19/34] problem_small_18.pddl
+2025-12-10 11:40:32,046 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_18.pddl
+2025-12-10 11:40:32,173 - INFO     - [evaluation_comprehensive.py:945] -   [20/34] problem_small_19.pddl
+2025-12-10 11:40:32,173 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_19.pddl
+2025-12-10 11:40:32,283 - INFO     - [evaluation_comprehensive.py:945] -   [21/34] problem_small_20.pddl
+2025-12-10 11:40:32,283 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_20.pddl
+2025-12-10 11:40:32,410 - INFO     - [evaluation_comprehensive.py:945] -   [22/34] problem_small_21.pddl
+2025-12-10 11:40:32,410 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_21.pddl
+2025-12-10 11:40:32,523 - INFO     - [evaluation_comprehensive.py:945] -   [23/34] problem_small_22.pddl
+2025-12-10 11:40:32,523 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_22.pddl
+2025-12-10 11:40:32,632 - INFO     - [evaluation_comprehensive.py:945] -   [24/34] problem_small_23.pddl
+2025-12-10 11:40:32,632 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_23.pddl
+2025-12-10 11:40:32,743 - INFO     - [evaluation_comprehensive.py:945] -   [25/34] problem_small_24.pddl
+2025-12-10 11:40:32,743 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_24.pddl
+2025-12-10 11:40:32,838 - INFO     - [evaluation_comprehensive.py:945] -   [26/34] problem_small_25.pddl
+2025-12-10 11:40:32,838 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_25.pddl
+2025-12-10 11:40:32,959 - INFO     - [evaluation_comprehensive.py:945] -   [27/34] problem_small_26.pddl
+2025-12-10 11:40:32,959 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_26.pddl
+2025-12-10 11:40:33,061 - INFO     - [evaluation_comprehensive.py:945] -   [28/34] problem_small_27.pddl
+2025-12-10 11:40:33,061 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_27.pddl
+2025-12-10 11:40:33,171 - INFO     - [evaluation_comprehensive.py:945] -   [29/34] problem_small_28.pddl
+2025-12-10 11:40:33,171 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_28.pddl
+2025-12-10 11:40:33,283 - INFO     - [evaluation_comprehensive.py:945] -   [30/34] problem_small_29.pddl
+2025-12-10 11:40:33,283 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_29.pddl
+2025-12-10 11:40:33,378 - INFO     - [evaluation_comprehensive.py:945] -   [31/34] problem_small_30.pddl
+2025-12-10 11:40:33,378 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_30.pddl
+2025-12-10 11:40:33,489 - INFO     - [evaluation_comprehensive.py:945] -   [32/34] problem_small_31.pddl
+2025-12-10 11:40:33,489 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_31.pddl
+2025-12-10 11:40:33,600 - INFO     - [evaluation_comprehensive.py:945] -   [33/34] problem_small_32.pddl
+2025-12-10 11:40:33,600 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_32.pddl
+2025-12-10 11:40:33,696 - INFO     - [evaluation_comprehensive.py:945] -   [34/34] problem_small_33.pddl
+2025-12-10 11:40:33,696 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_LM-Cut: problem_small_33.pddl
+2025-12-10 11:40:33,807 - INFO     - [evaluation_comprehensive.py:941] - 
+FD_Blind: Fast Downward with blind search
+2025-12-10 11:40:33,807 - INFO     - [evaluation_comprehensive.py:942] - ----------------------------------------------------------------------
+2025-12-10 11:40:33,807 - INFO     - [evaluation_comprehensive.py:945] -   [1/34] problem_small_00.pddl
+2025-12-10 11:40:33,807 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_00.pddl
+2025-12-10 11:40:33,903 - INFO     - [evaluation_comprehensive.py:945] -   [2/34] problem_small_01.pddl
+2025-12-10 11:40:33,903 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_01.pddl
+2025-12-10 11:40:34,013 - INFO     - [evaluation_comprehensive.py:945] -   [3/34] problem_small_02.pddl
+2025-12-10 11:40:34,013 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_02.pddl
+2025-12-10 11:40:34,125 - INFO     - [evaluation_comprehensive.py:945] -   [4/34] problem_small_03.pddl
+2025-12-10 11:40:34,125 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_03.pddl
+2025-12-10 11:40:34,226 - INFO     - [evaluation_comprehensive.py:945] -   [5/34] problem_small_04.pddl
+2025-12-10 11:40:34,226 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_04.pddl
+2025-12-10 11:40:34,326 - INFO     - [evaluation_comprehensive.py:945] -   [6/34] problem_small_05.pddl
+2025-12-10 11:40:34,326 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_05.pddl
+2025-12-10 11:40:34,439 - INFO     - [evaluation_comprehensive.py:945] -   [7/34] problem_small_06.pddl
+2025-12-10 11:40:34,439 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_06.pddl
+2025-12-10 11:40:34,551 - INFO     - [evaluation_comprehensive.py:945] -   [8/34] problem_small_07.pddl
+2025-12-10 11:40:34,551 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_07.pddl
+2025-12-10 11:40:34,662 - INFO     - [evaluation_comprehensive.py:945] -   [9/34] problem_small_08.pddl
+2025-12-10 11:40:34,662 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_08.pddl
+2025-12-10 11:40:34,774 - INFO     - [evaluation_comprehensive.py:945] -   [10/34] problem_small_09.pddl
+2025-12-10 11:40:34,774 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_09.pddl
+2025-12-10 11:40:34,870 - INFO     - [evaluation_comprehensive.py:945] -   [11/34] problem_small_10.pddl
+2025-12-10 11:40:34,870 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_10.pddl
+2025-12-10 11:40:34,981 - INFO     - [evaluation_comprehensive.py:945] -   [12/34] problem_small_11.pddl
+2025-12-10 11:40:34,981 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_11.pddl
+2025-12-10 11:40:35,077 - INFO     - [evaluation_comprehensive.py:945] -   [13/34] problem_small_12.pddl
+2025-12-10 11:40:35,077 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_12.pddl
+2025-12-10 11:40:35,187 - INFO     - [evaluation_comprehensive.py:945] -   [14/34] problem_small_13.pddl
+2025-12-10 11:40:35,187 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_13.pddl
+2025-12-10 11:40:35,298 - INFO     - [evaluation_comprehensive.py:945] -   [15/34] problem_small_14.pddl
+2025-12-10 11:40:35,298 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_14.pddl
+2025-12-10 11:40:35,394 - INFO     - [evaluation_comprehensive.py:945] -   [16/34] problem_small_15.pddl
+2025-12-10 11:40:35,394 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_15.pddl
+2025-12-10 11:40:35,489 - INFO     - [evaluation_comprehensive.py:945] -   [17/34] problem_small_16.pddl
+2025-12-10 11:40:35,489 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_16.pddl
+2025-12-10 11:40:35,600 - INFO     - [evaluation_comprehensive.py:945] -   [18/34] problem_small_17.pddl
+2025-12-10 11:40:35,600 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_17.pddl
+2025-12-10 11:40:35,695 - INFO     - [evaluation_comprehensive.py:945] -   [19/34] problem_small_18.pddl
+2025-12-10 11:40:35,695 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_18.pddl
+2025-12-10 11:40:35,807 - INFO     - [evaluation_comprehensive.py:945] -   [20/34] problem_small_19.pddl
+2025-12-10 11:40:35,807 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_19.pddl
+2025-12-10 11:40:35,902 - INFO     - [evaluation_comprehensive.py:945] -   [21/34] problem_small_20.pddl
+2025-12-10 11:40:35,902 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_20.pddl
+2025-12-10 11:40:36,018 - INFO     - [evaluation_comprehensive.py:945] -   [22/34] problem_small_21.pddl
+2025-12-10 11:40:36,018 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_21.pddl
+2025-12-10 11:40:36,108 - INFO     - [evaluation_comprehensive.py:945] -   [23/34] problem_small_22.pddl
+2025-12-10 11:40:36,108 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_22.pddl
+2025-12-10 11:40:36,229 - INFO     - [evaluation_comprehensive.py:945] -   [24/34] problem_small_23.pddl
+2025-12-10 11:40:36,229 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_23.pddl
+2025-12-10 11:40:36,329 - INFO     - [evaluation_comprehensive.py:945] -   [25/34] problem_small_24.pddl
+2025-12-10 11:40:36,331 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_24.pddl
+2025-12-10 11:40:36,429 - INFO     - [evaluation_comprehensive.py:945] -   [26/34] problem_small_25.pddl
+2025-12-10 11:40:36,429 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_25.pddl
+2025-12-10 11:40:36,529 - INFO     - [evaluation_comprehensive.py:945] -   [27/34] problem_small_26.pddl
+2025-12-10 11:40:36,529 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_26.pddl
+2025-12-10 11:40:36,632 - INFO     - [evaluation_comprehensive.py:945] -   [28/34] problem_small_27.pddl
+2025-12-10 11:40:36,632 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_27.pddl
+2025-12-10 11:40:36,730 - INFO     - [evaluation_comprehensive.py:945] -   [29/34] problem_small_28.pddl
+2025-12-10 11:40:36,730 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_28.pddl
+2025-12-10 11:40:36,837 - INFO     - [evaluation_comprehensive.py:945] -   [30/34] problem_small_29.pddl
+2025-12-10 11:40:36,837 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_29.pddl
+2025-12-10 11:40:36,933 - INFO     - [evaluation_comprehensive.py:945] -   [31/34] problem_small_30.pddl
+2025-12-10 11:40:36,933 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_30.pddl
+2025-12-10 11:40:37,044 - INFO     - [evaluation_comprehensive.py:945] -   [32/34] problem_small_31.pddl
+2025-12-10 11:40:37,044 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_31.pddl
+2025-12-10 11:40:37,156 - INFO     - [evaluation_comprehensive.py:945] -   [33/34] problem_small_32.pddl
+2025-12-10 11:40:37,156 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_32.pddl
+2025-12-10 11:40:37,266 - INFO     - [evaluation_comprehensive.py:945] -   [34/34] problem_small_33.pddl
+2025-12-10 11:40:37,266 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Blind: problem_small_33.pddl
+2025-12-10 11:40:37,377 - INFO     - [evaluation_comprehensive.py:941] - 
+FD_Add: Fast Downward with additive heuristic
+2025-12-10 11:40:37,377 - INFO     - [evaluation_comprehensive.py:942] - ----------------------------------------------------------------------
+2025-12-10 11:40:37,377 - INFO     - [evaluation_comprehensive.py:945] -   [1/34] problem_small_00.pddl
+2025-12-10 11:40:37,377 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_00.pddl
+2025-12-10 11:40:37,473 - INFO     - [evaluation_comprehensive.py:945] -   [2/34] problem_small_01.pddl
+2025-12-10 11:40:37,473 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_01.pddl
+2025-12-10 11:40:37,584 - INFO     - [evaluation_comprehensive.py:945] -   [3/34] problem_small_02.pddl
+2025-12-10 11:40:37,584 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_02.pddl
+2025-12-10 11:40:37,678 - INFO     - [evaluation_comprehensive.py:945] -   [4/34] problem_small_03.pddl
+2025-12-10 11:40:37,678 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_03.pddl
+2025-12-10 11:40:37,773 - INFO     - [evaluation_comprehensive.py:945] -   [5/34] problem_small_04.pddl
+2025-12-10 11:40:37,773 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_04.pddl
+2025-12-10 11:40:37,884 - INFO     - [evaluation_comprehensive.py:945] -   [6/34] problem_small_05.pddl
+2025-12-10 11:40:37,884 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_05.pddl
+2025-12-10 11:40:37,979 - INFO     - [evaluation_comprehensive.py:945] -   [7/34] problem_small_06.pddl
+2025-12-10 11:40:37,979 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_06.pddl
+2025-12-10 11:40:38,090 - INFO     - [evaluation_comprehensive.py:945] -   [8/34] problem_small_07.pddl
+2025-12-10 11:40:38,090 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_07.pddl
+2025-12-10 11:40:38,185 - INFO     - [evaluation_comprehensive.py:945] -   [9/34] problem_small_08.pddl
+2025-12-10 11:40:38,185 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_08.pddl
+2025-12-10 11:40:38,301 - INFO     - [evaluation_comprehensive.py:945] -   [10/34] problem_small_09.pddl
+2025-12-10 11:40:38,301 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_09.pddl
+2025-12-10 11:40:38,438 - INFO     - [evaluation_comprehensive.py:945] -   [11/34] problem_small_10.pddl
+2025-12-10 11:40:38,438 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_10.pddl
+2025-12-10 11:40:38,612 - INFO     - [evaluation_comprehensive.py:945] -   [12/34] problem_small_11.pddl
+2025-12-10 11:40:38,612 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_11.pddl
+2025-12-10 11:40:38,739 - INFO     - [evaluation_comprehensive.py:945] -   [13/34] problem_small_12.pddl
+2025-12-10 11:40:38,739 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_12.pddl
+2025-12-10 11:40:38,881 - INFO     - [evaluation_comprehensive.py:945] -   [14/34] problem_small_13.pddl
+2025-12-10 11:40:38,881 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_13.pddl
+2025-12-10 11:40:39,024 - INFO     - [evaluation_comprehensive.py:945] -   [15/34] problem_small_14.pddl
+2025-12-10 11:40:39,024 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_14.pddl
+2025-12-10 11:40:39,151 - INFO     - [evaluation_comprehensive.py:945] -   [16/34] problem_small_15.pddl
+2025-12-10 11:40:39,151 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_15.pddl
+2025-12-10 11:40:39,279 - INFO     - [evaluation_comprehensive.py:945] -   [17/34] problem_small_16.pddl
+2025-12-10 11:40:39,279 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_16.pddl
+2025-12-10 11:40:39,420 - INFO     - [evaluation_comprehensive.py:945] -   [18/34] problem_small_17.pddl
+2025-12-10 11:40:39,420 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_17.pddl
+2025-12-10 11:40:39,547 - INFO     - [evaluation_comprehensive.py:945] -   [19/34] problem_small_18.pddl
+2025-12-10 11:40:39,547 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_18.pddl
+2025-12-10 11:40:39,674 - INFO     - [evaluation_comprehensive.py:945] -   [20/34] problem_small_19.pddl
+2025-12-10 11:40:39,674 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_19.pddl
+2025-12-10 11:40:39,801 - INFO     - [evaluation_comprehensive.py:945] -   [21/34] problem_small_20.pddl
+2025-12-10 11:40:39,801 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_20.pddl
+2025-12-10 11:40:39,944 - INFO     - [evaluation_comprehensive.py:945] -   [22/34] problem_small_21.pddl
+2025-12-10 11:40:39,944 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_21.pddl
+2025-12-10 11:40:40,079 - INFO     - [evaluation_comprehensive.py:945] -   [23/34] problem_small_22.pddl
+2025-12-10 11:40:40,079 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_22.pddl
+2025-12-10 11:40:40,190 - INFO     - [evaluation_comprehensive.py:945] -   [24/34] problem_small_23.pddl
+2025-12-10 11:40:40,190 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_23.pddl
+2025-12-10 11:40:40,316 - INFO     - [evaluation_comprehensive.py:945] -   [25/34] problem_small_24.pddl
+2025-12-10 11:40:40,316 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_24.pddl
+2025-12-10 11:40:40,434 - INFO     - [evaluation_comprehensive.py:945] -   [26/34] problem_small_25.pddl
+2025-12-10 11:40:40,434 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_25.pddl
+2025-12-10 11:40:40,537 - INFO     - [evaluation_comprehensive.py:945] -   [27/34] problem_small_26.pddl
+2025-12-10 11:40:40,537 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_26.pddl
+2025-12-10 11:40:40,664 - INFO     - [evaluation_comprehensive.py:945] -   [28/34] problem_small_27.pddl
+2025-12-10 11:40:40,664 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_27.pddl
+2025-12-10 11:40:40,775 - INFO     - [evaluation_comprehensive.py:945] -   [29/34] problem_small_28.pddl
+2025-12-10 11:40:40,775 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_28.pddl
+2025-12-10 11:40:40,887 - INFO     - [evaluation_comprehensive.py:945] -   [30/34] problem_small_29.pddl
+2025-12-10 11:40:40,887 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_29.pddl
+2025-12-10 11:40:40,982 - INFO     - [evaluation_comprehensive.py:945] -   [31/34] problem_small_30.pddl
+2025-12-10 11:40:40,982 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_30.pddl
+2025-12-10 11:40:41,093 - INFO     - [evaluation_comprehensive.py:945] -   [32/34] problem_small_31.pddl
+2025-12-10 11:40:41,093 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_31.pddl
+2025-12-10 11:40:41,205 - INFO     - [evaluation_comprehensive.py:945] -   [33/34] problem_small_32.pddl
+2025-12-10 11:40:41,205 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_32.pddl
+2025-12-10 11:40:41,316 - INFO     - [evaluation_comprehensive.py:945] -   [34/34] problem_small_33.pddl
+2025-12-10 11:40:41,316 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Add: problem_small_33.pddl
+2025-12-10 11:40:41,428 - INFO     - [evaluation_comprehensive.py:941] - 
+FD_Max: Fast Downward with max heuristic
+2025-12-10 11:40:41,428 - INFO     - [evaluation_comprehensive.py:942] - ----------------------------------------------------------------------
+2025-12-10 11:40:41,428 - INFO     - [evaluation_comprehensive.py:945] -   [1/34] problem_small_00.pddl
+2025-12-10 11:40:41,428 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_00.pddl
+2025-12-10 11:40:41,539 - INFO     - [evaluation_comprehensive.py:945] -   [2/34] problem_small_01.pddl
+2025-12-10 11:40:41,539 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_01.pddl
+2025-12-10 11:40:41,666 - INFO     - [evaluation_comprehensive.py:945] -   [3/34] problem_small_02.pddl
+2025-12-10 11:40:41,666 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_02.pddl
+2025-12-10 11:40:41,777 - INFO     - [evaluation_comprehensive.py:945] -   [4/34] problem_small_03.pddl
+2025-12-10 11:40:41,777 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_03.pddl
+2025-12-10 11:40:41,888 - INFO     - [evaluation_comprehensive.py:945] -   [5/34] problem_small_04.pddl
+2025-12-10 11:40:41,888 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_04.pddl
+2025-12-10 11:40:42,006 - INFO     - [evaluation_comprehensive.py:945] -   [6/34] problem_small_05.pddl
+2025-12-10 11:40:42,006 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_05.pddl
+2025-12-10 11:40:42,111 - INFO     - [evaluation_comprehensive.py:945] -   [7/34] problem_small_06.pddl
+2025-12-10 11:40:42,111 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_06.pddl
+2025-12-10 11:40:42,238 - INFO     - [evaluation_comprehensive.py:945] -   [8/34] problem_small_07.pddl
+2025-12-10 11:40:42,238 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_07.pddl
+2025-12-10 11:40:42,348 - INFO     - [evaluation_comprehensive.py:945] -   [9/34] problem_small_08.pddl
+2025-12-10 11:40:42,348 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_08.pddl
+2025-12-10 11:40:42,460 - INFO     - [evaluation_comprehensive.py:945] -   [10/34] problem_small_09.pddl
+2025-12-10 11:40:42,460 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_09.pddl
+2025-12-10 11:40:42,571 - INFO     - [evaluation_comprehensive.py:945] -   [11/34] problem_small_10.pddl
+2025-12-10 11:40:42,571 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_10.pddl
+2025-12-10 11:40:42,682 - INFO     - [evaluation_comprehensive.py:945] -   [12/34] problem_small_11.pddl
+2025-12-10 11:40:42,682 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_11.pddl
+2025-12-10 11:40:42,809 - INFO     - [evaluation_comprehensive.py:945] -   [13/34] problem_small_12.pddl
+2025-12-10 11:40:42,809 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_12.pddl
+2025-12-10 11:40:42,920 - INFO     - [evaluation_comprehensive.py:945] -   [14/34] problem_small_13.pddl
+2025-12-10 11:40:42,920 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_13.pddl
+2025-12-10 11:40:43,037 - INFO     - [evaluation_comprehensive.py:945] -   [15/34] problem_small_14.pddl
+2025-12-10 11:40:43,037 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_14.pddl
+2025-12-10 11:40:43,142 - INFO     - [evaluation_comprehensive.py:945] -   [16/34] problem_small_15.pddl
+2025-12-10 11:40:43,142 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_15.pddl
+2025-12-10 11:40:43,253 - INFO     - [evaluation_comprehensive.py:945] -   [17/34] problem_small_16.pddl
+2025-12-10 11:40:43,253 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_16.pddl
+2025-12-10 11:40:43,364 - INFO     - [evaluation_comprehensive.py:945] -   [18/34] problem_small_17.pddl
+2025-12-10 11:40:43,380 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_17.pddl
+2025-12-10 11:40:43,491 - INFO     - [evaluation_comprehensive.py:945] -   [19/34] problem_small_18.pddl
+2025-12-10 11:40:43,491 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_18.pddl
+2025-12-10 11:40:43,602 - INFO     - [evaluation_comprehensive.py:945] -   [20/34] problem_small_19.pddl
+2025-12-10 11:40:43,602 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_19.pddl
+2025-12-10 11:40:43,713 - INFO     - [evaluation_comprehensive.py:945] -   [21/34] problem_small_20.pddl
+2025-12-10 11:40:43,713 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_20.pddl
+2025-12-10 11:40:43,837 - INFO     - [evaluation_comprehensive.py:945] -   [22/34] problem_small_21.pddl
+2025-12-10 11:40:43,837 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_21.pddl
+2025-12-10 11:40:43,937 - INFO     - [evaluation_comprehensive.py:945] -   [23/34] problem_small_22.pddl
+2025-12-10 11:40:43,937 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_22.pddl
+2025-12-10 11:40:44,061 - INFO     - [evaluation_comprehensive.py:945] -   [24/34] problem_small_23.pddl
+2025-12-10 11:40:44,061 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_23.pddl
+2025-12-10 11:40:44,172 - INFO     - [evaluation_comprehensive.py:945] -   [25/34] problem_small_24.pddl
+2025-12-10 11:40:44,172 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_24.pddl
+2025-12-10 11:40:44,287 - INFO     - [evaluation_comprehensive.py:945] -   [26/34] problem_small_25.pddl
+2025-12-10 11:40:44,287 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_25.pddl
+2025-12-10 11:40:44,394 - INFO     - [evaluation_comprehensive.py:945] -   [27/34] problem_small_26.pddl
+2025-12-10 11:40:44,394 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_26.pddl
+2025-12-10 11:40:44,520 - INFO     - [evaluation_comprehensive.py:945] -   [28/34] problem_small_27.pddl
+2025-12-10 11:40:44,520 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_27.pddl
+2025-12-10 11:40:44,631 - INFO     - [evaluation_comprehensive.py:945] -   [29/34] problem_small_28.pddl
+2025-12-10 11:40:44,631 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_28.pddl
+2025-12-10 11:40:44,739 - INFO     - [evaluation_comprehensive.py:945] -   [30/34] problem_small_29.pddl
+2025-12-10 11:40:44,739 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_29.pddl
+2025-12-10 11:40:44,860 - INFO     - [evaluation_comprehensive.py:945] -   [31/34] problem_small_30.pddl
+2025-12-10 11:40:44,860 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_30.pddl
+2025-12-10 11:40:44,971 - INFO     - [evaluation_comprehensive.py:945] -   [32/34] problem_small_31.pddl
+2025-12-10 11:40:44,971 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_31.pddl
+2025-12-10 11:40:45,082 - INFO     - [evaluation_comprehensive.py:945] -   [33/34] problem_small_32.pddl
+2025-12-10 11:40:45,082 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_32.pddl
+2025-12-10 11:40:45,194 - INFO     - [evaluation_comprehensive.py:945] -   [34/34] problem_small_33.pddl
+2025-12-10 11:40:45,194 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_Max: problem_small_33.pddl
+2025-12-10 11:40:45,289 - INFO     - [evaluation_comprehensive.py:941] - 
+FD_M&S_DFP: Merge-and-shrink with DFP scoring
+2025-12-10 11:40:45,289 - INFO     - [evaluation_comprehensive.py:942] - ----------------------------------------------------------------------
+2025-12-10 11:40:45,289 - INFO     - [evaluation_comprehensive.py:945] -   [1/34] problem_small_00.pddl
+2025-12-10 11:40:45,289 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_00.pddl
+2025-12-10 11:40:45,399 - INFO     - [evaluation_comprehensive.py:945] -   [2/34] problem_small_01.pddl
+2025-12-10 11:40:45,399 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_01.pddl
+2025-12-10 11:40:45,494 - INFO     - [evaluation_comprehensive.py:945] -   [3/34] problem_small_02.pddl
+2025-12-10 11:40:45,494 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_02.pddl
+2025-12-10 11:40:45,605 - INFO     - [evaluation_comprehensive.py:945] -   [4/34] problem_small_03.pddl
+2025-12-10 11:40:45,605 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_03.pddl
+2025-12-10 11:40:45,716 - INFO     - [evaluation_comprehensive.py:945] -   [5/34] problem_small_04.pddl
+2025-12-10 11:40:45,716 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_04.pddl
+2025-12-10 11:40:45,811 - INFO     - [evaluation_comprehensive.py:945] -   [6/34] problem_small_05.pddl
+2025-12-10 11:40:45,811 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_05.pddl
+2025-12-10 11:40:45,906 - INFO     - [evaluation_comprehensive.py:945] -   [7/34] problem_small_06.pddl
+2025-12-10 11:40:45,906 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_06.pddl
+2025-12-10 11:40:46,018 - INFO     - [evaluation_comprehensive.py:945] -   [8/34] problem_small_07.pddl
+2025-12-10 11:40:46,018 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_07.pddl
+2025-12-10 11:40:46,129 - INFO     - [evaluation_comprehensive.py:945] -   [9/34] problem_small_08.pddl
+2025-12-10 11:40:46,129 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_08.pddl
+2025-12-10 11:40:46,224 - INFO     - [evaluation_comprehensive.py:945] -   [10/34] problem_small_09.pddl
+2025-12-10 11:40:46,224 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_09.pddl
+2025-12-10 11:40:46,335 - INFO     - [evaluation_comprehensive.py:945] -   [11/34] problem_small_10.pddl
+2025-12-10 11:40:46,335 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_10.pddl
+2025-12-10 11:40:46,442 - INFO     - [evaluation_comprehensive.py:945] -   [12/34] problem_small_11.pddl
+2025-12-10 11:40:46,442 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_11.pddl
+2025-12-10 11:40:46,542 - INFO     - [evaluation_comprehensive.py:945] -   [13/34] problem_small_12.pddl
+2025-12-10 11:40:46,542 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_12.pddl
+2025-12-10 11:40:46,652 - INFO     - [evaluation_comprehensive.py:945] -   [14/34] problem_small_13.pddl
+2025-12-10 11:40:46,652 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_13.pddl
+2025-12-10 11:40:46,763 - INFO     - [evaluation_comprehensive.py:945] -   [15/34] problem_small_14.pddl
+2025-12-10 11:40:46,763 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_14.pddl
+2025-12-10 11:40:46,873 - INFO     - [evaluation_comprehensive.py:945] -   [16/34] problem_small_15.pddl
+2025-12-10 11:40:46,873 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_15.pddl
+2025-12-10 11:40:46,984 - INFO     - [evaluation_comprehensive.py:945] -   [17/34] problem_small_16.pddl
+2025-12-10 11:40:46,984 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_16.pddl
+2025-12-10 11:40:47,095 - INFO     - [evaluation_comprehensive.py:945] -   [18/34] problem_small_17.pddl
+2025-12-10 11:40:47,095 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_17.pddl
+2025-12-10 11:40:47,206 - INFO     - [evaluation_comprehensive.py:945] -   [19/34] problem_small_18.pddl
+2025-12-10 11:40:47,206 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_18.pddl
+2025-12-10 11:40:47,317 - INFO     - [evaluation_comprehensive.py:945] -   [20/34] problem_small_19.pddl
+2025-12-10 11:40:47,317 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_19.pddl
+2025-12-10 11:40:47,428 - INFO     - [evaluation_comprehensive.py:945] -   [21/34] problem_small_20.pddl
+2025-12-10 11:40:47,428 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_20.pddl
+2025-12-10 11:40:47,543 - INFO     - [evaluation_comprehensive.py:945] -   [22/34] problem_small_21.pddl
+2025-12-10 11:40:47,543 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_21.pddl
+2025-12-10 11:40:47,650 - INFO     - [evaluation_comprehensive.py:945] -   [23/34] problem_small_22.pddl
+2025-12-10 11:40:47,650 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_22.pddl
+2025-12-10 11:40:47,761 - INFO     - [evaluation_comprehensive.py:945] -   [24/34] problem_small_23.pddl
+2025-12-10 11:40:47,761 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_23.pddl
+2025-12-10 11:40:47,871 - INFO     - [evaluation_comprehensive.py:945] -   [25/34] problem_small_24.pddl
+2025-12-10 11:40:47,887 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_24.pddl
+2025-12-10 11:40:47,998 - INFO     - [evaluation_comprehensive.py:945] -   [26/34] problem_small_25.pddl
+2025-12-10 11:40:47,998 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_25.pddl
+2025-12-10 11:40:48,109 - INFO     - [evaluation_comprehensive.py:945] -   [27/34] problem_small_26.pddl
+2025-12-10 11:40:48,109 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_26.pddl
+2025-12-10 11:40:48,220 - INFO     - [evaluation_comprehensive.py:945] -   [28/34] problem_small_27.pddl
+2025-12-10 11:40:48,220 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_27.pddl
+2025-12-10 11:40:48,331 - INFO     - [evaluation_comprehensive.py:945] -   [29/34] problem_small_28.pddl
+2025-12-10 11:40:48,331 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_28.pddl
+2025-12-10 11:40:48,443 - INFO     - [evaluation_comprehensive.py:945] -   [30/34] problem_small_29.pddl
+2025-12-10 11:40:48,443 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_29.pddl
+2025-12-10 11:40:48,543 - INFO     - [evaluation_comprehensive.py:945] -   [31/34] problem_small_30.pddl
+2025-12-10 11:40:48,543 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_30.pddl
+2025-12-10 11:40:48,649 - INFO     - [evaluation_comprehensive.py:945] -   [32/34] problem_small_31.pddl
+2025-12-10 11:40:48,649 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_31.pddl
+2025-12-10 11:40:48,743 - INFO     - [evaluation_comprehensive.py:945] -   [33/34] problem_small_32.pddl
+2025-12-10 11:40:48,743 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_32.pddl
+2025-12-10 11:40:48,870 - INFO     - [evaluation_comprehensive.py:945] -   [34/34] problem_small_33.pddl
+2025-12-10 11:40:48,870 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_DFP: problem_small_33.pddl
+2025-12-10 11:40:48,965 - INFO     - [evaluation_comprehensive.py:941] - 
+FD_M&S_SCC: Merge-and-shrink with SCC merging
+2025-12-10 11:40:48,965 - INFO     - [evaluation_comprehensive.py:942] - ----------------------------------------------------------------------
+2025-12-10 11:40:48,965 - INFO     - [evaluation_comprehensive.py:945] -   [1/34] problem_small_00.pddl
+2025-12-10 11:40:48,965 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_00.pddl
+2025-12-10 11:40:49,076 - INFO     - [evaluation_comprehensive.py:945] -   [2/34] problem_small_01.pddl
+2025-12-10 11:40:49,076 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_01.pddl
+2025-12-10 11:40:49,171 - INFO     - [evaluation_comprehensive.py:945] -   [3/34] problem_small_02.pddl
+2025-12-10 11:40:49,171 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_02.pddl
+2025-12-10 11:40:49,282 - INFO     - [evaluation_comprehensive.py:945] -   [4/34] problem_small_03.pddl
+2025-12-10 11:40:49,282 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_03.pddl
+2025-12-10 11:40:49,378 - INFO     - [evaluation_comprehensive.py:945] -   [5/34] problem_small_04.pddl
+2025-12-10 11:40:49,378 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_04.pddl
+2025-12-10 11:40:49,473 - INFO     - [evaluation_comprehensive.py:945] -   [6/34] problem_small_05.pddl
+2025-12-10 11:40:49,489 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_05.pddl
+2025-12-10 11:40:49,585 - INFO     - [evaluation_comprehensive.py:945] -   [7/34] problem_small_06.pddl
+2025-12-10 11:40:49,585 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_06.pddl
+2025-12-10 11:40:49,680 - INFO     - [evaluation_comprehensive.py:945] -   [8/34] problem_small_07.pddl
+2025-12-10 11:40:49,680 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_07.pddl
+2025-12-10 11:40:49,806 - INFO     - [evaluation_comprehensive.py:945] -   [9/34] problem_small_08.pddl
+2025-12-10 11:40:49,806 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_08.pddl
+2025-12-10 11:40:49,918 - INFO     - [evaluation_comprehensive.py:945] -   [10/34] problem_small_09.pddl
+2025-12-10 11:40:49,918 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_09.pddl
+2025-12-10 11:40:50,021 - INFO     - [evaluation_comprehensive.py:945] -   [11/34] problem_small_10.pddl
+2025-12-10 11:40:50,021 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_10.pddl
+2025-12-10 11:40:50,116 - INFO     - [evaluation_comprehensive.py:945] -   [12/34] problem_small_11.pddl
+2025-12-10 11:40:50,116 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_11.pddl
+2025-12-10 11:40:50,228 - INFO     - [evaluation_comprehensive.py:945] -   [13/34] problem_small_12.pddl
+2025-12-10 11:40:50,228 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_12.pddl
+2025-12-10 11:40:50,323 - INFO     - [evaluation_comprehensive.py:945] -   [14/34] problem_small_13.pddl
+2025-12-10 11:40:50,323 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_13.pddl
+2025-12-10 11:40:50,433 - INFO     - [evaluation_comprehensive.py:945] -   [15/34] problem_small_14.pddl
+2025-12-10 11:40:50,433 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_14.pddl
+2025-12-10 11:40:50,546 - INFO     - [evaluation_comprehensive.py:945] -   [16/34] problem_small_15.pddl
+2025-12-10 11:40:50,546 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_15.pddl
+2025-12-10 11:40:50,655 - INFO     - [evaluation_comprehensive.py:945] -   [17/34] problem_small_16.pddl
+2025-12-10 11:40:50,655 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_16.pddl
+2025-12-10 11:40:50,750 - INFO     - [evaluation_comprehensive.py:945] -   [18/34] problem_small_17.pddl
+2025-12-10 11:40:50,750 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_17.pddl
+2025-12-10 11:40:50,861 - INFO     - [evaluation_comprehensive.py:945] -   [19/34] problem_small_18.pddl
+2025-12-10 11:40:50,861 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_18.pddl
+2025-12-10 11:40:50,971 - INFO     - [evaluation_comprehensive.py:945] -   [20/34] problem_small_19.pddl
+2025-12-10 11:40:50,971 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_19.pddl
+2025-12-10 11:40:51,066 - INFO     - [evaluation_comprehensive.py:945] -   [21/34] problem_small_20.pddl
+2025-12-10 11:40:51,066 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_20.pddl
+2025-12-10 11:40:51,178 - INFO     - [evaluation_comprehensive.py:945] -   [22/34] problem_small_21.pddl
+2025-12-10 11:40:51,178 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_21.pddl
+2025-12-10 11:40:51,273 - INFO     - [evaluation_comprehensive.py:945] -   [23/34] problem_small_22.pddl
+2025-12-10 11:40:51,273 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_22.pddl
+2025-12-10 11:40:51,385 - INFO     - [evaluation_comprehensive.py:945] -   [24/34] problem_small_23.pddl
+2025-12-10 11:40:51,385 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_23.pddl
+2025-12-10 11:40:51,495 - INFO     - [evaluation_comprehensive.py:945] -   [25/34] problem_small_24.pddl
+2025-12-10 11:40:51,495 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_24.pddl
+2025-12-10 11:40:51,606 - INFO     - [evaluation_comprehensive.py:945] -   [26/34] problem_small_25.pddl
+2025-12-10 11:40:51,606 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_25.pddl
+2025-12-10 11:40:51,733 - INFO     - [evaluation_comprehensive.py:945] -   [27/34] problem_small_26.pddl
+2025-12-10 11:40:51,733 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_26.pddl
+2025-12-10 11:40:51,847 - INFO     - [evaluation_comprehensive.py:945] -   [28/34] problem_small_27.pddl
+2025-12-10 11:40:51,847 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_27.pddl
+2025-12-10 11:40:51,955 - INFO     - [evaluation_comprehensive.py:945] -   [29/34] problem_small_28.pddl
+2025-12-10 11:40:51,955 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_28.pddl
+2025-12-10 11:40:52,066 - INFO     - [evaluation_comprehensive.py:945] -   [30/34] problem_small_29.pddl
+2025-12-10 11:40:52,082 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_29.pddl
+2025-12-10 11:40:52,176 - INFO     - [evaluation_comprehensive.py:945] -   [31/34] problem_small_30.pddl
+2025-12-10 11:40:52,176 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_30.pddl
+2025-12-10 11:40:52,288 - INFO     - [evaluation_comprehensive.py:945] -   [32/34] problem_small_31.pddl
+2025-12-10 11:40:52,288 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_31.pddl
+2025-12-10 11:40:52,398 - INFO     - [evaluation_comprehensive.py:945] -   [33/34] problem_small_32.pddl
+2025-12-10 11:40:52,398 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_32.pddl
+2025-12-10 11:40:52,526 - INFO     - [evaluation_comprehensive.py:945] -   [34/34] problem_small_33.pddl
+2025-12-10 11:40:52,526 - INFO     - [evaluation_comprehensive.py:349] - [BASELINE] FD_M&S_SCC: problem_small_33.pddl
+2025-12-10 11:40:52,637 - INFO     - [evaluation_comprehensive.py:1364] - 
+2025-12-10 11:40:52,637 - INFO     - [evaluation_comprehensive.py:1365] - ----------------------------------------------------------------------------------------------------
+2025-12-10 11:40:52,637 - INFO     - [evaluation_comprehensive.py:1366] - >>> RUNNING GNN POLICY
+2025-12-10 11:40:52,637 - INFO     - [evaluation_comprehensive.py:1367] - ----------------------------------------------------------------------------------------------------
+2025-12-10 11:40:52,637 - INFO     - [evaluation_comprehensive.py:1368] - 
+2025-12-10 11:40:52,637 - INFO     - [evaluation_comprehensive.py:544] - [GNN] Initialized with model: model.zip
+2025-12-10 11:40:52,637 - INFO     - [evaluation_comprehensive.py:972] -   [1/34] problem_small_00.pddl
+2025-12-10 11:40:52,637 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_00.pddl
+2025-12-10 11:41:20,868 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:41:20,868 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_00.pddl ===
+2025-12-10 11:41:20,998 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:41:21,252 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 32272)
+2025-12-10 11:41:21,321 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:41:21,410 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:41:21,558 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:41:21,700 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:41:21,845 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:41:22,038 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:41:22,238 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:41:22,384 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:41:22,521 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=8 -> merge_pair=(14, 23)
+2025-12-10 11:41:22,724 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=87 -> merge_pair=(24, 28)
+2025-12-10 11:41:22,869 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=78 -> merge_pair=(25, 29)
+2025-12-10 11:41:23,013 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=61 -> merge_pair=(21, 31)
+2025-12-10 11:41:23,156 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=59 -> merge_pair=(26, 33)
+2025-12-10 11:41:23,301 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=50 -> merge_pair=(27, 32)
+2025-12-10 11:41:23,393 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=40 -> merge_pair=(22, 34)
+2025-12-10 11:41:23,583 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=34 -> merge_pair=(30, 36)
+2025-12-10 11:41:23,820 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=6 -> merge_pair=(15, 37)
+2025-12-10 11:41:24,166 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(16, 38)
+2025-12-10 11:41:24,608 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:41:25,008 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:41:25,552 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:41:25,896 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:41:26,134 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(35, 43)
+2025-12-10 11:41:26,327 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.3134, steps=22
+2025-12-10 11:41:26,329 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:41:26,333 - INFO     - [evaluation_comprehensive.py:972] -   [2/34] problem_small_01.pddl
+2025-12-10 11:41:26,333 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_01.pddl
+2025-12-10 11:41:26,931 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:41:26,931 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_01.pddl ===
+2025-12-10 11:41:27,187 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:41:28,390 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 31068)
+2025-12-10 11:41:28,456 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:41:28,494 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:41:28,722 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:41:28,914 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:41:29,051 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:41:29,196 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:41:29,337 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:41:29,534 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:41:29,675 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=0 -> merge_pair=(14, 15)
+2025-12-10 11:41:29,822 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:41:29,913 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=74 -> merge_pair=(24, 30)
+2025-12-10 11:41:30,055 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:41:30,145 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=57 -> merge_pair=(26, 31)
+2025-12-10 11:41:30,282 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=33 -> merge_pair=(19, 34)
+2025-12-10 11:41:30,526 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=34 -> merge_pair=(21, 35)
+2025-12-10 11:41:30,934 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=29 -> merge_pair=(22, 36)
+2025-12-10 11:41:31,685 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=24 -> merge_pair=(27, 37)
+2025-12-10 11:41:32,232 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=4 -> merge_pair=(16, 33)
+2025-12-10 11:41:32,375 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=13 -> merge_pair=(32, 39)
+2025-12-10 11:41:32,517 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(17, 40)
+2025-12-10 11:41:32,760 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(18, 41)
+2025-12-10 11:41:33,002 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:41:33,293 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(38, 43)
+2025-12-10 11:41:33,786 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2154, steps=22
+2025-12-10 11:41:33,786 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:41:33,786 - INFO     - [evaluation_comprehensive.py:972] -   [3/34] problem_small_02.pddl
+2025-12-10 11:41:33,786 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_02.pddl
+2025-12-10 11:41:34,415 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:41:34,415 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_02.pddl ===
+2025-12-10 11:41:34,533 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:41:34,725 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 37576)
+2025-12-10 11:41:34,791 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 21 nodes, 210 edges
+2025-12-10 11:41:34,812 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:41:34,952 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:41:35,098 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:41:35,244 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:41:35,390 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:41:35,537 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:41:35,676 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:41:35,827 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=75 -> merge_pair=(21, 27)
+2025-12-10 11:41:35,967 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=76 -> merge_pair=(25, 28)
+2025-12-10 11:41:36,112 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=50 -> merge_pair=(19, 29)
+2025-12-10 11:41:36,303 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=47 -> merge_pair=(22, 26)
+2025-12-10 11:41:36,444 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=40 -> merge_pair=(23, 30)
+2025-12-10 11:41:36,891 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=34 -> merge_pair=(24, 32)
+2025-12-10 11:41:37,487 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=25 -> merge_pair=(20, 31)
+2025-12-10 11:41:37,633 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=5 -> merge_pair=(14, 34)
+2025-12-10 11:41:37,821 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=4 -> merge_pair=(15, 35)
+2025-12-10 11:41:38,065 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=3 -> merge_pair=(16, 36)
+2025-12-10 11:41:38,361 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=2 -> merge_pair=(17, 37)
+2025-12-10 11:41:38,650 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=1 -> merge_pair=(18, 38)
+2025-12-10 11:41:38,954 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=0 -> merge_pair=(33, 39)
+2025-12-10 11:41:39,352 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2025, steps=20
+2025-12-10 11:41:39,353 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:41:39,353 - INFO     - [evaluation_comprehensive.py:972] -   [4/34] problem_small_03.pddl
+2025-12-10 11:41:39,353 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_03.pddl
+2025-12-10 11:41:39,913 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:41:39,913 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_03.pddl ===
+2025-12-10 11:41:40,010 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:41:40,214 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 40556)
+2025-12-10 11:41:40,281 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:41:40,308 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:41:40,454 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:41:40,598 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:41:40,738 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:41:40,931 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:41:41,031 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:41:41,174 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:41:41,314 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=1 -> merge_pair=(14, 16)
+2025-12-10 11:41:41,407 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:41:41,547 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=74 -> merge_pair=(24, 29)
+2025-12-10 11:41:41,643 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=67 -> merge_pair=(25, 32)
+2025-12-10 11:41:41,780 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=50 -> merge_pair=(21, 33)
+2025-12-10 11:41:41,923 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=53 -> merge_pair=(28, 34)
+2025-12-10 11:41:42,118 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=41 -> merge_pair=(26, 35)
+2025-12-10 11:41:42,515 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=34 -> merge_pair=(27, 36)
+2025-12-10 11:41:43,161 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=26 -> merge_pair=(22, 37)
+2025-12-10 11:41:44,014 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(15, 38)
+2025-12-10 11:41:44,461 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=14 -> merge_pair=(31, 39)
+2025-12-10 11:41:44,706 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(17, 40)
+2025-12-10 11:41:44,944 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(18, 41)
+2025-12-10 11:41:45,443 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(19, 42)
+2025-12-10 11:41:46,447 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(20, 43)
+2025-12-10 11:41:47,038 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2171, steps=22
+2025-12-10 11:41:47,041 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:41:47,041 - INFO     - [evaluation_comprehensive.py:972] -   [5/34] problem_small_04.pddl
+2025-12-10 11:41:47,041 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_04.pddl
+2025-12-10 11:41:47,549 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:41:47,549 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_04.pddl ===
+2025-12-10 11:41:47,643 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:41:47,831 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 4940)
+2025-12-10 11:41:47,897 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 21 nodes, 210 edges
+2025-12-10 11:41:47,925 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:41:48,069 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:41:48,213 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:41:48,351 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:41:48,449 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:41:48,592 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:41:48,736 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:41:48,824 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=75 -> merge_pair=(21, 27)
+2025-12-10 11:41:48,967 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=76 -> merge_pair=(25, 28)
+2025-12-10 11:41:49,164 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=50 -> merge_pair=(19, 29)
+2025-12-10 11:41:49,414 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=47 -> merge_pair=(22, 26)
+2025-12-10 11:41:49,566 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=40 -> merge_pair=(23, 30)
+2025-12-10 11:41:50,017 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=34 -> merge_pair=(24, 32)
+2025-12-10 11:41:50,662 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=25 -> merge_pair=(20, 31)
+2025-12-10 11:41:50,804 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=5 -> merge_pair=(14, 34)
+2025-12-10 11:41:50,950 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=4 -> merge_pair=(15, 35)
+2025-12-10 11:41:51,193 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=3 -> merge_pair=(16, 36)
+2025-12-10 11:41:51,485 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=2 -> merge_pair=(17, 37)
+2025-12-10 11:41:51,829 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=1 -> merge_pair=(18, 38)
+2025-12-10 11:41:52,122 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=0 -> merge_pair=(33, 39)
+2025-12-10 11:41:52,463 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.1966, steps=20
+2025-12-10 11:41:52,463 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:41:52,463 - INFO     - [evaluation_comprehensive.py:972] -   [6/34] problem_small_05.pddl
+2025-12-10 11:41:52,463 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_05.pddl
+2025-12-10 11:41:52,943 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:41:52,943 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_05.pddl ===
+2025-12-10 11:41:53,038 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:41:53,229 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 27620)
+2025-12-10 11:41:53,299 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:41:53,318 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:41:53,463 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:41:53,605 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:41:53,800 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:41:53,944 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:41:54,086 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:41:54,231 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:41:54,372 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=1 -> merge_pair=(14, 16)
+2025-12-10 11:41:54,466 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:41:54,609 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 28)
+2025-12-10 11:41:54,751 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:41:54,893 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=48 -> merge_pair=(21, 31)
+2025-12-10 11:41:55,037 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=48 -> merge_pair=(26, 34)
+2025-12-10 11:41:55,173 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=39 -> merge_pair=(27, 32)
+2025-12-10 11:41:55,264 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=31 -> merge_pair=(22, 35)
+2025-12-10 11:41:55,455 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=27 -> merge_pair=(36, 37)
+2025-12-10 11:41:55,651 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(15, 38)
+2025-12-10 11:41:55,998 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:41:56,388 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:41:56,734 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:41:57,078 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:41:57,371 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(33, 43)
+2025-12-10 11:41:57,613 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2683, steps=22
+2025-12-10 11:41:57,613 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:41:57,613 - INFO     - [evaluation_comprehensive.py:972] -   [7/34] problem_small_06.pddl
+2025-12-10 11:41:57,613 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_06.pddl
+2025-12-10 11:41:58,124 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:41:58,124 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_06.pddl ===
+2025-12-10 11:41:58,230 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:41:58,430 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 35480)
+2025-12-10 11:41:58,497 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:41:58,524 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:41:58,664 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:41:58,806 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:41:58,953 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:41:59,147 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:41:59,293 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:41:59,435 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:41:59,577 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=1 -> merge_pair=(14, 16)
+2025-12-10 11:41:59,669 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:41:59,812 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=87 -> merge_pair=(27, 31)
+2025-12-10 11:42:00,009 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=56 -> merge_pair=(21, 32)
+2025-12-10 11:42:00,247 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=53 -> merge_pair=(24, 28)
+2025-12-10 11:42:00,393 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=32 -> merge_pair=(19, 33)
+2025-12-10 11:42:00,697 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=36 -> merge_pair=(25, 29)
+2025-12-10 11:42:00,845 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=31 -> merge_pair=(26, 35)
+2025-12-10 11:42:01,184 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=20 -> merge_pair=(20, 36)
+2025-12-10 11:42:01,329 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=17 -> merge_pair=(22, 38)
+2025-12-10 11:42:01,417 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(15, 39)
+2025-12-10 11:42:01,663 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(17, 40)
+2025-12-10 11:42:01,853 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(18, 41)
+2025-12-10 11:42:02,149 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=2 -> merge_pair=(37, 42)
+2025-12-10 11:42:02,491 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(34, 43)
+2025-12-10 11:42:02,683 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.3129, steps=22
+2025-12-10 11:42:02,686 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:02,686 - INFO     - [evaluation_comprehensive.py:972] -   [8/34] problem_small_07.pddl
+2025-12-10 11:42:02,688 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_07.pddl
+2025-12-10 11:42:03,166 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:03,166 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_07.pddl ===
+2025-12-10 11:42:03,279 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:03,482 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 26716)
+2025-12-10 11:42:03,551 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:42:03,572 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:42:03,714 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:42:03,908 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:42:04,097 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:42:04,196 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:42:04,335 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:42:04,485 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:42:04,574 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=13 -> merge_pair=(14, 28)
+2025-12-10 11:42:04,716 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=89 -> merge_pair=(23, 30)
+2025-12-10 11:42:04,858 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=80 -> merge_pair=(24, 31)
+2025-12-10 11:42:05,113 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=62 -> merge_pair=(21, 32)
+2025-12-10 11:42:05,565 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=58 -> merge_pair=(25, 29)
+2025-12-10 11:42:05,708 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=50 -> merge_pair=(26, 33)
+2025-12-10 11:42:06,153 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=43 -> merge_pair=(27, 35)
+2025-12-10 11:42:06,745 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=33 -> merge_pair=(22, 34)
+2025-12-10 11:42:06,889 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=6 -> merge_pair=(15, 37)
+2025-12-10 11:42:07,034 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(16, 38)
+2025-12-10 11:42:07,229 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:42:07,420 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:42:07,612 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:42:07,863 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:42:08,170 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(36, 43)
+2025-12-10 11:42:08,568 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.1689, steps=22
+2025-12-10 11:42:08,568 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:08,568 - INFO     - [evaluation_comprehensive.py:972] -   [9/34] problem_small_08.pddl
+2025-12-10 11:42:08,568 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_08.pddl
+2025-12-10 11:42:09,077 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:09,077 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_08.pddl ===
+2025-12-10 11:42:09,178 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:09,404 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 46872)
+2025-12-10 11:42:09,469 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:42:09,492 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:42:09,629 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:42:09,777 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:42:09,923 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:42:10,062 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:42:10,157 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:42:10,296 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:42:10,445 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=8 -> merge_pair=(14, 23)
+2025-12-10 11:42:10,531 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=87 -> merge_pair=(24, 28)
+2025-12-10 11:42:10,679 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=78 -> merge_pair=(25, 29)
+2025-12-10 11:42:10,770 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=61 -> merge_pair=(21, 31)
+2025-12-10 11:42:10,912 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=59 -> merge_pair=(26, 33)
+2025-12-10 11:42:11,005 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=50 -> merge_pair=(27, 32)
+2025-12-10 11:42:11,143 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=41 -> merge_pair=(22, 35)
+2025-12-10 11:42:11,288 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=35 -> merge_pair=(34, 36)
+2025-12-10 11:42:11,480 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=27 -> merge_pair=(30, 37)
+2025-12-10 11:42:11,678 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(15, 38)
+2025-12-10 11:42:12,067 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(16, 39)
+2025-12-10 11:42:12,364 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(17, 40)
+2025-12-10 11:42:12,616 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(18, 41)
+2025-12-10 11:42:12,865 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(19, 42)
+2025-12-10 11:42:13,107 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(20, 43)
+2025-12-10 11:42:13,348 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2364, steps=22
+2025-12-10 11:42:13,348 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:13,348 - INFO     - [evaluation_comprehensive.py:972] -   [10/34] problem_small_09.pddl
+2025-12-10 11:42:13,348 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_09.pddl
+2025-12-10 11:42:13,853 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:13,853 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_09.pddl ===
+2025-12-10 11:42:13,978 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:14,162 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 48388)
+2025-12-10 11:42:14,230 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:42:14,255 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:42:14,399 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:42:14,545 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:42:14,684 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:42:14,877 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:42:15,076 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:42:15,269 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:42:15,360 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=0 -> merge_pair=(14, 15)
+2025-12-10 11:42:15,501 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:42:15,638 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=87 -> merge_pair=(27, 31)
+2025-12-10 11:42:15,780 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=56 -> merge_pair=(21, 32)
+2025-12-10 11:42:16,078 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=53 -> merge_pair=(24, 28)
+2025-12-10 11:42:16,171 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=43 -> merge_pair=(22, 33)
+2025-12-10 11:42:16,619 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=36 -> merge_pair=(25, 29)
+2025-12-10 11:42:16,709 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=31 -> merge_pair=(26, 35)
+2025-12-10 11:42:17,253 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=22 -> merge_pair=(20, 34)
+2025-12-10 11:42:17,397 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(16, 38)
+2025-12-10 11:42:17,594 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:42:17,890 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:42:18,252 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:42:18,598 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=2 -> merge_pair=(37, 42)
+2025-12-10 11:42:19,097 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(36, 43)
+2025-12-10 11:42:19,287 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.3171, steps=22
+2025-12-10 11:42:19,295 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:19,295 - INFO     - [evaluation_comprehensive.py:972] -   [11/34] problem_small_10.pddl
+2025-12-10 11:42:19,295 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_10.pddl
+2025-12-10 11:42:20,162 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:20,162 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_10.pddl ===
+2025-12-10 11:42:20,295 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:20,600 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 404)
+2025-12-10 11:42:20,713 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:42:20,750 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:42:20,942 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:42:21,197 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:42:21,397 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:42:21,544 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:42:21,690 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:42:21,829 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:42:21,981 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=8 -> merge_pair=(14, 23)
+2025-12-10 11:42:22,128 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=87 -> merge_pair=(24, 28)
+2025-12-10 11:42:22,266 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=78 -> merge_pair=(25, 29)
+2025-12-10 11:42:22,412 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=61 -> merge_pair=(21, 31)
+2025-12-10 11:42:22,515 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=59 -> merge_pair=(26, 33)
+2025-12-10 11:42:22,711 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=50 -> merge_pair=(27, 32)
+2025-12-10 11:42:22,856 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=41 -> merge_pair=(22, 35)
+2025-12-10 11:42:23,049 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=35 -> merge_pair=(34, 36)
+2025-12-10 11:42:23,244 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=27 -> merge_pair=(30, 37)
+2025-12-10 11:42:23,546 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(15, 38)
+2025-12-10 11:42:24,096 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(16, 39)
+2025-12-10 11:42:24,538 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(17, 40)
+2025-12-10 11:42:24,839 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(18, 41)
+2025-12-10 11:42:25,131 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(19, 42)
+2025-12-10 11:42:25,485 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(20, 43)
+2025-12-10 11:42:25,724 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2253, steps=22
+2025-12-10 11:42:25,727 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:25,727 - INFO     - [evaluation_comprehensive.py:972] -   [12/34] problem_small_11.pddl
+2025-12-10 11:42:25,727 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_11.pddl
+2025-12-10 11:42:26,477 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:26,477 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_11.pddl ===
+2025-12-10 11:42:26,623 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:26,935 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 25392)
+2025-12-10 11:42:27,055 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:42:27,089 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:42:27,283 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:42:27,488 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:42:27,690 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:42:27,885 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:42:28,037 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:42:28,236 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:42:28,447 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=0 -> merge_pair=(14, 15)
+2025-12-10 11:42:28,652 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:42:28,852 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 28)
+2025-12-10 11:42:29,048 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:42:29,196 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=48 -> merge_pair=(21, 31)
+2025-12-10 11:42:29,342 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=48 -> merge_pair=(26, 34)
+2025-12-10 11:42:29,487 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=39 -> merge_pair=(27, 32)
+2025-12-10 11:42:29,633 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=32 -> merge_pair=(22, 36)
+2025-12-10 11:42:29,780 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=27 -> merge_pair=(35, 37)
+2025-12-10 11:42:29,977 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(16, 38)
+2025-12-10 11:42:30,525 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:42:31,128 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:42:31,681 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:42:32,232 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:42:32,733 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(33, 43)
+2025-12-10 11:42:33,075 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2530, steps=22
+2025-12-10 11:42:33,075 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:33,075 - INFO     - [evaluation_comprehensive.py:972] -   [13/34] problem_small_12.pddl
+2025-12-10 11:42:33,075 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_12.pddl
+2025-12-10 11:42:33,925 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:33,925 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_12.pddl ===
+2025-12-10 11:42:34,073 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:34,336 - ERROR    - [evaluation_comprehensive.py:663] -   [ERROR] GNN run failed: Translator failed: 
+2025-12-10 11:42:34,359 - ERROR    - [evaluation_comprehensive.py:664] - Traceback (most recent call last):
+  File "C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\evaluation_comprehensive.py", line 584, in run
+    obs, info = env.reset()
+                ^^^^^^^^^^^
+  File "C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\thin_merge_env.py", line 752, in reset
+    self._launch_fd_process()
+  File "C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\thin_merge_env.py", line 188, in _launch_fd_process
+    raise RuntimeError(f"Translator failed: {translate_result.stderr}")
+RuntimeError: Translator failed: 
+
+2025-12-10 11:42:34,360 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:34,360 - INFO     - [evaluation_comprehensive.py:972] -   [14/34] problem_small_13.pddl
+2025-12-10 11:42:34,360 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_13.pddl
+2025-12-10 11:42:35,205 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:35,205 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_13.pddl ===
+2025-12-10 11:42:35,207 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:35,585 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 46772)
+2025-12-10 11:42:35,705 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:42:35,752 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:42:36,015 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:42:36,218 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:42:36,482 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:42:36,680 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:42:36,889 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:42:37,079 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:42:37,227 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=2 -> merge_pair=(14, 17)
+2025-12-10 11:42:37,377 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:42:37,521 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=87 -> merge_pair=(27, 31)
+2025-12-10 11:42:37,666 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=56 -> merge_pair=(21, 32)
+2025-12-10 11:42:37,910 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=55 -> merge_pair=(24, 33)
+2025-12-10 11:42:38,303 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=46 -> merge_pair=(25, 29)
+2025-12-10 11:42:38,395 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=33 -> merge_pair=(20, 34)
+2025-12-10 11:42:39,043 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=30 -> merge_pair=(26, 30)
+2025-12-10 11:42:39,142 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=23 -> merge_pair=(22, 36)
+2025-12-10 11:42:39,942 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(15, 38)
+2025-12-10 11:42:40,435 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(16, 39)
+2025-12-10 11:42:40,777 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:42:41,018 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=5 -> merge_pair=(37, 41)
+2025-12-10 11:42:41,273 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(19, 42)
+2025-12-10 11:42:41,771 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(35, 43)
+2025-12-10 11:42:42,114 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2424, steps=22
+2025-12-10 11:42:42,116 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:42,118 - INFO     - [evaluation_comprehensive.py:972] -   [15/34] problem_small_14.pddl
+2025-12-10 11:42:42,118 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_14.pddl
+2025-12-10 11:42:42,643 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:42,643 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_14.pddl ===
+2025-12-10 11:42:42,759 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:42,986 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 41432)
+2025-12-10 11:42:43,048 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 21 nodes, 210 edges
+2025-12-10 11:42:43,060 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:42:43,214 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:42:43,305 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:42:43,450 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:42:43,593 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:42:43,680 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:42:43,826 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:42:43,915 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=75 -> merge_pair=(21, 27)
+2025-12-10 11:42:44,064 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=76 -> merge_pair=(25, 28)
+2025-12-10 11:42:44,255 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=50 -> merge_pair=(19, 29)
+2025-12-10 11:42:44,449 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=47 -> merge_pair=(22, 26)
+2025-12-10 11:42:44,591 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=37 -> merge_pair=(20, 30)
+2025-12-10 11:42:44,884 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=32 -> merge_pair=(23, 32)
+2025-12-10 11:42:45,326 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=26 -> merge_pair=(24, 33)
+2025-12-10 11:42:45,821 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=4 -> merge_pair=(14, 31)
+2025-12-10 11:42:45,965 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=4 -> merge_pair=(15, 35)
+2025-12-10 11:42:46,261 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=3 -> merge_pair=(16, 36)
+2025-12-10 11:42:46,552 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=2 -> merge_pair=(17, 37)
+2025-12-10 11:42:46,844 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=1 -> merge_pair=(18, 38)
+2025-12-10 11:42:47,086 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=0 -> merge_pair=(34, 39)
+2025-12-10 11:42:47,428 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.1162, steps=20
+2025-12-10 11:42:47,428 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:47,428 - INFO     - [evaluation_comprehensive.py:972] -   [16/34] problem_small_15.pddl
+2025-12-10 11:42:47,428 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_15.pddl
+2025-12-10 11:42:47,933 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:47,933 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_15.pddl ===
+2025-12-10 11:42:48,033 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:48,223 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 12348)
+2025-12-10 11:42:48,298 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:42:48,324 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:42:48,466 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:42:48,605 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:42:48,749 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:42:48,897 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:42:49,035 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:42:49,229 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:42:49,428 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=2 -> merge_pair=(14, 17)
+2025-12-10 11:42:49,568 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:42:49,710 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=74 -> merge_pair=(24, 30)
+2025-12-10 11:42:49,806 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:42:49,950 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=57 -> merge_pair=(26, 31)
+2025-12-10 11:42:50,092 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=44 -> merge_pair=(21, 34)
+2025-12-10 11:42:50,184 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=39 -> merge_pair=(27, 32)
+2025-12-10 11:42:50,326 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=31 -> merge_pair=(22, 35)
+2025-12-10 11:42:50,468 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=6 -> merge_pair=(15, 37)
+2025-12-10 11:42:50,821 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(16, 38)
+2025-12-10 11:42:51,220 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(18, 39)
+2025-12-10 11:42:51,572 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(19, 40)
+2025-12-10 11:42:51,876 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(20, 41)
+2025-12-10 11:42:52,126 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=2 -> merge_pair=(36, 42)
+2025-12-10 11:42:52,326 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(33, 43)
+2025-12-10 11:42:52,518 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2974, steps=22
+2025-12-10 11:42:52,519 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:52,519 - INFO     - [evaluation_comprehensive.py:972] -   [17/34] problem_small_16.pddl
+2025-12-10 11:42:52,519 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_16.pddl
+2025-12-10 11:42:53,252 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:53,253 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_16.pddl ===
+2025-12-10 11:42:53,367 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:53,642 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 26816)
+2025-12-10 11:42:53,709 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:42:53,735 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:42:53,878 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:42:54,072 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:42:54,270 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:42:54,408 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:42:54,558 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:42:54,701 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:42:54,838 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=8 -> merge_pair=(14, 23)
+2025-12-10 11:42:54,930 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=87 -> merge_pair=(24, 28)
+2025-12-10 11:42:55,076 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=78 -> merge_pair=(25, 29)
+2025-12-10 11:42:55,212 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=61 -> merge_pair=(21, 31)
+2025-12-10 11:42:55,305 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=59 -> merge_pair=(26, 33)
+2025-12-10 11:42:55,467 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=50 -> merge_pair=(27, 32)
+2025-12-10 11:42:55,613 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=40 -> merge_pair=(22, 34)
+2025-12-10 11:42:55,756 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=34 -> merge_pair=(30, 36)
+2025-12-10 11:42:55,998 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=6 -> merge_pair=(15, 37)
+2025-12-10 11:42:56,392 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(16, 38)
+2025-12-10 11:42:56,784 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:42:57,172 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:42:57,616 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:42:57,957 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:42:58,149 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(35, 43)
+2025-12-10 11:42:58,337 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2911, steps=22
+2025-12-10 11:42:58,337 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:42:58,340 - INFO     - [evaluation_comprehensive.py:972] -   [18/34] problem_small_17.pddl
+2025-12-10 11:42:58,340 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_17.pddl
+2025-12-10 11:42:58,969 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:42:58,971 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_17.pddl ===
+2025-12-10 11:42:59,058 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:42:59,335 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 41216)
+2025-12-10 11:42:59,396 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:42:59,416 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:42:59,559 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:42:59,755 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:42:59,899 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:00,043 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:00,192 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:00,333 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:00,479 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=1 -> merge_pair=(14, 16)
+2025-12-10 11:43:00,621 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:43:00,761 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 28)
+2025-12-10 11:43:00,902 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:43:01,043 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=48 -> merge_pair=(21, 31)
+2025-12-10 11:43:01,183 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=48 -> merge_pair=(26, 34)
+2025-12-10 11:43:01,277 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=39 -> merge_pair=(27, 32)
+2025-12-10 11:43:01,416 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=31 -> merge_pair=(22, 35)
+2025-12-10 11:43:01,605 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=27 -> merge_pair=(36, 37)
+2025-12-10 11:43:01,744 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(15, 38)
+2025-12-10 11:43:02,141 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:43:02,547 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:43:02,939 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:43:03,331 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:43:03,673 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(33, 43)
+2025-12-10 11:43:03,912 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2683, steps=22
+2025-12-10 11:43:03,912 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:03,912 - INFO     - [evaluation_comprehensive.py:972] -   [19/34] problem_small_18.pddl
+2025-12-10 11:43:03,912 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_18.pddl
+2025-12-10 11:43:04,460 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:04,460 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_18.pddl ===
+2025-12-10 11:43:04,538 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:04,725 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 46576)
+2025-12-10 11:43:04,794 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:04,810 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:04,957 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:05,096 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:05,241 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:05,384 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:05,582 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:05,724 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:05,864 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=2 -> merge_pair=(14, 17)
+2025-12-10 11:43:06,004 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=82 -> merge_pair=(23, 29)
+2025-12-10 11:43:06,145 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=74 -> merge_pair=(24, 30)
+2025-12-10 11:43:06,286 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 28)
+2025-12-10 11:43:06,426 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=48 -> merge_pair=(21, 31)
+2025-12-10 11:43:06,565 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=48 -> merge_pair=(26, 34)
+2025-12-10 11:43:06,657 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=29 -> merge_pair=(19, 35)
+2025-12-10 11:43:07,001 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=32 -> merge_pair=(27, 36)
+2025-12-10 11:43:07,648 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=23 -> merge_pair=(22, 33)
+2025-12-10 11:43:07,793 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(15, 38)
+2025-12-10 11:43:07,929 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(16, 39)
+2025-12-10 11:43:08,175 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:43:08,374 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(20, 41)
+2025-12-10 11:43:08,618 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=2 -> merge_pair=(37, 42)
+2025-12-10 11:43:09,013 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(32, 43)
+2025-12-10 11:43:09,156 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2297, steps=22
+2025-12-10 11:43:09,156 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:09,156 - INFO     - [evaluation_comprehensive.py:972] -   [20/34] problem_small_19.pddl
+2025-12-10 11:43:09,156 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_19.pddl
+2025-12-10 11:43:09,682 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:09,682 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_19.pddl ===
+2025-12-10 11:43:09,755 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:09,946 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 28604)
+2025-12-10 11:43:10,010 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:10,040 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:10,229 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:10,374 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:10,538 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:10,680 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:10,771 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:10,908 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:11,142 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=3 -> merge_pair=(14, 18)
+2025-12-10 11:43:11,294 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:43:11,437 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=74 -> merge_pair=(24, 30)
+2025-12-10 11:43:11,624 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:43:11,716 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=57 -> merge_pair=(26, 31)
+2025-12-10 11:43:11,858 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=39 -> merge_pair=(20, 34)
+2025-12-10 11:43:12,102 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=34 -> merge_pair=(21, 35)
+2025-12-10 11:43:12,493 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=32 -> merge_pair=(27, 36)
+2025-12-10 11:43:12,934 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=24 -> merge_pair=(22, 37)
+2025-12-10 11:43:13,681 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(15, 38)
+2025-12-10 11:43:14,223 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(16, 39)
+2025-12-10 11:43:14,620 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(17, 40)
+2025-12-10 11:43:15,017 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:43:15,359 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(32, 42)
+2025-12-10 11:43:15,604 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(33, 43)
+2025-12-10 11:43:15,742 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2975, steps=22
+2025-12-10 11:43:15,744 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:15,744 - INFO     - [evaluation_comprehensive.py:972] -   [21/34] problem_small_20.pddl
+2025-12-10 11:43:15,744 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_20.pddl
+2025-12-10 11:43:16,257 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:16,257 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_20.pddl ===
+2025-12-10 11:43:16,380 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:16,584 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 39084)
+2025-12-10 11:43:16,647 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:16,674 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:16,811 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:16,956 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:17,099 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:17,237 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:17,376 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:17,572 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:17,712 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=5 -> merge_pair=(14, 20)
+2025-12-10 11:43:17,852 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=82 -> merge_pair=(23, 29)
+2025-12-10 11:43:17,991 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 28)
+2025-12-10 11:43:18,130 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=67 -> merge_pair=(25, 32)
+2025-12-10 11:43:18,271 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=50 -> merge_pair=(21, 33)
+2025-12-10 11:43:18,414 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=47 -> merge_pair=(26, 31)
+2025-12-10 11:43:18,505 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=37 -> merge_pair=(22, 34)
+2025-12-10 11:43:18,695 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=32 -> merge_pair=(27, 36)
+2025-12-10 11:43:19,040 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=26 -> merge_pair=(30, 37)
+2025-12-10 11:43:19,484 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(15, 38)
+2025-12-10 11:43:19,823 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(16, 39)
+2025-12-10 11:43:20,166 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(17, 40)
+2025-12-10 11:43:20,510 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(18, 41)
+2025-12-10 11:43:20,860 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(19, 42)
+2025-12-10 11:43:21,257 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(35, 43)
+2025-12-10 11:43:21,496 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2436, steps=22
+2025-12-10 11:43:21,496 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:21,496 - INFO     - [evaluation_comprehensive.py:972] -   [22/34] problem_small_21.pddl
+2025-12-10 11:43:21,496 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_21.pddl
+2025-12-10 11:43:22,027 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:22,027 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_21.pddl ===
+2025-12-10 11:43:22,129 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:22,314 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 39044)
+2025-12-10 11:43:22,381 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:22,411 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:22,553 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:22,697 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:22,839 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:22,977 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:23,129 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:23,273 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:23,413 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=7 -> merge_pair=(14, 22)
+2025-12-10 11:43:23,498 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=80 -> merge_pair=(23, 27)
+2025-12-10 11:43:23,642 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=72 -> merge_pair=(24, 28)
+2025-12-10 11:43:23,779 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=64 -> merge_pair=(25, 29)
+2025-12-10 11:43:23,920 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=57 -> merge_pair=(26, 31)
+2025-12-10 11:43:24,060 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=48 -> merge_pair=(21, 34)
+2025-12-10 11:43:24,148 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=32 -> merge_pair=(19, 32)
+2025-12-10 11:43:24,287 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=29 -> merge_pair=(20, 36)
+2025-12-10 11:43:24,375 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=6 -> merge_pair=(15, 37)
+2025-12-10 11:43:24,622 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(16, 38)
+2025-12-10 11:43:24,871 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:43:25,173 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=6 -> merge_pair=(30, 40)
+2025-12-10 11:43:25,420 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(18, 41)
+2025-12-10 11:43:25,658 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=2 -> merge_pair=(35, 42)
+2025-12-10 11:43:25,909 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(33, 43)
+2025-12-10 11:43:26,096 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.3362, steps=22
+2025-12-10 11:43:26,099 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:26,099 - INFO     - [evaluation_comprehensive.py:972] -   [23/34] problem_small_22.pddl
+2025-12-10 11:43:26,099 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_22.pddl
+2025-12-10 11:43:26,619 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:26,619 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_22.pddl ===
+2025-12-10 11:43:26,714 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:26,887 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 34040)
+2025-12-10 11:43:26,950 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:26,972 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:27,113 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:27,249 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:27,395 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:27,539 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:27,677 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:27,871 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:28,013 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=0 -> merge_pair=(14, 15)
+2025-12-10 11:43:28,149 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:43:28,239 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 29)
+2025-12-10 11:43:28,384 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 30)
+2025-12-10 11:43:28,473 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=57 -> merge_pair=(26, 31)
+2025-12-10 11:43:28,613 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=44 -> merge_pair=(21, 34)
+2025-12-10 11:43:28,750 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=32 -> merge_pair=(20, 32)
+2025-12-10 11:43:28,840 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=29 -> merge_pair=(22, 36)
+2025-12-10 11:43:28,980 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=27 -> merge_pair=(35, 37)
+2025-12-10 11:43:29,122 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(16, 38)
+2025-12-10 11:43:29,512 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=13 -> merge_pair=(27, 39)
+2025-12-10 11:43:29,860 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(17, 40)
+2025-12-10 11:43:30,258 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(18, 41)
+2025-12-10 11:43:30,608 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(19, 42)
+2025-12-10 11:43:30,902 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(33, 43)
+2025-12-10 11:43:31,140 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2897, steps=22
+2025-12-10 11:43:31,140 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:31,140 - INFO     - [evaluation_comprehensive.py:972] -   [24/34] problem_small_23.pddl
+2025-12-10 11:43:31,140 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_23.pddl
+2025-12-10 11:43:31,625 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:31,625 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_23.pddl ===
+2025-12-10 11:43:31,706 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:31,890 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 16112)
+2025-12-10 11:43:31,956 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:31,973 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:32,180 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:32,321 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:32,464 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:32,555 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:32,697 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:32,836 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:32,977 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=7 -> merge_pair=(14, 22)
+2025-12-10 11:43:33,068 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:43:33,209 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 29)
+2025-12-10 11:43:33,350 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=66 -> merge_pair=(25, 31)
+2025-12-10 11:43:33,438 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=55 -> merge_pair=(21, 33)
+2025-12-10 11:43:33,579 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=47 -> merge_pair=(26, 32)
+2025-12-10 11:43:33,716 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=40 -> merge_pair=(27, 34)
+2025-12-10 11:43:33,911 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=6 -> merge_pair=(15, 35)
+2025-12-10 11:43:34,150 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=6 -> merge_pair=(16, 37)
+2025-12-10 11:43:34,389 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(17, 38)
+2025-12-10 11:43:34,732 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=13 -> merge_pair=(30, 39)
+2025-12-10 11:43:35,024 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:43:35,369 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:43:35,612 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:43:35,853 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(36, 43)
+2025-12-10 11:43:36,092 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2028, steps=22
+2025-12-10 11:43:36,092 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:36,092 - INFO     - [evaluation_comprehensive.py:972] -   [25/34] problem_small_24.pddl
+2025-12-10 11:43:36,092 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_24.pddl
+2025-12-10 11:43:36,626 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:36,626 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_24.pddl ===
+2025-12-10 11:43:36,725 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:36,906 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 32220)
+2025-12-10 11:43:36,969 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:36,993 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:37,132 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:37,274 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:37,418 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:37,559 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:37,699 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:37,839 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:37,983 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=7 -> merge_pair=(14, 22)
+2025-12-10 11:43:38,124 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:43:38,266 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 29)
+2025-12-10 11:43:38,406 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=66 -> merge_pair=(25, 31)
+2025-12-10 11:43:38,493 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=55 -> merge_pair=(21, 33)
+2025-12-10 11:43:38,632 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=47 -> merge_pair=(26, 32)
+2025-12-10 11:43:38,775 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=40 -> merge_pair=(27, 34)
+2025-12-10 11:43:38,963 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=34 -> merge_pair=(30, 36)
+2025-12-10 11:43:39,261 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=6 -> merge_pair=(15, 37)
+2025-12-10 11:43:39,605 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(16, 38)
+2025-12-10 11:43:39,945 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:43:40,389 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:43:40,739 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:43:41,038 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:43:41,331 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(35, 43)
+2025-12-10 11:43:41,618 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.3103, steps=22
+2025-12-10 11:43:41,621 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:41,621 - INFO     - [evaluation_comprehensive.py:972] -   [26/34] problem_small_25.pddl
+2025-12-10 11:43:41,621 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_25.pddl
+2025-12-10 11:43:42,105 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:42,105 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_25.pddl ===
+2025-12-10 11:43:42,198 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:42,372 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 41624)
+2025-12-10 11:43:42,451 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:42,478 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:42,671 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:42,812 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:42,949 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:43,090 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:43,238 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:43,379 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:43,471 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=4 -> merge_pair=(14, 19)
+2025-12-10 11:43:43,607 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:43:43,748 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 28)
+2025-12-10 11:43:43,893 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:43:44,034 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=48 -> merge_pair=(21, 31)
+2025-12-10 11:43:44,171 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=48 -> merge_pair=(26, 34)
+2025-12-10 11:43:44,317 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=34 -> merge_pair=(20, 35)
+2025-12-10 11:43:44,610 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=29 -> merge_pair=(22, 36)
+2025-12-10 11:43:45,306 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=24 -> merge_pair=(27, 37)
+2025-12-10 11:43:45,901 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=3 -> merge_pair=(15, 32)
+2025-12-10 11:43:46,040 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(16, 39)
+2025-12-10 11:43:46,281 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(17, 40)
+2025-12-10 11:43:46,521 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(18, 41)
+2025-12-10 11:43:46,774 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=2 -> merge_pair=(38, 42)
+2025-12-10 11:43:47,129 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(33, 43)
+2025-12-10 11:43:47,267 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2471, steps=22
+2025-12-10 11:43:47,270 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:47,270 - INFO     - [evaluation_comprehensive.py:972] -   [27/34] problem_small_26.pddl
+2025-12-10 11:43:47,271 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_26.pddl
+2025-12-10 11:43:47,805 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:47,805 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_26.pddl ===
+2025-12-10 11:43:47,900 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:48,075 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 10296)
+2025-12-10 11:43:48,146 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:48,173 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:48,316 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:48,455 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:48,602 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:48,742 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:48,884 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:49,076 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:49,163 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=5 -> merge_pair=(14, 20)
+2025-12-10 11:43:49,305 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:43:49,448 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 29)
+2025-12-10 11:43:49,587 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=66 -> merge_pair=(25, 31)
+2025-12-10 11:43:49,679 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=50 -> merge_pair=(21, 33)
+2025-12-10 11:43:49,821 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=47 -> merge_pair=(26, 32)
+2025-12-10 11:43:49,917 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=38 -> merge_pair=(22, 35)
+2025-12-10 11:43:50,056 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=7 -> merge_pair=(15, 36)
+2025-12-10 11:43:50,396 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=27 -> merge_pair=(34, 37)
+2025-12-10 11:43:50,651 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=19 -> merge_pair=(27, 38)
+2025-12-10 11:43:50,790 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=14 -> merge_pair=(30, 39)
+2025-12-10 11:43:51,186 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(16, 40)
+2025-12-10 11:43:51,544 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(17, 41)
+2025-12-10 11:43:51,889 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(18, 42)
+2025-12-10 11:43:52,188 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(19, 43)
+2025-12-10 11:43:52,385 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2604, steps=22
+2025-12-10 11:43:52,387 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:52,387 - INFO     - [evaluation_comprehensive.py:972] -   [28/34] problem_small_27.pddl
+2025-12-10 11:43:52,387 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_27.pddl
+2025-12-10 11:43:52,875 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:52,875 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_27.pddl ===
+2025-12-10 11:43:52,894 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:53,088 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 40788)
+2025-12-10 11:43:53,156 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:53,187 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:53,385 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:53,530 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:53,666 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:53,808 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:53,901 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:54,043 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:54,188 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=1 -> merge_pair=(14, 16)
+2025-12-10 11:43:54,329 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:43:54,471 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=74 -> merge_pair=(24, 30)
+2025-12-10 11:43:54,615 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:43:54,709 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=57 -> merge_pair=(26, 31)
+2025-12-10 11:43:54,847 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=44 -> merge_pair=(21, 34)
+2025-12-10 11:43:54,943 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=39 -> merge_pair=(27, 32)
+2025-12-10 11:43:55,079 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=31 -> merge_pair=(22, 35)
+2025-12-10 11:43:55,221 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=26 -> merge_pair=(33, 37)
+2025-12-10 11:43:55,462 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(15, 38)
+2025-12-10 11:43:55,758 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:43:56,152 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:43:56,540 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:43:56,886 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:43:57,132 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(36, 43)
+2025-12-10 11:43:57,271 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.3109, steps=22
+2025-12-10 11:43:57,273 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:43:57,273 - INFO     - [evaluation_comprehensive.py:972] -   [29/34] problem_small_28.pddl
+2025-12-10 11:43:57,273 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_28.pddl
+2025-12-10 11:43:57,763 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:43:57,763 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_28.pddl ===
+2025-12-10 11:43:57,793 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:43:57,985 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 13048)
+2025-12-10 11:43:58,047 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:43:58,070 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:43:58,211 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:43:58,407 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:43:58,551 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:43:58,703 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:43:58,800 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:43:58,943 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:43:59,085 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=0 -> merge_pair=(14, 15)
+2025-12-10 11:43:59,175 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:43:59,317 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=87 -> merge_pair=(27, 31)
+2025-12-10 11:43:59,460 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=56 -> merge_pair=(21, 32)
+2025-12-10 11:43:59,704 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=53 -> merge_pair=(24, 28)
+2025-12-10 11:43:59,844 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=8 -> merge_pair=(16, 33)
+2025-12-10 11:44:00,096 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=36 -> merge_pair=(25, 29)
+2025-12-10 11:44:00,181 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=24 -> merge_pair=(20, 35)
+2025-12-10 11:44:00,626 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=24 -> merge_pair=(26, 37)
+2025-12-10 11:44:00,967 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=17 -> merge_pair=(22, 38)
+2025-12-10 11:44:01,660 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=3 -> merge_pair=(17, 36)
+2025-12-10 11:44:01,803 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:44:02,096 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:44:02,294 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=2 -> merge_pair=(39, 42)
+2025-12-10 11:44:02,690 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(34, 43)
+2025-12-10 11:44:02,880 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.3129, steps=22
+2025-12-10 11:44:02,882 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:44:02,882 - INFO     - [evaluation_comprehensive.py:972] -   [30/34] problem_small_29.pddl
+2025-12-10 11:44:02,883 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_29.pddl
+2025-12-10 11:44:03,393 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:44:03,393 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_29.pddl ===
+2025-12-10 11:44:03,419 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:44:03,599 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 19528)
+2025-12-10 11:44:03,675 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:44:03,701 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:44:03,892 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:44:04,088 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:44:04,236 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:44:04,379 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:44:04,528 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:44:04,672 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:44:04,809 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=0 -> merge_pair=(14, 15)
+2025-12-10 11:44:04,904 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:44:05,041 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=74 -> merge_pair=(24, 30)
+2025-12-10 11:44:05,189 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:44:05,276 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=57 -> merge_pair=(26, 31)
+2025-12-10 11:44:05,421 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=9 -> merge_pair=(16, 34)
+2025-12-10 11:44:05,614 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=23 -> merge_pair=(19, 35)
+2025-12-10 11:44:05,863 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=32 -> merge_pair=(27, 36)
+2025-12-10 11:44:06,210 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=21 -> merge_pair=(21, 37)
+2025-12-10 11:44:06,759 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=17 -> merge_pair=(22, 38)
+2025-12-10 11:44:07,456 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=3 -> merge_pair=(17, 33)
+2025-12-10 11:44:07,591 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=8 -> merge_pair=(32, 40)
+2025-12-10 11:44:07,736 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(18, 41)
+2025-12-10 11:44:07,981 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:44:08,232 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(39, 43)
+2025-12-10 11:44:08,626 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2159, steps=22
+2025-12-10 11:44:08,626 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:44:08,626 - INFO     - [evaluation_comprehensive.py:972] -   [31/34] problem_small_30.pddl
+2025-12-10 11:44:08,626 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_30.pddl
+2025-12-10 11:44:09,119 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:44:09,129 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_30.pddl ===
+2025-12-10 11:44:09,144 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:44:09,341 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 46744)
+2025-12-10 11:44:09,412 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:44:09,436 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:44:09,579 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:44:09,726 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:44:09,873 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:44:10,019 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:44:10,206 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:44:10,402 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:44:10,543 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=1 -> merge_pair=(14, 16)
+2025-12-10 11:44:10,637 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:44:10,778 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=72 -> merge_pair=(24, 27)
+2025-12-10 11:44:10,869 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=64 -> merge_pair=(25, 28)
+2025-12-10 11:44:11,012 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=56 -> merge_pair=(26, 29)
+2025-12-10 11:44:11,156 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=41 -> merge_pair=(21, 31)
+2025-12-10 11:44:11,296 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=23 -> merge_pair=(18, 35)
+2025-12-10 11:44:11,436 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=20 -> merge_pair=(19, 36)
+2025-12-10 11:44:11,686 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=14 -> merge_pair=(20, 32)
+2025-12-10 11:44:11,782 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=14 -> merge_pair=(22, 38)
+2025-12-10 11:44:11,872 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=14 -> merge_pair=(37, 39)
+2025-12-10 11:44:12,174 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(15, 40)
+2025-12-10 11:44:12,475 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(17, 41)
+2025-12-10 11:44:12,720 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(33, 42)
+2025-12-10 11:44:12,914 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(34, 43)
+2025-12-10 11:44:13,050 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.3917, steps=22
+2025-12-10 11:44:13,053 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:44:13,053 - INFO     - [evaluation_comprehensive.py:972] -   [32/34] problem_small_31.pddl
+2025-12-10 11:44:13,053 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_31.pddl
+2025-12-10 11:44:13,594 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:44:13,594 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_31.pddl ===
+2025-12-10 11:44:13,618 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:44:13,819 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 32348)
+2025-12-10 11:44:13,891 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:44:13,918 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:44:14,056 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:44:14,210 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:44:14,404 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:44:14,544 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:44:14,688 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:44:14,778 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:44:14,919 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=7 -> merge_pair=(14, 22)
+2025-12-10 11:44:15,005 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=81 -> merge_pair=(23, 28)
+2025-12-10 11:44:15,150 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 29)
+2025-12-10 11:44:15,290 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=66 -> merge_pair=(25, 31)
+2025-12-10 11:44:15,430 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=55 -> merge_pair=(21, 33)
+2025-12-10 11:44:15,578 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=47 -> merge_pair=(26, 32)
+2025-12-10 11:44:15,667 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=40 -> merge_pair=(27, 34)
+2025-12-10 11:44:15,854 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=34 -> merge_pair=(30, 36)
+2025-12-10 11:44:16,212 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=6 -> merge_pair=(15, 37)
+2025-12-10 11:44:16,508 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=5 -> merge_pair=(16, 38)
+2025-12-10 11:44:16,903 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:44:17,255 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:44:17,604 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:44:17,897 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:44:18,146 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(35, 43)
+2025-12-10 11:44:18,433 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.3103, steps=22
+2025-12-10 11:44:18,433 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:44:18,433 - INFO     - [evaluation_comprehensive.py:972] -   [33/34] problem_small_32.pddl
+2025-12-10 11:44:18,433 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_32.pddl
+2025-12-10 11:44:18,899 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:44:18,899 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_32.pddl ===
+2025-12-10 11:44:18,928 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:44:19,134 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 38936)
+2025-12-10 11:44:19,196 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:44:19,219 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:44:19,362 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:44:19,509 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:44:19,658 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:44:19,800 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:44:19,943 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:44:20,087 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:44:20,230 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=0 -> merge_pair=(14, 15)
+2025-12-10 11:44:20,371 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:44:20,466 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 28)
+2025-12-10 11:44:20,603 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:44:20,698 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=48 -> merge_pair=(21, 31)
+2025-12-10 11:44:20,840 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=48 -> merge_pair=(26, 34)
+2025-12-10 11:44:20,983 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=23 -> merge_pair=(18, 35)
+2025-12-10 11:44:21,327 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=29 -> merge_pair=(22, 36)
+2025-12-10 11:44:21,923 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=24 -> merge_pair=(27, 37)
+2025-12-10 11:44:22,389 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=3 -> merge_pair=(16, 32)
+2025-12-10 11:44:22,529 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:44:22,819 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(19, 40)
+2025-12-10 11:44:23,069 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(20, 41)
+2025-12-10 11:44:23,333 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=2 -> merge_pair=(38, 42)
+2025-12-10 11:44:23,680 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(33, 43)
+2025-12-10 11:44:23,818 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2448, steps=22
+2025-12-10 11:44:23,822 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:44:23,822 - INFO     - [evaluation_comprehensive.py:972] -   [34/34] problem_small_33.pddl
+2025-12-10 11:44:23,822 - INFO     - [evaluation_comprehensive.py:549] - [GNN] Evaluating: problem_small_33.pddl
+2025-12-10 11:44:24,367 - INFO     - [thin_merge_env.py:121] - [THIN_ENV] Initialized with 15 node features, 10 edge features
+2025-12-10 11:44:24,367 - INFO     - [thin_merge_env.py:743] - [THIN_ENV] === RESET: problem_small_33.pddl ===
+2025-12-10 11:44:24,394 - INFO     - [thin_merge_env.py:165] - [THIN_ENV] Launching Fast Downward...
+2025-12-10 11:44:24,604 - INFO     - [thin_merge_env.py:229] - [THIN_ENV] FD process started (PID: 39020)
+2025-12-10 11:44:24,674 - INFO     - [thin_merge_env.py:765] - [THIN_ENV] Reset complete: 23 nodes, 253 edges
+2025-12-10 11:44:24,699 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 0: action=0 -> merge_pair=(0, 1)
+2025-12-10 11:44:24,895 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 1: action=0 -> merge_pair=(2, 3)
+2025-12-10 11:44:24,991 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 2: action=0 -> merge_pair=(4, 5)
+2025-12-10 11:44:25,132 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 3: action=0 -> merge_pair=(6, 7)
+2025-12-10 11:44:25,277 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 4: action=0 -> merge_pair=(8, 9)
+2025-12-10 11:44:25,418 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 5: action=0 -> merge_pair=(10, 11)
+2025-12-10 11:44:25,564 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 6: action=0 -> merge_pair=(12, 13)
+2025-12-10 11:44:25,702 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 7: action=1 -> merge_pair=(14, 16)
+2025-12-10 11:44:25,850 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 8: action=83 -> merge_pair=(23, 30)
+2025-12-10 11:44:25,943 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 9: action=73 -> merge_pair=(24, 28)
+2025-12-10 11:44:26,085 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 10: action=65 -> merge_pair=(25, 29)
+2025-12-10 11:44:26,178 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 11: action=48 -> merge_pair=(21, 31)
+2025-12-10 11:44:26,318 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 12: action=48 -> merge_pair=(26, 34)
+2025-12-10 11:44:26,463 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 13: action=39 -> merge_pair=(27, 32)
+2025-12-10 11:44:26,603 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 14: action=32 -> merge_pair=(22, 36)
+2025-12-10 11:44:26,694 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 15: action=6 -> merge_pair=(15, 37)
+2025-12-10 11:44:27,038 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 16: action=20 -> merge_pair=(35, 38)
+2025-12-10 11:44:27,334 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 17: action=4 -> merge_pair=(17, 39)
+2025-12-10 11:44:27,573 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 18: action=3 -> merge_pair=(18, 40)
+2025-12-10 11:44:27,924 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 19: action=2 -> merge_pair=(19, 41)
+2025-12-10 11:44:28,268 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 20: action=1 -> merge_pair=(20, 42)
+2025-12-10 11:44:28,594 - INFO     - [thin_merge_env.py:774] - [THIN_ENV] Step 21: action=0 -> merge_pair=(33, 43)
+2025-12-10 11:44:28,838 - INFO     - [thin_merge_env.py:806] - [THIN_ENV] Episode done: reward=-0.2403, steps=22
+2025-12-10 11:44:28,838 - INFO     - [thin_merge_env.py:813] - [THIN_ENV] Environment closed
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1355] - 
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1356] - ========================================================================================================================
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1357] - // GENERATING COMPREHENSIVE REPORT
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1358] - ========================================================================================================================
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1359] - 
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:997] - 
+FD_Add:
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:998] -   Solve rate: 0.0%
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:999] -   Avg time: 0.00s
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1000] -   Avg expansions: 0
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:997] - 
+FD_Blind:
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:998] -   Solve rate: 0.0%
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:999] -   Avg time: 0.00s
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1000] -   Avg expansions: 0
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:997] - 
+FD_LM-Cut:
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:998] -   Solve rate: 0.0%
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:999] -   Avg time: 0.00s
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1000] -   Avg expansions: 0
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:997] - 
+FD_M&S_DFP:
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:998] -   Solve rate: 0.0%
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:999] -   Avg time: 0.00s
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1000] -   Avg expansions: 0
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:997] - 
+FD_M&S_SCC:
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:998] -   Solve rate: 0.0%
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:999] -   Avg time: 0.00s
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1000] -   Avg expansions: 0
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:997] - 
+FD_Max:
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:998] -   Solve rate: 0.0%
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:999] -   Avg time: 0.00s
+2025-12-10 11:44:28,838 - INFO     - [evaluation_comprehensive.py:1000] -   Avg expansions: 0
+2025-12-10 11:44:28,852 - INFO     - [evaluation_comprehensive.py:997] - 
+GNN:
+2025-12-10 11:44:28,852 - INFO     - [evaluation_comprehensive.py:998] -   Solve rate: 97.1%
+2025-12-10 11:44:28,852 - INFO     - [evaluation_comprehensive.py:999] -   Avg time: 6.27s
+2025-12-10 11:44:28,852 - INFO     - [evaluation_comprehensive.py:1000] -   Avg expansions: 0
+2025-12-10 11:44:28,852 - INFO     - [evaluation_comprehensive.py:1002] -   Avg h* preservation: 0.705
+2025-12-10 11:44:28,866 - INFO     - [evaluation_comprehensive.py:1147] - ✓ CSV: results_s\full_eval\evaluation_results.csv
+2025-12-10 11:44:28,868 - INFO     - [evaluation_comprehensive.py:1162] - ✓ Per-problem comparison CSV: results_s\full_eval\per_problem_comparison.csv
+2025-12-10 11:44:28,868 - INFO     - [evaluation_comprehensive.py:1172] - ✓ JSON: results_s\full_eval\evaluation_summary.json
+2025-12-10 11:44:28,868 - INFO     - [evaluation_comprehensive.py:1178] - ✓ Speedup analysis: results_s\full_eval\speedup_analysis.json
+2025-12-10 11:44:28,868 - INFO     - [evaluation_comprehensive.py:1184] - ✓ Statistical tests: results_s\full_eval\statistical_tests.json
+2025-12-10 11:44:28,868 - INFO     - [evaluation_comprehensive.py:1343] - ✓ Text report: results_s\full_eval\comparison_report.txt
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1355] - 
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1356] - ========================================================================================================================
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1357] - // EVALUATION COMPLETE
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1358] - ========================================================================================================================
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1359] - 
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1449] - ✅ Evaluation pipeline finished!
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1450] - 📁 Results: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\results_s\full_eval
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1451] - 📊 Summary: results_s/full_eval/evaluation_summary.json
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1452] - 📊 Detailed Results: results_s/full_eval/evaluation_results.csv
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1453] - 📊 Per-Problem Comparison: results_s/full_eval/per_problem_comparison.csv
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1454] - 📊 Speedup Analysis: results_s/full_eval/speedup_analysis.json
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1455] - 📊 Statistical Tests: results_s/full_eval/statistical_tests.json
+2025-12-10 11:44:28,877 - INFO     - [evaluation_comprehensive.py:1456] - 📋 Report: results_s/full_eval/comparison_report.txt

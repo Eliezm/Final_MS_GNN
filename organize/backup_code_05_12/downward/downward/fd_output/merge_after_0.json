@@ -1,0 +1,28 @@
+{
+  "f_values": [
+    3,
+    2,
+    4,
+    4,
+    2,
+    2,
+    3,
+    6,
+    6,
+    4
+  ],
+  "iteration": 0,
+  "merged_id": 9,
+  "num_goal_states": 2,
+  "num_states": 10,
+  "num_transitions": 37,
+  "search_signals": {
+    "branching_factor": 3.7,
+    "nodes_expanded": 10,
+    "search_depth": 2,
+    "solution_cost": 2,
+    "solution_found": true
+  },
+  "ts1_id": 0,
+  "ts2_id": 5
+}

@@ -1,0 +1,14 @@
+{
+  "problem_small_00.pddl": {
+    "problem_idx": 0,
+    "num_runs": 3,
+    "num_failed_runs": 0,
+    "avg_reward": -0.8855712792216149,
+    "std_reward": 1.1102230246251565e-16,
+    "max_reward": -0.885571279221615,
+    "min_reward": -0.885571279221615,
+    "avg_h_preservation": 0.5555555555555556,
+    "avg_steps": 22.0,
+    "solve_rate": 1.0
+  }
+}

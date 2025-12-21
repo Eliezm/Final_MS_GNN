@@ -1,0 +1,61 @@
+
+
+
+
+
+
+
+
+
+TRAINING ####################
+
+
+Training Loop Validation mandate:
+* **The Goal (Reliability):** You must guarantee that your training code is robust enough to run for **days** without crashing or stopping early.
+* **The Specific Requirement:** The system *must* be capable of handling a list of **$N$ problems (e.g., 20)** and training continuously for **thousands of timesteps (e.g., 100,000+)**.
+* **The Critical Fix:** As discussed, your current code has a "stop-short" bug where it finishes the list of problems once and quits. You need to implement a **`while` loop** that cycles through the problem list endlessly until the total timestep target is met.
+* **The "Win":** This ensures your model sees enough data to actually converge (learn), rather than just seeing each problem once and forgetting it.
+
+Here is the summary of the **Training Duration Strategy**:
+* **The Question:** "How long is 'long enough'?" You don't want to stop before the model learns, but you don't want to waste days on diminishing returns.
+* **The Recommendation:** Train for **300,000 to 500,000 Timesteps**.
+* **The Math:**
+    * 1 Timestep = 1 Merge Decision.
+    * An average problem takes ~50 merges to solve.
+    * To learn, PPO (your algorithm) needs to see each problem at least 100 times.
+    * $20 \text{ problems} \times 100 \text{ episodes} \times 50 \text{ steps} = 100,000 \text{ steps}$ (Minimum).
+    * To be safe and allow for "curriculum" learning, we triple that to **300k**.
+* **The Time Cost:**
+    * On a **RAM Disk** (fast): This takes roughly **12–18 hours**.
+    * On a **Hard Drive** (slow): This would take **5+ days**.
+**The Verdict:** Set `TOTAL_TIMESTEPS=300000` and ensure you are running on `/dev/shm` to finish overnight.
+
+REWARD FUNCTION ############
+
+Here is the summary of the **"Hypothesis-Driven" Reward Architecture** strategy:
+
+* **The Goal (Flexibility):** You don't just want a reward function that "works"; you want a **Tunable Instrument**. You want to be able to ask scientific questions like: *"Is it better to punish high branching factors, or should we strictly focus on heuristic stability?"* without rewriting code every time.
+
+* **The Implementation (Weight Disentanglement):**
+    * Instead of hardcoding numbers (e.g., `reward = -0.01 * branching`), you parameterize the class.
+    * **The Fix:** Update your `AStarSearchReward` `__init__` to accept a **Configuration Dictionary** or specific weights: `(w_stability=0.1, w_branching=-0.01, w_dead_end=-1.0)`.
+
+* **The Research Potential:** This allows you to run **"Incentive Ablation"** experiments later:
+    1.  **The "Purist" Run:** Set `w_branching=0`. Does the agent naturally learn to reduce branching just to survive, or does it need the explicit hint?
+    2.  **The "Safety First" Run:** Set `w_dead_end=-5.0`. Does the agent become too conservative and refuse to merge anything?
+
+* **The Immediate Action:**
+    * **Validate:** Your current logic (F-Value Stability + Soft Penalties) is state-of-the-art. Keep the logic.
+    * **Calibrate:** As noted, change the default "Goal Unreachable" penalty from `-0.5` to **`-1.0`** immediately. The model must learn that losing the goal is the ultimate failure.
+
+GNN MODEL DEPLOYMENT INTERFACE ###############
+
+
+Here is the summary of the **"Plug-and-Play" Deployment Interface** concept:
+* **The Goal (Usability):** A research paper is great, but a usable tool is better. You need a way to take your trained, frozen GNN and easily apply it to *any* new PDDL problem (Logistics, Blocksworld, or custom) without retraining.
+* **The Mechanism (The Wrapper):** Create a standalone script (e.g., `solve_with_gnn.py`) that acts as a simple interface.
+    * **Input:** Domain file (`domain.pddl`), Problem file (`problem.pddl`), and your trained model (`model.zip`).
+    * **Process:** The script loads the model, spins up the Fast Downward planner, and injects the GNN as the merge strategy.
+    * **Output:** The solution plan.
+* **The "Win":** This transforms your project from a "Science Experiment" into a **"Product."** It allows anyone (or you, in future projects) to use your GNN as a drop-in replacement for standard planners like `LM-Cut` or `M&S`.
+

@@ -1,0 +1,164 @@
+Warning! SIGXCPU is not available on your platform. This means that the planner cannot be gracefully terminated when using a time limit, which, however, is probably supported on your platform anyway.
+Parsing...
+Parsing: [0.000s CPU, 0.002s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.000s CPU, 0.000s wall-clock]
+Generated 21 rules.
+Computing model... [0.000s CPU, 0.004s wall-clock]
+442 relevant atoms
+297 auxiliary atoms
+739 final queue length
+1250 total queue pushes
+Completing instantiation... [0.000s CPU, 0.005s wall-clock]
+Instantiating: [0.000s CPU, 0.016s wall-clock]
+Computing fact groups...
+Finding invariants...
+10 initial candidates
+Finding invariants: [0.000s CPU, 0.001s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.001s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+12 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.001s wall-clock]
+Computing fact groups: [0.000s CPU, 0.003s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Processing axioms: [0.000s CPU, 0.001s wall-clock]
+Translating task: [0.000s CPU, 0.007s wall-clock]
+352 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+22 propositions removed
+Detecting unreachable propositions: [0.016s CPU, 0.003s wall-clock]
+Reordering and filtering variables...
+23 of 23 variables necessary.
+12 of 23 mutex groups necessary.
+242 of 242 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.002s wall-clock]
+Translator variables: 23
+Translator derived variables: 0
+Translator facts: 156
+Translator goal facts: 13
+Translator mutex groups: 12
+Translator total mutex groups size: 144
+Translator operators: 242
+Translator axioms: 0
+Translator task size: 2118
+warning: could not determine peak memory
+Writing output... [0.000s CPU, 0.005s wall-clock]
+Done! [0.016s CPU, 0.039s wall-clock]
+[t=0.000160s, 812 KB] reading input...
+[t=0.006601s, 984 KB] done reading input!
+[t=0.006623s, 984 KB] building causal graph...done! [t=0.000326s]
+[t=0.010427s, 1448 KB] Initializing merge-and-shrink heuristic...
+[t=0.010448s, 1448 KB] Running merge-and-shrink algorithm...
+[t=0.010457s, 1448 KB] Merge strategy options:
+[t=0.010462s, 1448 KB] Type: merge_gnn
+
+[t=0.010469s, 1448 KB] Options related to size limits and shrinking: 
+[t=0.010474s, 1448 KB] Transition system size limit: 4000
+[t=0.010478s, 1448 KB] Transition system size limit right before merge: 4000
+[t=0.010483s, 1448 KB] Threshold to trigger shrinking right before merge: 1
+
+[t=0.010490s, 1448 KB] Shrink strategy options: 
+[t=0.010495s, 1448 KB] Type: bisimulation
+[t=0.010499s, 1448 KB] Bisimulation type: exact
+[t=0.010504s, 1448 KB] At limit: return
+
+[t=0.010510s, 1448 KB] Pruning unreachable states: yes
+[t=0.010515s, 1448 KB] Pruning irrelevant states: yes
+
+[t=0.010522s, 1448 KB] Label reduction options:
+[t=0.010526s, 1448 KB] Before merging: disabled
+[t=0.010530s, 1448 KB] Before shrinking: enabled
+[t=0.010535s, 1448 KB] Method: all transition systems with fixpoint computation
+[t=0.010539s, 1448 KB] System order: random
+
+[t=0.010546s, 1448 KB] Main loop max time in seconds: inf
+
+
+[t=0.010564s, 1448 KB] Building atomic transition systems... 
+[t=0.011042s, 1448 KB] M&S algorithm timer: 0.000598s (after computation of atomic factors)
+
+[M&S] ✅ Exported causal graph to: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/causal_graph.json (396 edges)
+[M&S] ✅ Exported FD index mapping to: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/fd_index_mapping_-1.json
+[M&S] ✅ Exported initial FD index mapping
+[t=0.113889s, 25440 KB] Starting main loop without a time limit.
+
+[GNN::INIT] MergeStrategyGNN initialized
+[M&S::MAIN] fd_output_dir: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 0 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 0] ========================================
+[GNN::ITERATION 0] Waiting for merge decision at:
+[GNN::ITERATION 0]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_0.json
+[GNN::ITERATION 0] ✅ Decision file found!
+[GNN::ITERATION 0] ✅ JSON parsed successfully
+[GNN::ITERATION 0] Merge decision: (0, 1)
+[GNN::ITERATION 0] ✅ ACK written to:
+[GNN::ITERATION 0]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output\gnn_ack_0.json
+[GNN::ITERATION 0] ========================================
+[GNN::ITERATION 0] ✅ Returning (0, 1)
+
+[M&S::MAIN] PHASE 1 COMPLETE: Received decision: (0, 1)
+[M&S::MAIN] Merge indices validated: both are active
+[t=0.315823s, 25440 KB] Next pair of indices: (0, 1)
+[t=0.315835s, 25440 KB] M&S algorithm main loop timer: 0.201949s (after computation of next merge)
+[M&S::MAIN] PHASE 2: Capturing pre-merge data...
+[SIGNALS] export_merge_before_data: ts1_size=2, ts2_size=2
+[M&S::MAIN] PHASE 2 COMPLETE: Pre-merge data captured
+[M&S::MAIN] PHASE 3: Label reduction (before shrinking)...
+[M&S::MAIN] PHASE 3 COMPLETE: reduced=0
+[M&S::MAIN] PHASE 4: Shrinking...
+[M&S::MAIN] PHASE 4 COMPLETE: shrunk=0
+[M&S::MAIN] PHASE 6: Writing merge_before file...
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/merge_before_0.json
+[M&S::MAIN] PHASE 6 COMPLETE: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/merge_before_0.json
+[M&S::MAIN] PHASE 7: Performing merge...
+[M&S::MAIN] PHASE 7 COMPLETE: merged_index=23
+[M&S::MAIN] PHASE 8: Exporting post-merge signals...
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/merge_after_0.json
+[M&S::MAIN]   Written: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/merge_after_0.json
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/ts_0.json
+[M&S::MAIN]   Written: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/ts_0.json
+[SIGNALS] Wrote: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/fd_index_mapping_0.json
+[M&S::MAIN]   Written: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output/fd_index_mapping_0.json
+[M&S::MAIN] PHASE 8 COMPLETE: All signals exported
+[t=0.352716s, 25440 KB] M&S algorithm main loop timer: 0.238842s (after merging)
+
+
+[M&S::MAIN] ============================================
+[M&S::MAIN] Iteration 1 starting...
+[M&S::MAIN] ============================================
+[M&S::MAIN] PHASE 1: Waiting for GNN decision...
+[GNN::PATH] Using gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT] Directories verified:
+[GNN::GET_NEXT]   gnn_input: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output
+[GNN::GET_NEXT]   fd_output: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\fd_output
+
+[GNN::ITERATION 1] ========================================
+[GNN::ITERATION 1] Waiting for merge decision at:
+[GNN::ITERATION 1]   C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\downward\gnn_output\merge_1.json

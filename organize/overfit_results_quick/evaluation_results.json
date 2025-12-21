@@ -1,0 +1,35 @@
+{
+  "problem_small_01.pddl": {
+    "problem_idx": 0,
+    "num_runs": 1,
+    "avg_reward": 7.48455833646887,
+    "std_reward": 0.0,
+    "max_reward": 7.48455833646887,
+    "min_reward": 7.48455833646887,
+    "avg_h_preservation": 1.0,
+    "avg_steps": 22.0,
+    "solve_rate": 1.0
+  },
+  "problem_small_07.pddl": {
+    "problem_idx": 1,
+    "num_runs": 1,
+    "avg_reward": 7.54453133937751,
+    "std_reward": 0.0,
+    "max_reward": 7.54453133937751,
+    "min_reward": 7.54453133937751,
+    "avg_h_preservation": 1.0,
+    "avg_steps": 22.0,
+    "solve_rate": 1.0
+  },
+  "problem_small_17.pddl": {
+    "problem_idx": 2,
+    "num_runs": 1,
+    "avg_reward": 7.14959669128121,
+    "std_reward": 0.0,
+    "max_reward": 7.14959669128121,
+    "min_reward": 7.14959669128121,
+    "avg_h_preservation": 1.0,
+    "avg_steps": 22.0,
+    "solve_rate": 1.0
+  }
+}

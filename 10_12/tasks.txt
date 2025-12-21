@@ -1,0 +1,1025 @@
+30 small BW problems
+30 medium BW problems
+30 large BW problems
+
+30 small Logistics problems
+30 medium Logistics problems
+30 large Logistics problems
+
+Two domains are enough.
+
+We can do a little experiment about the invariant of the models for domains (or train on both domains together?) - or
+train on BW and test on Logistics, and the opposite.
+
+-An experiment for overfit (for each difficutly)
+- An actual learning experiment (for each difficulty)
+- A scalability in size experiment
+- Training on problems from all sizes (curriculum) and evaluating the results
+
+The "Ablation-Ready" Model
+We need to know what matters. The GNN should be modular.
+
+Feature Toggles: The config can turn off specific input features (e.g., use_centrality: false, use_f_values: true).
+
+Research Goal: This allows you to prove necessity. "We show that removing f-values drops performance by 40%, proving heuristics guide the topology reduction."
+
+"Counterfactual" Analysis (The "What If?" Engine)
+During evaluation, for every decision the GNN makes, the system also calculates: "What would the Random policy have done?" and "What would the Greedy policy have done?"
+
+Research Insight: You can plot a "Regret" curve. "At step 5, the GNN made a move that was 10x worse than random." This pinpoints exactly where the policy breaks.
+
+
+Feature Importance Heatmaps
+Implement Integrated Gradients or Attention Weights logging.
+
+Research Insight: When the GNN decides to merge Node A and Node B, which features was it looking at? Was it the centrality or the f-value?
+
+Visual: You produce a graph where nodes glow based on how much they influenced the decision.
+
+
+The "Bad Merge" Detector
+Since you have RewardInfoExtractor, you create a specific classifier that runs alongside the agent.
+
+Goal: Predict before the merge if it will cause infinite f-value (goal unreachable).
+
+Research: "We trained a lightweight auxiliary head that prevents 99% of dead-end merges."
+
+
+The "Heuristic Preservation" MetricThe goal of Merge-and-Shrink is to preserve the heuristic value ($h^*$) of the initial state. A bad merge makes the heuristic lower (less informative).Implementation:Before the merge, calculate $h(s_{start})$ in the abstract space.After the merge, calculate $h(s_{start})$ again.If the value drops, you have "Heuristic Degradation."Research Insight:Claim: "Standard strategies degrade the heuristic by 15% per merge. Our GNN limits degradation to 2% per merge, maintaining search guidance longer."Mechanism: This proves why your planner is faster—not because it's smaller, but because the map is "more accurate."
+
+
+The "Sensitivity" Stress Test (Adversarial Robustness)Is your GNN brittle? If the heuristic value of a node changes by 0.01, does the decision flip? This tests if the model relies on robust structural signals or precise floating-point artifacts.The Experiment:Take a state where the GNN is confident (Entropy < 0.2).Add Gaussian Noise to the input features (e.g., jitter the centrality or f-values by $\pm 5\%$).Measure how often the argmax (chosen merge) changes.Research Insight:Analysis: "The GNN is highly sensitive to f-value noise but robust to degree noise. This implies it relies more on the search guidance (heuristics) than the topology."Application: This justifies why your model might fail on "noisy" domains where heuristics are misleading.
+
+Cross-Domain Transfer Matrix (The "General Intelligence" Test)You have been testing Generalization within the same domain (e.g., Logistics Small $\to$ Logistics Large). But does a GNN trained on "Grid World" learn anything useful for "Blocksworld"?The Experiment:Train Models on Domains A, B, and C.Freeze the weights.Test every model on every domain (A $\to$ B, A $\to$ C, etc.).Crucially: Compare against a random initialization.Research Insight:The "Common Sense" Hypothesis: Even if it doesn't solve Domain B perfectly, a GNN trained on Domain A should be better than random because it has learned "Don't merge goal states with dead ends"—a universal rule of planning.Visual: A Heatmap Matrix. Rows = Train Domain, Cols = Test Domain. Values = Improvement over Random %.
+
+
+ The "Ablation" Matrix (Scientific Rigor)
+Reviewers will ask: "Is the GNN working because of the Attention mechanism? Or just because of the Edge Features?" You need to prepare a "config switch" to turn these off easily.
+Add these flags to GNNModel and GNNPolicy:
+use_attention=True/False: Test if GATConv actually helps over pure GCN.
+use_edge_features=True/False: Test if the rich physics features are the real driver of performance.
+The "Win": If use_edge_features=True beats False by 20%, you prove that your feature engineering (the "physics") was crucial.
+
+
+Visualizing the "Ghost in the Machine"
+Text logs are boring. To make your paper/presentation pop, you need to visualize the graph shrinking.
+The Tool: Use networkx + matplotlib (you already have GraphTracker.display ).
+The Idea: During Evaluation (not training), save a .png snapshot of the graph every 5 steps.
+The Result: Stitch them into a .gif.
+Frame 1: Huge messy graph.
+Frame 10: GNN merges a cluster of nodes.
+Frame 20: Graph looks cleaner.
+Frame 30: Graph is a linear chain (easy to solve).
+Impact: This proves the GNN has "intuition" about structure.
+
+
+
+****************
+*****************
+
+it is often hard to generate "hard problems" - most of our generated problems are solved "easily"
+by most planners, it is hence something that has to do with the structure of the problem rather than its actual raw size
+
+**************
+*************
+
+
+
+
+How many experiments overall?
+
+Are the sizes / difficulty of the problems correct? (0.5 to 2 minutes for small problems, 2-4 minutes for medium
+problems and 4-7 minutes for large problems using a baseline planner with lm-cut heuristic to solve it?)
+Is the configuration of the GNN good for the expriments for our paper?
+How will the process and experiments work? Where will the models get saved?
+How do you perform the training on 20 problems?
+How do you divide the data to test and train sets in the correct way?
+How many baseline problems of IPC can our GNN solve?
+
+How many baseline problems of IPC can our GNN solve?Based on your setup (comparing against FD_LM-Cut, FD_M&S_DFP, etc. 24):Expectation: Do not expect to beat LM-Cut on coverage (number of problems solved). LM-Cut is a highly optimized analytical heuristic.Success Metric: Look for Efficiency (expansions) and Abstraction Size.Win: If your GNN produces abstractions that are 50% smaller than standard M&S while maintaining similar search expansions.Win: If your GNN solves 80% of what LM-Cut solves, but does it with less peak memory (because the abstraction is smarter/smaller).Hard Prediction: On "Large" problems (4-7 mins), GNNs often struggle due to timeout overhead (Python $\leftrightarrow$ C++ latency). Your "RAM Disk" optimization is essential here. If configured correctly, you should aim to solve 70-85% of the training distribution and 60-75% of the test distribution.
+
+Based on the evaluation framework and experimental design in your code, "wins" can be categorized into three tiers: **Performance Wins** (beating baselines), **Scientific Wins** (demonstrating intelligent behavior), and **Structural Wins** (proving the method works as intended).
+
+Here is a roadmap to defining and claiming success for your research paper:
+
+### 1. Performance Wins (The "State-of-the-Art" Argument)
+These are quantitative victories against the standard Fast Downward (FD) baselines defined in your `evaluation_comprehensive.py`.
+
+* **The "Efficiency" Win (Nodes Expanded):**
+    * **Definition:** Your GNN reduces the search space significantly compared to standard Merge-and-Shrink (M&S) or Blind search.
+    * [cite_start]**Metric:** Lower `nodes_expanded`[cite: 1218].
+    * **Argument:** "Our GNN learns to create abstractions that guide the search more effectively, reducing the number of states explored by an order of magnitude compared to uninformed baselines."
+
+* **The "Speed" Win (Wall Clock Time):**
+    * **Definition:** Your GNN solves problems faster than the baselines.
+    * [cite_start]**Metric:** Lower `wall_clock_time`[cite: 1217].
+    * **Argument:** "Despite the overhead of neural network inference, the massive reduction in search space results in a net reduction in total solving time."
+    * *Note:* This is often the hardest win to get against optimized C++ heuristics like `LM-Cut`.
+
+* **The "Coverage" Win (Solve Rate):**
+    * **Definition:** Your GNN solves more problems within the timeout than specific baselines.
+    * [cite_start]**Metric:** Higher `solve_rate_pct`[cite: 1162].
+    * [cite_start]**Target:** Your code explicitly sets a target of **> 80%** solve rate on the test set[cite: 1217].
+    * **Argument:** "The GNN policy is more robust, avoiding 'bad merges' that lead to state explosion or heuristic dead-ends."
+
+* **The "Optimality" Win (Plan Cost):**
+    * **Definition:** The solutions found by your GNN are as good as (or close to) optimal.
+    * [cite_start]**Metric:** `plan_cost` comparable to `FD_LM-Cut` (which is optimal)[cite: 1123, 1218].
+    * **Argument:** "Our method accelerates planning without sacrificing solution quality."
+
+### 2. Scientific Wins (The "Intelligence" Argument)
+These wins validate that your GNN has actually *learned* planning concepts, rather than just memorizing the training data. This is crucial for a top-tier research paper.
+
+* **The "Interpolation" Win (Problem Generalization):**
+    * [cite_start]**Definition:** The model solves *unseen* problems from the same domain and size distribution as the training set[cite: 142].
+    * **Experiment:** `experiment_2_problem_generalization.py`.
+    * **Argument:** "The model has learned general heuristic principles for this domain, not just the specific topology of training maps."
+
+* **The "Extrapolation" Win (Scale Generalization):**
+    * [cite_start]**Definition:** The model trains on **Small/Medium** problems but successfully solves **Large** problems[cite: 164].
+    * **Experiment:** `experiment_3_scale_generalization.py`.
+    * **Argument:** "This is the 'Holy Grail' of learning for planning: our GNN learns local rules (e.g., 'merge leaves first') that scale invariant of the global problem size."
+
+* **The "Curriculum" Win:**
+    * [cite_start]**Definition:** Training with a curriculum (Small → Medium → Large) yields a better final model than random training[cite: 186].
+    * **Experiment:** `experiment_4_curriculum_learning.py`.
+    * **Argument:** "We demonstrate that a structured learning curriculum stabilizes training and prevents the model from getting stuck in local optima early on."
+
+### 3. Structural Wins (The "Mechanism" Argument)
+These wins explain *why* your method works, using the rich metadata and explainability tools you built.
+
+* **The "Heuristic Preservation" Win:**
+    * **Definition:** Your GNN merges nodes in a way that preserves the accuracy of the heuristic value ($h^*$).
+    * [cite_start]**Evidence:** High `f_value_stability` scores in your `RewardInfo` logs[cite: 790, 804].
+    * **Argument:** "Unlike random merging, our GNN explicitly maximizes the correlation between the abstract heuristic and the real goal distance."
+
+* **The "State Compression" Win:**
+    * **Definition:** Your GNN creates smaller abstractions (fewer states) for the same level of search guidance.
+    * [cite_start]**Evidence:** High `shrinking_ratio` and `compression_score` in `merge_metadata_collector.py`[cite: 902, 915].
+    * **Argument:** "The GNN creates more compact representations of the state space, allowing Fast Downward to fit larger problems into memory."
+
+* **The "Explainability" Win:**
+    * **Definition:** You can characterize the strategy the GNN is using.
+    * [cite_start]**Evidence:** Using `merge_choice_analysis.py`, you can show the GNN prefers specific merge types (e.g., "merging nodes with high common neighbor counts" or "merging nodes with similar f-values")[cite: 962, 971].
+    * **Argument:** "We do not just present a black box; we show that the GNN discovers and employs interpretable strategies like 'bottleneck preservation' or 'linear collapse'."
+
+### Summary of "Success" for Your Paper
+
+You do not need **all** of these to write a successful paper. A strong paper usually claims:
+1.  **One Primary Performance Win:** (e.g., "We beat standard M&S by 20% in expansions.")
+2.  **One Strong Generalization Win:** (e.g., "We solve 50% of Large problems after only seeing Small ones.")
+3.  **One Insight Win:** (e.g., "We prove the GNN learns to preserve f-value stability.")
+
+
+-======================
+
+=======================
+
+This is a critical research design question. You are correct: **Fast Downward hyperparameters define the "physics" of the world your GNN lives in.** If you choose them poorly, your GNN might learn nothing (because the physics prevents it) or learn something trivial.
+
+Based on your codebase, here is the strategy for handling FD hyperparameters to ensure your research is valid and publishable.
+
+### 1\. The "Critical Mismatch" Bug in Your Current Code
+
+I found a significant discrepancy in your files that will invalidate your comparison if not fixed.
+
+  * [cite\_start]**Your GNN Environment (`merge_env.py`):** Defaults to `max_states=4000`[cite: 451].
+  * [cite\_start]**Your Baselines (`evaluation_comprehensive.py`):** The M\&S baselines use `max_states=50000`[cite: 1107].
+
+**The Problem:** You are asking your GNN to solve problems with **12.5x less memory** than the baseline algorithms. The GNN will be forced to shrink aggressively (losing information) while the baseline keeps high-fidelity abstractions.
+
+**The Fix:** You must standardize `max_states`. The academic standard for Merge-and-Shrink papers (Sievers et al.) is typically **50k, 100k, or 200k**.
+
+  * **Recommendation:** Set `max_states=50000` everywhere. This strikes a balance between high-fidelity heuristics and training speed.
+
+-----
+
+### 2\. Strategy: Which Parameters to Fix vs. Tune
+
+To produce a clean scientific paper, you should **not** grid-search every FD parameter. You should categorize them into "Standard Engineering" (Fixed) and "Capacity Constraints" (Tunable).
+
+#### A. The "Standard Physics" (KEEP FIXED)
+
+These are the industry-standard optimizations. Disabling them makes the planner stupid, not "pure."
+
+| Parameter | Value in Code | Recommendation | Why? |
+| :--- | :--- | :--- | :--- |
+| **`label_reduction`** | `exact` | **Keep `exact`** | Label reduction is a mathematically sound optimization that reduces graph complexity without losing information. [cite\_start]Turning it off just wastes CPU cycles[cite: 1266]. |
+| **`shrink_strategy`** | `bisimulation` | **Keep `bisimulation`** | This is the "smartest" non-learning shrinking method. It tells the system: *"If you MUST shrink, combine states that behave identically."* This is the perfect partner for your GNN. Your GNN decides **what** to merge; Bisimulation handles the cleanup. |
+| **`prune_unreachable`** | `true` | **Keep `true`** | Removing unreachable states is always correct. |
+
+#### B. The "Capacity Constraints" (TUNE THESE)
+
+These control the difficulty of the task for the GNN.
+
+| Parameter | Current Value | Recommendation | Research Impact |
+| :--- | :--- | :--- | :--- |
+| **`max_states`** | `4000` | **Increase to `50000`** | **Low (4k):** The GNN constantly hits the limit and forces shrinking. It learns "survival mode."<br>**High (50k):** The GNN has room to breathe. It can build larger, smarter abstractions. |
+| **`threshold_before_merge`** | `1` | **Set to `50000`** | Currently, your code triggers shrinking *every single step* (size \> 1). This is inefficient. Set this equal to `max_states` so shrinking only happens when the limit is hit. |
+
+-----
+
+### 3\. How to Configure This in Your Framework
+
+You should not hardcode these. You should inject them via your `common_utils.py` or `MergeEnv` init.
+
+**Step 1: Update `MergeEnv` defaults (in `merge_env.py`)**
+Change the default to match the literature standard:
+
+```python
+# merge_env.py
+def __init__(..., max_states: int = 50000, threshold_before_merge: int = 50000, ...):
+```
+
+**Step 2: Update the Command Template (in `common_utils.py`)**
+Your hardcoded template is currently forcing 4000 states. Change it to use f-strings variables:
+
+```python
+# common_utils.py
+
+# OLD (Hardcoded)
+# r'max_states=4000,threshold_before_merge=1'
+
+# NEW (Dynamic)
+FD_COMMAND_TEMPLATE = (
+    # ... translate part ...
+    f'"{DOWNWARD_DIR}\\builds\\release\\bin\\downward.exe" '
+    r'--search "astar(merge_and_shrink('
+    r'merge_strategy=merge_gnn(),'
+    r'shrink_strategy=shrink_bisimulation(greedy=false,at_limit=return),'
+    r'label_reduction=exact(before_shrinking=true,before_merging=false),'
+    f'max_states={max_states},threshold_before_merge={threshold_before_merge}' # <--- Inject here
+    r'))" < output.sas'
+)
+```
+
+### 4\. The "Fair Fight" Checklist
+
+Before running the big experiment, ensure the **Baselines** and **GNN** are playing the same game.
+
+[cite\_start]Open `evaluation_comprehensive.py` and check the `BASELINES` list[cite: 1104].
+
+  * **Check `FD_M&S_DFP`:**
+      * [cite\_start]It has `max_states=50000`[cite: 1107].
+      * [cite\_start]It has `shrink_strategy=shrink_bisimulation`[cite: 1107].
+  * **Check Your GNN:**
+      * Ensure it is initialized with `max_states=50000`.
+
+**If they match, your "Win" is valid.**
+
+  * If GNN wins: *"Using the same memory budget (50k states), the GNN found a better abstraction topology than DFP."*
+  * If GNN loses: *"The GNN failed to utilize the available memory effectively."*
+
+### 5\. Research Opportunity: The "Memory Efficiency" Curve
+
+Since `max_states` is a hyperparameter, you can turn it into a **Result Graph**:
+
+1.  Train the model once (e.g., at 50k).
+2.  **Evaluate** the *same model* on the test set with different `max_states` limits: `[10k, 25k, 50k, 100k]`.
+3.  **Plot:** X-axis = `max_states`, Y-axis = `Solve Rate`.
+4.  **Hypothesis:** The GNN might be more robust at low memory limits (10k) than standard DFP, because it learns to prioritize "essential" merges. This would be a huge result for **Embedded Systems Planning** (robots with low RAM).
+
+### Summary Recommendation
+
+1.  **Fix the Bug:** Change `MergeEnv` default `max_states` from 4000 to **50000**.
+2.  **Fix the Trigger:** Change `threshold_before_merge` to **50000** (don't shrink unless full).
+3.  **Keep Standard:** Leave `label_reduction` and `shrink_bisimulation` as they are.
+4.  **Verify:** Ensure `evaluation_comprehensive.py` baselines use the exact same `max_states`.
+
+*** WE SHOULD COUNT A RANDOM MERGE STRATEGY POLICY AS A REFERENCE! ***
+*** WE SHOULD COUNT A RANDOM MERGE STRATEGY POLICY AS A REFERENCE! ***
+*** WE SHOULD COUNT A RANDOM MERGE STRATEGY POLICY AS A REFERENCE! ***
+*** WE SHOULD MAYBE SEED 3 DIFFERENT RANDOM STRATEGIES, TO SHOW NO COINCIDENTAL IMPROVEMENT! ***
+*** ARE WE BETTER THAN RANDOMLY MERGING? DID WE LEARN ANYTHING? ***
+
+*** MAYBE WE CAN ANALYZE INFERENCE TIME AGAINST PROBLEM SIZE TO PROJECT HOW MUCH TIME IT TAKES TO INFER FOR 50
+    VARIABLE PROBLEMS, 100 VARIABLE PROBLEMS, ETC ***
+
+*** WE NEED TO RUN OUR GNN MERGE STRATEGY AGAINST THE IPC PROBLEMS, WHEN RUNNING ON ONE SIDE THE LM-CUT BASELINE,
+    AND OUR GNN M&S STRATEGY ON THE OTHER, AND RANDOM M&S STRATEGY ON THE THIRD SIDE, TO SEE REAL IPC BASELINE PROBLEMS
+    BENCHMARKS THAT "MATTER" ***
+
+*** WHICH SHRINKING HYPER PARAMETERS AND OTHER M&S ALGORITHM HYPER PARAMETERS SHOULD WE FIX??? ***
+
+*** CREATE META DATA ABOUT THE MERGING PROCESS SO WE CAN BRING EXPLAINABILITY TO OUR MERGING STRATEGY ***
+
+*** UNDERSTAND WITH META DATA OR FEATURE ANALYSIS WHY CERTAIN MERGE CHOICES ARE MADE AND WHY ARE THEY GOOD ***
+
+*** ANALYZE PROBLEM STRUCTURE AND HOW THE M&S STRATEGY CAN BE INTERPRETED AS A HEURISTIC FOR SOLVING IT ***
+
+*** WHAT MAKES A GOOD MERGE AND SHRINK STRATEGY? ***
+
+*** IS THERE AN ***OPTIMAL*** MERGE AND SHRINK STRATEGY? ***
+
+You have outlined a **gold-standard research plan**. These points move your work from an "engineering project" to a rigorous "scientific study" worthy of top-tier conferences like ICAPS, AAAI, or IJCAI.
+
+Here is my assessment and implementation advice for each of your points.
+
+### 1. The "Random Baseline" (Crucial)
+> ***WE SHOULD COUNT A RANDOM MERGE STRATEGY POLICY AS A REFERENCE!***
+> ***WE SHOULD MAYBE SEED 3 DIFFERENT RANDOM STRATEGIES...***
+
+**Verdict:** **Absolutely Essential.**
+Without this, reviewers will ask: *"How do we know the GNN isn't just learning to be random?"* or *"Is M&S with Bisimulation just so robust that ANY merge order works?"*
+
+* **Why it matters:** If your GNN beats "Random," you prove **Intelligence**. If "Random" performs similarly to GNN, it means the *problem structure* is easy, or the GNN hasn't learned.
+* **Implementation:** You don't need to train a "Random GNN." Fast Downward already has a random merge strategy, or you can implement a trivial policy in Python that returns `random.choice(valid_edges)`.
+* **Action:** Add `FD_Random_M&S` to your `BASELINES` list in `evaluation_comprehensive.py`. Run it with 3 different seeds (e.g., `--seed 1`, `--seed 2`, `--seed 3`) and plot the **mean and variance**.
+
+### 2. Inference Time Analysis
+> ***MAYBE WE CAN ANALYZE INFERENCE TIME AGAINST PROBLEM SIZE...***
+
+**Verdict:** **High Value for "Practicality" Argument.**
+Critics often attack GNNs for being "too slow" compared to C++ heuristics.
+
+* **The Argument:** "Yes, our inference takes time (overhead), BUT it scales linearly/polynomially, whereas the search space scales exponentially. For large problems, the overhead is negligible compared to the search time saved."
+* **Implementation:**
+    1.  In `DetailedMetrics` (evaluation script), you already track `wall_clock_time` and `translate_time`.
+    2.  Add a field for `inference_time` (time spent inside the GNN `predict()` calls).
+    3.  **Plot:** X-Axis = Problem Size (Variables), Y-Axis = Time (Log Scale). You want to show the GNN line crossing the Baseline line as problems get harder.
+
+### 3. The "IPC Showdown"
+> ***WE NEED TO RUN OUR GNN MERGE STRATEGY AGAINST THE IPC PROBLEMS...***
+
+**Verdict:** **This is the "Money Shot."**
+Synthetic problems (generated by you) are good for training, but IPC (International Planning Competition) domains are the standard benchmarks.
+
+* **The Setup:**
+    * **Corner 1 (The Champion):** `FD_LM-Cut` (The gold standard for optimal planning).
+    * **Corner 2 (The Challenger):** `Your GNN` (with `bisimulation` and `max_states=50k`).
+    * **Corner 3 (The Strawman):** `FD_Random` (To prove it's not luck).
+* **Success Definition:** You don't need to beat LM-Cut everywhere. You need to show **dominance in specific sub-domains** or **scalability** (solving problems where LM-Cut runs out of memory).
+
+### 4. Fixing Hyperparameters
+> ***WHICH SHRINKING HYPER PARAMETERS... SHOULD WE FIX???***
+
+**Verdict:** **Fix the "Physics," Tune the "Capacity."**
+
+* **FIX THESE (To match literature):**
+    * `shrink_strategy = shrink_bisimulation(greedy=false)` (This is the smartest non-learning shrinker).
+    * `label_reduction = exact` (Always beneficial).
+    * `prune_unreachable = true`.
+* **MATCH THESE (Fair comparison):**
+    * `max_states`: If baselines use **50k**, you MUST use **50k**. If you use 4k and they use 50k, you lose.
+    * `threshold_before_merge`: Set equal to `max_states` (shrink only when full).
+
+### 5. Explainability & Metadata
+> ***CREATE META DATA... UNDERSTAND... WHY CERTAIN MERGE CHOICES ARE MADE...***
+
+**Verdict:** **This is your "Scientific Contribution."**
+Many papers just say "accuracy went up." You can say *why*.
+
+* **Use your tools:** Your `merge_explainability.py` is designed for this.
+* **The "Why":** Look for correlations.
+    * *Does the GNN merge nodes with low degree?* (Simplifying the graph edge-in).
+    * *Does it merge nodes with identical f-values?* (Preserving heuristic accuracy).
+* **The Visual:** Generating the "Good vs. Bad Merge" feature importance plot (from your `merge_choice_analysis.py`) is a figure that belongs in the main text of a paper.
+
+### 6. Is there an OPTIMAL strategy?
+> ***IS THERE AN OPTIMAL MERGE AND SHRINK STRATEGY?***
+
+**Verdict:** **Theoretically Yes, Practically No.**
+* **Theory:** An optimal strategy exists. It would perform a sequence of merges that results in a heuristic $h(s) = h^*(s)$ (perfect heuristic) for every state. This corresponds to computing the exact regression of the goal.
+* **Problem:** Finding that sequence is **PSPACE-complete** (harder than solving the planning problem itself!).
+* **Your Goal:** You aren't finding the *optimal* strategy. You are finding a **greedy approximation** that is better than human-designed heuristics (like DFP or MIASM).
+
+### Summary of Your Next Steps
+
+1.  **Code Update:** Ensure `max_states=50000` in your GNN environment (`merge_env.py`).
+2.  **Baseline Update:** Add a "Random M&S" config to `evaluation_comprehensive.py` and run it 3 times.
+3.  **Data Mining:** Use your `merge_choice_analysis.py` on the training data *now* to see if the GNN is actually learning stable rules (e.g., "high f-stability").
+4.  **The Big Run:** Launch the training on 20+ problems with the fixed loop.
+
+If you do this, you will have a comprehensive, defensible, and insightful research paper.
+
+
+
+*** RESEARCH PROJECT : HOW EXACTLY THE "REPRESENTATION LINEARLY" IS INSIDE THE LINEARIZER FRAMEWORK? ***
+*** HOW THE WEIGHTS OF A NETWORK SHOULD REVEAL INTERESTING FEATURES? MAYBE IT IS NOT HOW IT WORKS REALLY? ***
+*** MAYBE THE LATENT SPACES OF X, Y OF THE FUNCTIONS OF THE LINEARIZER FRAMEWORKS ARE ABLE TO PROVIDE THIS EXPLAINABILITY? ***
+
+*** WHAT MAKES A PROBLEM DIFFICULT FOR A CERTAIN HEURISTIC? DOES ONE HEURISTIC IS BETTER FOR A SPECIFIC PROBLEM THAN ANOTHER? ***
+
+*** We can also test on "very easy" problems to make sure our GNN doesn't do worse, on easy quick baseline problems. ***
+
+*** WE CAN ALSO MAKE A BRUTE FORCE EVALUATION OF OUR NETWORK!!!
+    HOW?
+    WE WOULD GENERATE... 500 problems, on all difficulty levels, those will be our test benchmark set.
+    We would run our baselines on them, and the GNN learned policy on them, and test how many problems each of the
+    methods has succeeded in solving, which is also an informative test!!!
+***
+
+
+Is our evaluation framework correct for our paper? can we add many more rich, informational and research and investigating
+outlooks on the project, results, framework?
+
+Validate and make sure that 100% the framework for training can run on 20 (or N) number of training problems and thousands -
+maybe 100000 time stamps of training?
+
+We need to decide - how much to train? what is the length of the training that is correct and enough?
+
+Is our reward function correct? Is there a better way, before running on the server for days?
+
+Make sure about all framework files, in order + diagram of each file, and how the interplay between all files is.
+
+Make sure compatability of running on the environment of the server.
+
+Make sure reproducibility of results.
+
+Make sure time estimation of our expriments in real time (maybe tqdm?) or other way.
+
+
+
+
+Here is a comprehensive validation and enhancement plan for your research framework.
+
+### 1\. Is the Evaluation Framework Correct? Can we add more?
+
+**Verdict:** Yes, your evaluation framework is **excellent**.
+It currently covers:
+
+  * [cite\_start]**Baselines:** You compare against standard heuristics (LM-Cut, Blind, Add, Max)[cite: 1105].
+  * [cite\_start]**Metrics:** You track time, coverage, expansions, plan cost, and memory[cite: 1102].
+  * [cite\_start]**Deep Analysis:** You have dedicated modules for "Explainability" [cite: 922] [cite\_start]and "Choice Analysis"[cite: 954], which is rare and high-value for research.
+
+**How to make it "Richer" (Research Outlooks):**
+To elevate the paper, add these specific **Investigation Modules**:
+
+1.  **Inference Overhead Analysis:**
+      * [cite\_start]*Current:* You track `wall_clock_time`[cite: 1099].
+      * *Add:* Separate `gnn_inference_time` vs `fd_search_time`.
+      * *Research Value:* Proves that even though GNN inference is slow, the reduction in search nodes makes it net-positive for large problems.
+2.  **The "Learned Heuristic" Landscape:**
+      * *Add:* A plot showing `average_heuristic_value` (from FD) vs `merge_step`.
+      * *Research Value:* Does the GNN maintain high heuristic values longer than random merging? (Proof of "Information Preservation").
+3.  **Topological Generalization:**
+      * *Add:* Correlate success with graph properties (e.g., "GNN succeeds 90% on graphs with Diameter \> 10, but only 50% on dense graphs").
+
+-----
+
+### 2\. Training Loop Validation (The Critical Fix)
+
+**Current Status:** ⚠️ **BROKEN (Will stop early)**
+[cite\_start]In `shared_experiment_utils.py`[cite: 10], your code iterates through the `benchmarks` list exactly **once**.
+If you have 20 problems and `timesteps_per_problem=500`, training stops at **10,000 steps**, even if you requested 100,000.
+
+**The Fix (Apply this to `shared_experiment_utils.py`):**
+You must wrap the problem selection in a `while` loop.
+
+```python
+# IN: shared_experiment_utils.py
+# REPLACE lines 10-18 with this logic:
+
+model = None
+total_steps_trained = 0
+problem_cursor = 0
+
+while total_steps_trained < total_timesteps:
+    # Cycle through problems endlessly
+    domain_file, problem_file = benchmarks[problem_cursor % len(benchmarks)]
+
+    # ... (Setup Env) ...
+
+    # Calculate steps for this iteration
+    steps_remaining = total_timesteps - total_steps_trained
+    steps_this_round = min(timesteps_per_problem, steps_remaining)
+
+    model.learn(total_timesteps=steps_this_round, reset_num_timesteps=False)
+
+    total_steps_trained += steps_this_round
+    problem_cursor += 1
+```
+
+-----
+
+### 3\. How much to train? (Time Stamps)
+
+**Recommendation:** **200,000 to 500,000 Timesteps.**
+
+  * **The Math:**
+      * 1 "Time Stamp" = 1 Merge Operation.
+      * Small/Medium problem = \~50 merges per episode.
+      * 100,000 steps $\approx$ 2,000 episodes.
+      * Split across 20 problems $\approx$ **100 episodes per problem**.
+  * **Verdict:** 100 episodes per problem is the *bare minimum* for PPO to converge. [cite\_start]To ensure the "Curriculum" [cite: 186] actually works, you need more repetition.
+  * **Time Cost:**
+      * If using **RAM Disk**: \~150 steps/second $\rightarrow$ 200k steps $\approx$ **22 minutes**.
+      * If using **Hard Disk**: \~5 steps/second $\rightarrow$ 200k steps $\approx$ **11 hours**.
+
+**Decision:** Set `TOTAL_TIMESTEPS=300000` and ensure you use `/dev/shm`.
+
+-----
+
+### 4\. Is the Reward Function Correct?
+
+**Verdict:** **YES.**
+[cite\_start]Your `AStarSearchReward` in `reward_function_variants.py` [cite: 778] is state-of-the-art for this domain.
+
+  * **Strengths:**
+      * [cite\_start]**F-Stability:** It rewards preserving the heuristic values[cite: 804], which is the theoretical goal of M\&S.
+      * [cite\_start]**Soft Penalties:** The `_detect_bad_merges_soft` [cite: 811] is excellent. [cite\_start]It penalizes goal unreachability [cite: 813] without killing exploration (unlike hard constraints).
+      * [cite\_start]**Dense Signal:** It uses `branching_factor` [cite: 782] [cite\_start]and `search_depth`[cite: 787], giving feedback even if the problem isn't solved.
+
+**Improvement:**
+[cite\_start]In `reward_function_variants.py`[cite: 813], increase the penalty for "Goal Unreachable" from `-0.5` to `-1.0`. Losing the goal is catastrophic.
+
+-----
+
+### 5\. Framework Architecture & Interplay
+
+[Image of software architecture diagram]
+
+Here is how your files interact in the "Big Run":
+
+1.  [cite\_start]**Orchestrator (`run_full_evaluation.py`):** The master controller[cite: 1179]. It validates inputs and triggers either training or evaluation.
+2.  **Experiment Runners (`experiment_X.py`):**
+      * [cite\_start]Load benchmarks via `shared_experiment_utils.py`[cite: 38].
+      * [cite\_start]Call `train_gnn_model`[cite: 7].
+3.  **Training Loop (`shared_experiment_utils.py`):**
+      * [cite\_start]Initializes `MergeEnv` (`merge_env.py`)[cite: 449].
+      * [cite\_start]Initializes `GNNPolicy` (`gnn_policy.py`)[cite: 263].
+      * Runs PPO loop.
+4.  **The Environment (`MergeEnv`):**
+      * [cite\_start]Manages the C++ process (`downward/`)[cite: 491].
+      * [cite\_start]Parses JSONs via `RewardInfoExtractor`[cite: 837].
+      * [cite\_start]Computes rewards via `AStarSearchReward`[cite: 778].
+      * [cite\_start]Tracks graph state via `GraphTracker`[cite: 363].
+5.  **The Brain (`GNNPolicy` / `GNNModel`):**
+      * Receives graph `obs` from Env.
+      * [cite\_start]Encodes edge features[cite: 238].
+      * Outputs action probabilities.
+
+-----
+
+### 6\. Server Compatibility Checklist
+
+1.  [cite\_start]**RAM Disk (Crucial):** Your code uses `os.path.abspath("downward")`[cite: 454]. On a server, you **MUST** copy this folder to `/dev/shm/` (Linux Shared Memory) at the start of `MergeEnv`.
+      * *Why:* You write JSONs every step. HDD latency will make training take 5 days instead of 5 hours.
+2.  **Headless Plotting:** You correctly handled this\! [cite\_start]`matplotlib.use('Agg')` is present in `analysis_and_visualization.py`[cite: 1045].
+3.  **Dependencies:** Ensure `torch_geometric` is installed on the server (it's tricky with CUDA versions).
+
+-----
+
+### 7\. Reproducibility Checklist
+
+1.  [cite\_start]**Seeding:** You pass `seed=42` to `experiment_...py`[cite: 138].
+      * *Missing:* You need to explicitly set `torch.manual_seed(seed)` and `np.random.seed(seed)` inside `shared_experiment_utils.py` before training starts.
+2.  [cite\_start]**Deterministic Eval:** Your `evaluate_model_on_problems` uses `deterministic=True`[cite: 27], which is correct.
+
+-----
+
+### 8\. Time Estimation (TQDM)
+
+[cite\_start]You have `SimpleProgressCallback` in `common_utils.py`[cite: 712], but it is **NOT** used in `shared_experiment_utils.py`.
+
+**Fix:**
+In `shared_experiment_utils.py`, inside `train_gnn_model`:
+
+```python
+# Import it
+from common_utils import SimpleProgressCallback
+
+# Inside the PPO initialization:
+model.learn(
+    total_timesteps=timesteps_per_problem,
+    callback=SimpleProgressCallback(timesteps_per_problem), # <--- ADD THIS
+    # ...
+)
+```
+
+This will give you a real-time progress bar on the server console.
+
+-----
+
+### Final Action Plan
+
+1.  **Apply the Loop Fix** in `shared_experiment_utils.py`.
+2.  **Inject TQDM** into the training loop.
+3.  **Set Timesteps:** `300,000`.
+4.  **Set Problems:** 20 (mixed difficulty).
+5.  **Start:** Run `experiment_4_curriculum_learning.py` and check the logs for the first 5 minutes to ensure the loop cycles correctly.
+
+
+
+Based on the architecture of your system (Fast Downward C++ process + Python GNN + NetworkX + RAM Disk I/O), here is the memory allocation strategy.
+
+### 1\. For a Single Experiment
+
+You are running a "Hybrid" memory load. You have the Deep Learning overhead (PyTorch) *plus* the Symbolic Planning overhead (Fast Downward).
+
+  * **Fast Downward (C++):** With `max_states=50000` (as recommended), this is lightweight (\~500MB - 1GB). If you increase to `200k`, it jumps to \~4GB.
+  * **PyTorch & Graph Data:** The GNN features and gradients. (\~1.5 GB).
+  * **NetworkX:** Your `GraphTracker` stores the graph in Python. NetworkX is memory-inefficient. For large problems, this can spike to 1-2 GB.
+  * **RAM Disk (`/dev/shm`):** You are copying the FD binary folder and writing JSONs constantly. (\~1 GB buffer).
+
+**Recommended Allocation (Single Run):**
+
+  * **Minimum:** 8 GB
+  * **Comfortable:** **16 GB** (Allows for memory spikes during graph construction).
+
+-----
+
+### 2\. For 4 Parallel Experiments
+
+When running parallel experiments, **do not** simply multiply by 4. You need to account for "Memory Fragmentation" and the RAM Disk usage.
+
+#### The Calculation:
+
+1.  **Base System Overhead:** 4 GB (OS + Shared Libraries).
+2.  **Per-Experiment cost:** \~6 GB (FD + PyTorch + NetworkX).
+3.  **RAM Disk Storage:** 4 separate copies of the `downward` folder in `/dev/shm` + log files. (\~4-6 GB total).
+
+**Total Requirement:** $4 + (6 \times 4) + 6 = 34 \text{ GB}$.
+
+**Recommended Allocation (4 Parallel):**
+
+  * **Minimum:** 32 GB (You might hit swap space).
+  * **Recommended:** **64 GB** (To be 100% safe for a multi-day run).
+
+-----
+
+### 3\. Critical Memory Settings (To prevent crashes)
+
+To make sure you fit into these limits, apply these settings:
+
+#### A. Cap Fast Downward Memory
+
+In your `common_utils.py` (where you define the command), Fast Downward has a `--overall-max-memory` flag. Set it to prevent one bad problem from eating all RAM.
+
+```python
+# common_utils.py
+FD_COMMAND_TEMPLATE = (
+    # ...
+    f'"{DOWNWARD_DIR}/.../downward" '
+    r'--overall-max-memory 4G '  # <--- ADD THIS (Limits C++ to 4GB)
+    r'--search ...'
+)
+```
+
+#### B. Disable GNN Metadata Logging (The "Silent Killer")
+
+Your `MergeEnv` stores a history of **every** step in `self.gnn_decisions_log` (Python list) to save at the end of the episode.
+
+  * **Risk:** If an episode takes 100 steps, and each step stores the `obs` (which contains the graph matrices), you are storing **100 copies of the graph in RAM** per episode.
+  * **Fix:** For the long training run, disable this logging or only store summaries.
+
+<!-- end list -->
+
+```python
+# merge_env.py
+def _save_gnn_decision_metadata(self, ...):
+    # DISABLE for long training runs to save RAM
+    return
+```
+
+#### C. Manage the RAM Disk
+
+Since you are running 4 experiments, you will have 4 folders in `/dev/shm/`.
+
+  * Ensure your `MergeEnv.__del__` (cleanup) is robust.
+  * If a process crashes and doesn't clean up, `/dev/shm` will fill up, and the **entire server will crash**.
+  * **Safety check:** Run a cron job or a monitor script to delete folders in `/dev/shm/env_*` that are older than 24 hours.
+
+### Summary Table
+
+| Setup | Minimum RAM | Recommended RAM | CPUs Required |
+| :--- | :--- | :--- | :--- |
+| **1 Experiment** | 8 GB | 16 GB | 2 vCPUs |
+| **4 Parallel Exps** | 32 GB | 64 GB | 8 vCPUs |
+
+**Final Tip:** If you are running 4 experiments on a single GPU, you will likely run out of **VRAM** (Video RAM) before System RAM.
+
+  * If you have \< 12GB VRAM, run the experiments on **CPU** (`device='cpu'`). GNNs for planning are small enough that CPU training is often faster than the overhead of moving data to/from a choked GPU.
+
+
+
+Minimize logging info printing in the training process, we want it saved for later analysis in the log file
+
+A whole framework to analyze the logs after training!
+
+Preparing a set of commands we will run on the server.
+
+Preparing the Github repository, for which we will clone, and then build downward from, and then we will run multiple
+experiment in parallel on our servers.
+
+Understanding which resources we need to dedicate (from the server) for the mission. Assuming we have 250GB ram, and 380 cores processor,
+and a graphics card.
+
+Writing in order all the files, the experiments and the commands we will run.
+
+
+This is the final "Pre-Flight" configuration. You have a server with **monster specs** (380 Cores, 250GB RAM). This changes the strategy: you are not resource-constrained, so you can afford to be inefficient to gain stability.
+
+Here is the complete execution plan.
+
+### 1\. Minimize Console Noise (The "Silent Mode")
+
+We want the console to show only progress bars and critical errors, while the file `training.log` keeps the deep debug info.
+
+**Modify `shared_experiment_utils.py` -\> `setup_logging`**:
+
+```python
+def setup_logging(experiment_name: str, output_dir: str) -> logging.Logger:
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    log_file = os.path.join(output_dir, f"{experiment_name}.log")
+
+    # File Handler: logs EVERYTHING (INFO/DEBUG)
+    file_handler = logging.FileHandler(log_file, encoding='utf-8')
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
+    # Console Handler: logs only WARNINGS and ERRORS (clean screen)
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(logging.WARNING)
+    console_handler.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
+
+    # Root Logger
+    root_logger = logging.getLogger()
+    root_logger.setLevel(logging.INFO)
+    root_logger.addHandler(file_handler)
+    root_logger.addHandler(console_handler)
+
+    # Return a named logger for the script
+    return logging.getLogger(experiment_name)
+```
+
+### 2\. The Log Analysis Framework
+
+Since we are suppressing console output, we need a tool to "mine" the logs later. Create this file:
+
+**File: `analyze_logs.py`**
+
+```python
+import re
+import matplotlib.pyplot as plt
+import sys
+
+def parse_log_file(filepath):
+    rewards = []
+    steps = []
+    merges = []
+
+    with open(filepath, 'r') as f:
+        for line in f:
+            # Extract Reward
+            m_reward = re.search(r'Reward computed: (-?\d+\.\d+)', line)
+            if m_reward:
+                rewards.append(float(m_reward.group(1)))
+
+            # Extract Steps
+            m_step = re.search(r'Training for (\d+) timesteps', line)
+            if m_step:
+                current_total = steps[-1] + int(m_step.group(1)) if steps else int(m_step.group(1))
+                steps.append(current_total)
+
+            # Extract Bad Merges
+            if "BAD MERGE DETECTED" in line:
+                merges.append(1) # 1 = Bad
+            elif "Reward computed" in line:
+                merges.append(0) # 0 = Good (approx)
+
+    return rewards, steps, merges
+
+if __name__ == "__main__":
+    log_path = sys.argv[1]
+    rewards, steps, bad_merges = parse_log_file(log_path)
+
+    plt.figure(figsize=(12, 6))
+    plt.plot(rewards, alpha=0.3, label='Raw Reward')
+    # Moving average
+    if len(rewards) > 50:
+        avg = [sum(rewards[i:i+50])/50 for i in range(len(rewards)-50)]
+        plt.plot(avg, color='red', linewidth=2, label='Moving Avg (50)')
+
+    plt.title(f"Training Progress: {log_path}")
+    plt.xlabel("Merge Decisions")
+    plt.ylabel("Reward")
+    plt.legend()
+    plt.savefig(log_path + "_analysis.png")
+    print(f"Analysis saved to {log_path}_analysis.png")
+```
+
+### 3\. The GitHub Strategy
+
+You need a clean repo structure to ensure the C++ build works on the server.
+
+**Repository Structure:**
+
+```text
+my-gnn-planner/
+├── downward/              <-- SUBMODULE or COPY of Fast Downward
+├── benchmarks/            <-- Your PDDL files
+├── experiments/           <-- All your python scripts
+│   ├── common_utils.py
+│   ├── merge_env.py
+│   ├── gnn_model.py
+│   └── ...
+├── requirements.txt       <-- torch, torch_geometric, stable_baselines3
+└── build_and_run.sh       <-- The setup script
+```
+
+**The `.gitignore` (Crucial):**
+
+```text
+__pycache__/
+*.pyc
+*.zip
+*.log
+evaluation_results/
+overfit_results/
+downward/builds/           <-- Don't commit binaries
+downward/fd_output/        <-- Don't commit runtime logs
+downward/gnn_output/       <-- Don't commit runtime logs
+```
+
+### 4\. Resource Allocation (The 380-Core Beast)
+
+With **380 Cores**, you should **not** run just 4 linear experiments. You should run **Parallel Seeds**.
+
+**Strategy:**
+
+  * **Experiments:** 4 Types (Overfit, ProblemGen, ScaleGen, Curriculum).
+  * **Seeds:** Run 3 random seeds for *each* experiment (Seed 42, 43, 44).
+  * **Total Jobs:** 12 Concurrent Jobs.
+  * **Core Allocation:** 380 / 12 $\approx$ **30 Cores per Job**.
+  * **RAM:** 250GB / 12 $\approx$ **20GB per Job**. (Plenty\!)
+
+**Why?**
+Running 3 seeds proves your results aren't luck. If Seed 42 works but 43 fails, your method is unstable.
+
+### 5\. Server Commands (The Deployment Manual)
+
+Save this as `server_setup.sh`:
+
+```bash
+# 1. Clone and Build
+git clone https://github.com/your-repo/gnn-planner.git
+cd gnn-planner/downward
+./build.py  # Compiles the C++ Planner
+
+# 2. Install Python Deps
+pip install torch torch-geometric stable-baselines3 networkx matplotlib pandas tqdm
+
+# 3. Setup RAM Disk (Critical for Speed)
+# Create unique folders in /dev/shm/ to avoid IO bottlenecks
+mkdir -p /dev/shm/gnn_exp_1
+mkdir -p /dev/shm/gnn_exp_2
+# (The python script handles the internal copying, just ensure permissions)
+```
+
+**The Execution Command (using `tmux` or `nohup`):**
+
+Run these 4 commands in parallel (different terminals):
+
+```bash
+# Experiment 1: Overfit (Seed 42)
+export TOTAL_TIMESTEPS=100000
+python experiment_1_problem_overfit.py --seed 42 --output results_overfit_42
+
+# Experiment 2: Generalization (Seed 42)
+export TOTAL_TIMESTEPS=300000
+python experiment_2_problem_generalization.py --seed 42 --output results_gen_42
+
+# Experiment 3: Scaling (Seed 42)
+export TOTAL_TIMESTEPS=300000
+python experiment_3_scale_generalization.py --seed 42 --output results_scale_42
+
+# Experiment 4: Curriculum (The Big One - Seed 42)
+export TOTAL_TIMESTEPS=500000
+python experiment_4_curriculum_learning.py --seed 42 --output results_curriculum_42
+```
+
+*(Repeat for seeds 43 and 44 if you want to utilize the full 380 cores)*
+
+### 6\. The File Manifest (In Order of Dependency)
+
+Ensure your files interact in this order.
+
+**Group 1: The Core (Deep Learning & Env)**
+
+1.  `gnn_model.py`: The PyTorch architecture.
+2.  `gnn_policy.py`: The Stable Baselines3 wrapper.
+3.  `reward_info_extractor.py`: Parses C++ JSONs.
+4.  `reward_function_variants.py`: Computes the scalar reward (A\* logic).
+5.  `graph_tracker.py`: Manages the NetworkX graph state.
+6.  `merge_env.py`: **The Bridge.** Orchestrates FD process, RAM disk, and GNN. (**Remember: Set `max_states=50000` here\!**)
+
+**Group 2: The Utilities**
+7\.  `common_utils.py`: General helpers.
+8\.  `shared_experiment_utils.py`: The Training Loop (**Remember: Fix the `while` loop here\!**)
+
+**Group 3: The Experiment Runners**
+9\.  `experiment_1_problem_overfit.py`
+10\. `experiment_2_problem_generalization.py`
+11\. `experiment_3_scale_generalization.py`
+12\. `experiment_4_curriculum_learning.py`
+
+**Group 4: The Analysis**
+13\. `evaluation_comprehensive.py`: Runs the baselines (LM-Cut vs GNN).
+14\. `merge_metadata_collector.py`: Gathers stats.
+15\. `merge_explainability.py`: Generates "Why did it merge X?" reports.
+16\. `run_full_evaluation.py`: The master analysis script.
+
+### Final Check: Is "Days" of training correct?
+
+With 380 cores and RAM disk:
+
+  * **500,000 Timesteps** will likely take **12 - 18 Hours**, not days.
+  * This is good. It means you can run the 3 seeds, analyze, fix bugs, and run again within a few days.
+
+**You are ready.**
+
+
+*** We need to adjust our logistics domain generator to be able to take arguments such as number of... trucks, planes, packages,
+    this should be a proxy to how "difficult" a problem is? more variables, more complexity.
+
+    num_cities: int
+    locations_per_city: int
+    num_packages: int
+    num_trucks: int
+    num_airplanes: int
+    prob_airport: float
+
+    It needs to be flexible, because we don't want the same exact problem structure for this domain. We want our problem
+    generation to be varied, and valid, to train our GNN to be robust when it chooses merge strategies, and not overfit on a
+    single set configuration of logistics problems.
+
+    ***
+
+
+┌─────────────────────────────────────────────────────────────┐
+│                    4 EXPERIMENTS                              │
+├─────────────────────────────────────────────────────────────┤
+│ 1. OVERFIT EXPERIMENT (experiment_1_problem_overfit.py)     │
+│    └─ Train on 5 problems from same domain                  │
+│    └─ Test on same 5 problems                               │
+│    └─ Output: overfit_experiment_results/                   │
+│                                                              │
+│ 2. PROBLEM GENERALIZATION (experiment_2_problem_gen.py)    │
+│    └─ Train on 80% of problems from domain                  │
+│    └─ Test on 20% of different problems                     │
+│    └─ Output: problem_generalization_results/              │
+│                                                              │
+│ 3. SCALE GENERALIZATION (experiment_3_scale_gen.py)        │
+│    └─ Train on small+medium problems                        │
+│    └─ Test on medium+large problems                         │
+│    └─ Output: scale_generalization_results/                │
+│                                                              │
+│ 4. CURRICULUM LEARNING (experiment_4_curriculum.py)        │
+│    └─ Train: small → medium → large (progressive)          │
+│    └─ Validate on large problems                           │
+│    └─ Output: curriculum_learning_results/                 │
+└─────────────────────────────────────────────────────────────┘
+
+              ↓ (All experiments)
+
+┌─────────────────────────────────────────────────────────────┐
+│           EVALUATION & VISUALIZATION                        │
+├─────────────────────────────────────────────────────────────┤
+│ run_full_evaluation.py                                      │
+│  ├─ Run comprehensive evaluation                           │
+│  ├─ Compare against baselines (FD_LM-Cut, etc.)           │
+│  ├─ Generate 10+ plots                                     │
+│  └─ Produce final report                                   │
+└─────────────────────────────────────────────────────────────┘
+
+
+
+Python (merge_env.py)                    C++ (merge_strategy_gnn.cc)
+        │                                          │
+        │  1. Launch FD process                    │
+        ├─────────────────────────────────────────►│
+        │                                          │
+        │  2. Export initial files                 │
+        │◄─────────────────────────────────────────┤
+        │     - causal_graph.json                  │
+        │     - merged_transition_systems.json     │
+        │     - fd_index_mapping_-1.json           │
+        │                                          │
+        │  3. Send merge decision                  │
+        │     merge_{N}.json                       │
+        ├─────────────────────────────────────────►│
+        │                                          │
+        │  4. Receive ACK                          │
+        │     gnn_ack_{N}.json                     │
+        │◄─────────────────────────────────────────┤
+        │                                          │
+        │  5. Receive merge signals                │
+        │     - merge_before_{N}.json              │
+        │     - merge_after_{N}.json               │
+        │     - ts_{N}.json                        │
+        │     - fd_index_mapping_{N}.json          │
+        │◄─────────────────────────────────────────┤
+        │                                          │
+        │  6. Extract reward, update graph         │
+        │                                          │
+        │  [Repeat 3-6 until done]                 │
+
+
+how do we avoid numerical problems and very small values to affect our correctness of the training?
+how do we make sure the observation json files are outputting correct data?
+how to make sure the training actually works?
+how to make sure there are no issues?
+how to make sure gnn model architecture is like we wanted?
+Is our reward function correct for learning a good merging strategy? Is there a better way, before running on the server for days?
+is our project framework solid enough for learning a good merging strategy through the RL and GNN framework?

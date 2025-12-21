@@ -1,0 +1,8 @@
+{"step": 1, "merge_choice": [0, 2], "plan_cost": 0, "num_expansions": 0, "num_significant_f_changes": 0, "delta_states": 0, "total_states": 30, "reward": 0.5266666666666666, "done": false, "timestamp": 1761293806.7434585}
+{"step": 2, "merge_choice": [4, 1], "plan_cost": 0, "num_expansions": 0, "num_significant_f_changes": 0, "delta_states": 0, "total_states": 30, "reward": 0.835, "done": false, "timestamp": 1761293806.9235566}
+{"step": 3, "merge_choice": [7, 3], "plan_cost": 0, "num_expansions": 0, "num_significant_f_changes": 1, "delta_states": 0, "total_states": 33, "reward": 0.5909999723264145, "done": false, "timestamp": 1761293807.0945253}
+{"step": 4, "merge_choice": [11, 6], "plan_cost": 0, "num_expansions": 0, "num_significant_f_changes": 1, "delta_states": 0, "total_states": 68, "reward": 0.3264271474975424, "done": false, "timestamp": 1761293807.283605}
+{"step": 5, "merge_choice": [10, 5], "plan_cost": 0, "num_expansions": 0, "num_significant_f_changes": 0, "delta_states": 0, "total_states": 79, "reward": 0.4400000063862122, "done": false, "timestamp": 1761293807.480899}
+{"step": 6, "merge_choice": [13, 8], "plan_cost": 0, "num_expansions": 0, "num_significant_f_changes": 0, "delta_states": 0, "total_states": 154, "reward": 0.2897272906579258, "done": false, "timestamp": 1761293807.6832743}
+{"step": 7, "merge_choice": [9, 14], "plan_cost": 0, "num_expansions": 0, "num_significant_f_changes": 9, "delta_states": 0, "total_states": 450, "reward": 0.44392987507880943, "done": false, "timestamp": 1761293807.92315}
+{"step": 8, "merge_choice": [12, 15], "plan_cost": 0, "num_expansions": 0, "num_significant_f_changes": 21, "delta_states": 0, "total_states": 20000, "reward": 0.3172241941505276, "done": true, "timestamp": 1761293808.4153605}

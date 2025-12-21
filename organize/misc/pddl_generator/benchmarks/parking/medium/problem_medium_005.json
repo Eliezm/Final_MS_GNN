@@ -1,0 +1,16 @@
+{
+  "problem_name": "parking-medium-005",
+  "domain": "parking",
+  "size_category": "medium",
+  "characteristic_type": "clearing",
+  "num_objects": 4,
+  "num_locations": 4,
+  "complexity_score": 0.16666666666666666,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 1470042
+}

@@ -1,0 +1,16 @@
+{
+  "problem_name": "parking-large-012",
+  "domain": "parking",
+  "size_category": "large",
+  "characteristic_type": "sequential",
+  "num_objects": 8,
+  "num_locations": 5,
+  "complexity_score": 0.33333333333333337,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 751042
+}

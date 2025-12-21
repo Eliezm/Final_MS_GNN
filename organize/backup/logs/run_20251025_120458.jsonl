@@ -1,0 +1,2 @@
+{"step": 1, "merge_choice": [6, 2], "plan_cost": 0, "num_expansions": 0, "num_significant_f_changes": 0, "delta_states": 0, "total_states": 33, "reward": 0.32114485197865617, "done": false, "timestamp": 1761383098.6133697}
+{"step": 2, "merge_choice": [0, 4], "plan_cost": 0, "num_expansions": 0, "num_significant_f_changes": 0, "delta_states": 0, "total_states": 33, "reward": 0.14784609690826525, "done": false, "timestamp": 1761383098.7422512}

@@ -1,0 +1,16 @@
+{
+  "problem_name": "parking-large-000",
+  "domain": "parking",
+  "size_category": "large",
+  "characteristic_type": "swapping",
+  "num_objects": 6,
+  "num_locations": 6,
+  "complexity_score": 0.44999999999999996,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 150042
+}

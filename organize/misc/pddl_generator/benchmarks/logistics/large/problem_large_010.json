@@ -1,0 +1,16 @@
+{
+  "problem_name": "logistics-large-010",
+  "domain": "logistics",
+  "size_category": "large",
+  "characteristic_type": "multi_modal",
+  "num_objects": 11,
+  "num_locations": 20,
+  "complexity_score": 0.5866666666666667,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 856042
+}

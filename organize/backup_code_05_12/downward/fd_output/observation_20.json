@@ -1,0 +1,128 @@
+{
+  "edge_feature_dim": 10,
+  "edge_features": [
+    [
+      1.0,
+      1.0,
+      0.0,
+      0.49624308997715205,
+      0.0,
+      0.008,
+      0.0,
+      1.0,
+      4.3614794138171665e-05,
+      0.008846689965110982
+    ]
+  ],
+  "edge_index": [
+    [
+      0
+    ],
+    [
+      43
+    ]
+  ],
+  "is_terminal": false,
+  "iteration": 20,
+  "node_feature_dim": 15,
+  "num_active_systems": 2,
+  "num_edges": 1,
+  "reward_signals": {
+    "avg_f_change": 0.10613496152843283,
+    "branching_factor": 143.72019437970008,
+    "dead_end_ratio": 0.0,
+    "delta_states": -1792,
+    "did_shrink": true,
+    "f_preservation_score": 0.8794214048518227,
+    "f_stability_score": 0.9342715394094283,
+    "f_stats": {
+      "max": 15,
+      "mean": 9.650417766051012,
+      "min": 0,
+      "std": 1.0978009527650316,
+      "valid_count": 45480
+    },
+    "f_value_stability": 0.989121673967034,
+    "growth_ratio": 0.962392444910808,
+    "h_star_after": 8,
+    "h_star_before": 8,
+    "h_star_delta": 0,
+    "h_star_preservation": 1.0,
+    "is_bad_merge": false,
+    "is_good_merge": true,
+    "is_solvable": true,
+    "max_f_change": 0.12175353459828542,
+    "merge_quality_score": 0.9029364718506697,
+    "merged_size": 45858,
+    "nodes_expanded": 45480,
+    "num_active_systems": 2,
+    "num_significant_f_changes": 0,
+    "reachability_ratio": 0.9917571634175062,
+    "search_depth": 5.0,
+    "search_efficiency_score": 0.008242836582493807,
+    "shrinkability": 0.037607555089192,
+    "solution_cost": 0,
+    "solution_found": true,
+    "solution_quality_score": 1.0,
+    "state_control_score": 0.9917571634175062,
+    "state_explosion_penalty": 0.0,
+    "states_after": 45858,
+    "states_before": 47650,
+    "theoretical_product_size": 47650,
+    "total_dead_ends": 0,
+    "total_goal_states": 18,
+    "total_reachable": 45480,
+    "total_states": 45858,
+    "total_transitions": 12958524,
+    "transition_density": 282.579353656941,
+    "transition_growth": 1.0,
+    "weighted_h_preservation": 1.0,
+    "weighted_shrinkability": 0.537607555089192,
+    "weighted_solvability": 1.0,
+    "weighted_state_control": 0.9917571634175062,
+    "weighted_total_score": 0.8827533214557993,
+    "weights": {
+      "h_preservation": 0.4,
+      "shrinkability": 0.25,
+      "solvability": 0.15,
+      "state_control": 0.2
+    }
+  },
+  "timestamp": 1764867140,
+  "x": [
+    [
+      4.3614792957669124e-05,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      1.0,
+      1.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.2380952388048172,
+      0.6000000238418579,
+      0.05000000074505806,
+      0.4000000059604645
+    ],
+    [
+      1.0,
+      0.0,
+      9.72642155829817e-05,
+      1.0,
+      0.0002398813667241484,
+      1.0,
+      1.0,
+      0.0001744553737808019,
+      0.0,
+      0.000348918343661353,
+      2.2743506633560173e-05,
+      1.0,
+      0.0016563620883971453,
+      1.0,
+      0.0035386758390814066
+    ]
+  ]
+}

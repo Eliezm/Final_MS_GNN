@@ -1,0 +1,40 @@
+==========================================================================================
+OVERFIT_EXPERIMENT - RESULTS SUMMARY
+==========================================================================================
+
+Timestamp: 2025-10-29T13:54:00.241377
+
+experiment                               overfit_experiment
+timestamp                                2025-10-29T13:54:00.240209
+
+CONFIGURATION:
+--------------------------------------------------
+  benchmark_dir                            benchmarks
+  sizes                                    ['small']
+  num_problems                             5
+  total_timesteps                          12
+  reward_variant                           astar_search
+
+TRAINING:
+--------------------------------------------------
+  model_path                               overfit_experiment_results\gnn_model_trained.zip
+  duration_seconds                         174.98241329193115
+  duration_str                             2.9m
+
+EVALUATION:
+--------------------------------------------------
+  total_problems                           5
+  solved_count                             5
+  avg_reward                               4.772763370726291
+  avg_time                                 2.7072427749633787
+  details                                  [{'problem': 'problem_small_00.pddl', 'reward': 4.772763370726291, 'time': 2.887845993041992, 'steps': 8, 'solved': True}, {'problem': 'problem_small_01.pddl', 'reward': 4.772763370726291, 'time': 2.923987865447998, 'steps': 8, 'solved': True}, {'problem': 'problem_small_02.pddl', 'reward': 4.772763370726291, 'time': 2.652693510055542, 'steps': 8, 'solved': True}, {'problem': 'problem_small_03.pddl', 'reward': 4.772763370726291, 'time': 2.653313159942627, 'steps': 8, 'solved': True}, {'problem': 'problem_small_04.pddl', 'reward': 4.772763370726291, 'time': 2.4183733463287354, 'steps': 8, 'solved': True}]
+  solve_rate                               100.0
+
+SUMMARY:
+--------------------------------------------------
+  solve_rate                               100.0
+  avg_reward                               4.772763370726291
+  avg_time                                 2.7072427749633787
+  problems_solved                          5
+
+==========================================================================================

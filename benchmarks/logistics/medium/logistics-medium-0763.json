@@ -1,0 +1,19 @@
+{
+  "problem_name": "logistics-medium-0763",
+  "domain": "logistics",
+  "difficulty": "medium",
+  "num_cities": 15,
+  "num_locations": 150,
+  "num_packages": 15,
+  "num_trucks": 2,
+  "num_airplanes": 2,
+  "goal_archetype": "inter_city_simple",
+  "plan_length": 1603,
+  "optimal_plan_cost": 1603,
+  "planner_time": 200.37301754951477,
+  "planner_success": true,
+  "nodes_expanded": 6432,
+  "plan_cost": 27,
+  "domain_file": "generated_problems\\domains\\logistics.pddl",
+  "problem_file": "generated_problems\\problems\\logistics-medium-0763.pddl"
+}

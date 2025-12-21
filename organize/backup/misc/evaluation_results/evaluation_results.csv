@@ -1,0 +1,8 @@
+problem_name,planner_name,solved,wall_clock_time,plan_cost,plan_length,nodes_expanded,nodes_generated,search_depth,branching_factor,peak_memory_kb,search_time,translate_time,preprocess_time,solution_length,plan_optimality,initial_heuristic,average_heuristic,error_type,error_message,gnn_decisions,merge_episodes,efficiency_score
+blocksworld-medium-0.pddl,FD_LM-Cut,True,0.2678985595703125,4,4,5,0,0,1.0,0,0.04757332801818848,0.22032523155212402,0.0,0,1.0,0,0.0,,,0,0,0.03928985595703125
+blocksworld-medium-0.pddl,FD_Blind,True,0.2025909423828125,4,4,20,0,0,1.0,0,0.03144693374633789,0.1711440086364746,0.0,0,1.0,0,0.0,,,0,0,0.07025909423828125
+blocksworld-medium-0.pddl,FD_Add,True,0.22132158279418945,4,4,5,0,0,1.0,0,0.0474853515625,0.17383623123168945,0.0,0,1.0,0,0.0,,,0,0,0.03463215827941894
+blocksworld-medium-0.pddl,FD_Max,False,0.22289633750915527,0,0,0,0,0,1.0,0,0.04794764518737793,0.17494869232177734,0.0,0,1.0,0,0.0,no_solution,,0,0,inf
+blocksworld-medium-0.pddl,FD_M&S_DFP,True,34.378106355667114,4,4,5,0,0,1.0,0,34.219213008880615,0.15889334678649902,0.0,0,1.0,0,0.0,,,0,0,3.4503106355667117
+blocksworld-medium-0.pddl,FD_M&S_SCC,True,46.82120060920715,4,4,5,0,0,1.0,0,46.58120560646057,0.23999500274658203,0.0,0,1.0,0,0.0,,,0,0,4.694620060920715
+blocksworld-medium-0.pddl,GNN,True,14.114744901657104,4,0,5,0,0,1.0,0,0.0,0.0,0.0,0,1.0,0,0.0,,,16,16,1.4239744901657103

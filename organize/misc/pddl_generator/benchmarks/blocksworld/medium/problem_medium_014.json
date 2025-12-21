@@ -1,0 +1,16 @@
+{
+  "problem_name": "blocksworld-medium-014",
+  "domain": "blocksworld",
+  "size_category": "medium",
+  "characteristic_type": "pyramid",
+  "num_objects": 9,
+  "num_locations": 2,
+  "complexity_score": 0.24,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 181042
+}

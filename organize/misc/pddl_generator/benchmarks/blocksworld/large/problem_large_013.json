@@ -1,0 +1,16 @@
+{
+  "problem_name": "blocksworld-large-013",
+  "domain": "blocksworld",
+  "size_category": "large",
+  "characteristic_type": "pyramid",
+  "num_objects": 12,
+  "num_locations": 4,
+  "complexity_score": 0.32000000000000006,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 180042
+}

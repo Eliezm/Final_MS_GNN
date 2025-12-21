@@ -1,0 +1,8 @@
+Planner,Total_Problems,Solved,Solve_Rate_%,Mean_Time_s,Median_Time_s,Std_Time_s,Min_Time_s,Max_Time_s,P25_Time_s,P75_Time_s,P95_Time_s,Mean_Expansions,Median_Expansions,Mean_H*_Preservation
+FD_Add,34,0,0.0,,,,,,,,,,,1.0
+FD_Blind,34,0,0.0,,,,,,,,,,,1.0
+FD_LM-Cut,34,0,0.0,,,,,,,,,,,1.0
+FD_M&S_DFP,34,0,0.0,,,,,,,,,,,1.0
+FD_M&S_SCC,34,0,0.0,,,,,,,,,,,1.0
+FD_Max,34,0,0.0,,,,,,,,,,,1.0
+GNN,34,33,97.05882352941177,6.27184720472856,5.5266664028167725,3.6095975682469614,4.423346042633057,25.81006407737732,5.089862585067749,5.879875898361206,7.712190723419189,,,0.7139761576977021

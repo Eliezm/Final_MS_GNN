@@ -1,0 +1,16 @@
+{
+  "problem_name": "blocksworld-small-002",
+  "domain": "blocksworld",
+  "size_category": "small",
+  "characteristic_type": "single_tower",
+  "num_objects": 5,
+  "num_locations": 2,
+  "complexity_score": 0.09999999999999999,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 647042
+}

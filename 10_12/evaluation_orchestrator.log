@@ -1,0 +1,40 @@
+2025-12-10 11:40:25,544 - INFO     - ✅ Evaluation Orchestrator Started
+2025-12-10 11:40:25,544 - INFO     - 
+2025-12-10 11:40:25,544 - INFO     - ====================================================================================================
+2025-12-10 11:40:25,544 - INFO     - // INPUT VALIDATION (STANDALONE)
+2025-12-10 11:40:25,544 - INFO     - ====================================================================================================
+2025-12-10 11:40:25,544 - INFO     - 
+2025-12-10 11:40:25,544 - INFO     - ✓ Model validated: model.zip
+2025-12-10 11:40:25,560 - INFO     - ✓ Domain validated: benchmarks/blocksworld/small/domain.pddl
+2025-12-10 11:40:25,560 - INFO     - ✓ Found 34 problem(s)
+2025-12-10 11:40:25,591 - INFO     - ✓ Output directory ready: results_s/full_eval
+2025-12-10 11:40:25,591 - INFO     - 
+Validation: 4/4 passed
+2025-12-10 11:40:25,591 - INFO     - 
+2025-12-10 11:40:25,591 - INFO     - ====================================================================================================
+2025-12-10 11:40:25,591 - INFO     - // STAGE 1: COMPREHENSIVE EVALUATION
+2025-12-10 11:40:25,591 - INFO     - ====================================================================================================
+2025-12-10 11:40:25,591 - INFO     - 
+2025-12-10 11:40:25,591 - INFO     - Running: python evaluation_comprehensive.py --domain benchmarks/blocksworld/small/domain.pddl --problems benchmarks/blocksworld/small/problem_*.pddl --output results_s/full_eval --timeout 300 --model model.zip
+2025-12-10 11:44:29,551 - INFO     - ✅ Evaluation complete
+2025-12-10 11:44:29,551 - INFO     - 
+2025-12-10 11:44:29,551 - INFO     - ====================================================================================================
+2025-12-10 11:44:29,551 - INFO     - // STAGE 2: ANALYSIS & VISUALIZATION
+2025-12-10 11:44:29,551 - INFO     - ====================================================================================================
+2025-12-10 11:44:29,551 - INFO     - 
+2025-12-10 11:44:29,551 - INFO     - Running: python analysis_and_visualization.py --results results_s/full_eval\evaluation_results.csv --output results_s/full_eval\plots
+2025-12-10 11:44:38,329 - INFO     - ✅ Analysis complete
+2025-12-10 11:44:38,329 - INFO     - 
+2025-12-10 11:44:38,329 - INFO     - ====================================================================================================
+2025-12-10 11:44:38,329 - INFO     - // FINAL REPORT GENERATION
+2025-12-10 11:44:38,329 - INFO     - ====================================================================================================
+2025-12-10 11:44:38,329 - INFO     - 
+2025-12-10 11:44:38,333 - INFO     - ✓ Report: results_s/full_eval\EVALUATION_REPORT.txt
+2025-12-10 11:44:38,333 - INFO     - 
+====================================================================================================
+2025-12-10 11:44:38,333 - INFO     - EVALUATION COMPLETE
+2025-12-10 11:44:38,333 - INFO     - ====================================================================================================
+2025-12-10 11:44:38,333 - INFO     - 
+📁 Results: C:\Users\eliez\Desktop\Studies\Fall 2025\0960208 - AI Autonomous\_AI_Proj_Technion\results_s\full_eval
+2025-12-10 11:44:38,333 - INFO     - 📊 View: results_s/full_eval\EVALUATION_REPORT.txt
+2025-12-10 11:44:38,333 - INFO     - ✅ EVALUATION PIPELINE COMPLETE

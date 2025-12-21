@@ -1,0 +1,16 @@
+{
+  "problem_name": "parking-small-014",
+  "domain": "parking",
+  "size_category": "small",
+  "characteristic_type": "dense",
+  "num_objects": 2,
+  "num_locations": 3,
+  "complexity_score": 0.1125,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 286042
+}

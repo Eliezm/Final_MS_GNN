@@ -1,0 +1,16 @@
+{
+  "problem_name": "logistics-medium-008",
+  "domain": "logistics",
+  "size_category": "medium",
+  "characteristic_type": "inter_city",
+  "num_objects": 10,
+  "num_locations": 12,
+  "complexity_score": 0.3733333333333333,
+  "plan_cost": null,
+  "solve_time_sec": null,
+  "nodes_expanded": null,
+  "solution_length": null,
+  "branching_factor": null,
+  "is_solvable": true,
+  "generation_seed": 316042
+}

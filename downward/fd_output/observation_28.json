@@ -1,0 +1,188 @@
+{
+  "edge_feature_dim": 15,
+  "edge_features": [
+    [
+      1.0,
+      1.0,
+      0.5529267335006529,
+      0.02,
+      0.0,
+      1.0,
+      0.5655572378593249,
+      0.0,
+      1.0,
+      1.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "edge_index": [
+    [
+      30
+    ],
+    [
+      59
+    ]
+  ],
+  "is_terminal": false,
+  "iteration": 28,
+  "node_feature_dim": 20,
+  "num_active_systems": 2,
+  "num_edges": 1,
+  "reward_signals": {
+    "avg_f_change": 0.2583950991845043,
+    "branching_factor": 4.931418892302844,
+    "causal_graph": {
+      "are_adjacent": false,
+      "causal_proximity": 0.5,
+      "interpretation": "Adjacent in causal graph = better operator projection",
+      "metric_name": "Causal Graph Proximity"
+    },
+    "causal_proximity_score": 0.5,
+    "composite_merge_quality": 0.44999999999999996,
+    "dead_end_ratio": 0.0,
+    "delta_states": 12628,
+    "did_shrink": false,
+    "f_preservation_score": 0.9303680422481693,
+    "f_stability_score": 0.9594626992928654,
+    "f_stats": {
+      "max": 38,
+      "mean": 22.323370689145804,
+      "min": 0,
+      "std": 1.4151062572076258,
+      "valid_count": 101546
+    },
+    "f_value_stability": 0.9885573563375617,
+    "gb_error": 1.0,
+    "greedy_bisimulation": {
+      "gb_error": 1.0,
+      "interpretation": "Low error (0-0.2) = h-values compatible = GOOD",
+      "metric_name": "Greedy Bisimulation Error",
+      "violates_gb": true
+    },
+    "growth_ratio": 1.0806849402594083,
+    "h_star_after": 20,
+    "h_star_before": 20,
+    "h_star_delta": 0,
+    "h_star_preservation": 1.0,
+    "is_bad_merge": false,
+    "is_good_merge": true,
+    "is_solvable": true,
+    "label_combinability": {
+      "collapsible_label_count": 6,
+      "combinability_score": 1.0,
+      "interpretation": "High score = labels will collapse post-merge = GOOD",
+      "metric_name": "Label Combinability"
+    },
+    "label_combinability_score": 1.0,
+    "label_support": {
+      "interpretation": "High (>0.6) = variables entangled = merge preserves constraints",
+      "metric_name": "Label Support Overlap",
+      "support_overlap": 1.0
+    },
+    "label_support_overlap": 1.0,
+    "landmark_preservation": 1.0,
+    "max_f_change": 0.2583950991845043,
+    "merge_quality_score": 0.8317976368470803,
+    "merged_size": 169138,
+    "nodes_expanded": 101546,
+    "num_active_systems": 2,
+    "num_significant_f_changes": 0,
+    "operator_costs": {
+      "cost_variance_score": 1.0,
+      "metric_name": "Operator Cost Variance"
+    },
+    "operator_projection": {
+      "interpretation": "High (>0.7) = many projectable operators = GOOD merge",
+      "metric_name": "Operator Projection Potential",
+      "opp_score": 0.0
+    },
+    "opp_score": 0.0,
+    "reachability_ratio": 0.6003736593787321,
+    "search_depth": 10.5,
+    "search_efficiency_score": 0.3996263406212679,
+    "shrinkability": -0.08068494025940831,
+    "solution_cost": 0,
+    "solution_found": true,
+    "solution_quality_score": 1.0,
+    "state_control_score": 0.5519325465384367,
+    "state_explosion_penalty": 0.08068494025940831,
+    "states_after": 169138,
+    "states_before": 156510,
+    "theoretical_product_size": 156510,
+    "total_dead_ends": 0,
+    "total_goal_states": 4098,
+    "total_reachable": 101546,
+    "total_states": 169138,
+    "total_transitions": 747657,
+    "transition_density": 4.420396362733389,
+    "transition_density_ratio": 1.0,
+    "transition_explosion": {
+      "density_ratio": 1.0,
+      "interpretation": "Low ratio (<0.3) = good, High (>0.7) = explosion risk",
+      "metric_name": "Transition Explosion Prediction"
+    },
+    "transition_growth": 1.0,
+    "weighted_h_preservation": 1.0,
+    "weighted_shrinkability": 0.4193150597405917,
+    "weighted_solvability": 1.0,
+    "weighted_state_control": 0.5519325465384367,
+    "weighted_total_score": 0.7652152742428353,
+    "weights": {
+      "h_preservation": 0.4,
+      "shrinkability": 0.25,
+      "solvability": 0.15,
+      "state_control": 0.2
+    }
+  },
+  "timestamp": 1766158884,
+  "x": [
+    [
+      1.1824803550553042e-05,
+      0.1666666716337204,
+      1.0,
+      0.0,
+      0.0,
+      0.05000000074505806,
+      0.0,
+      1.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.9224042262067087e-05,
+      0.6003689169883728,
+      0.00011824733519461006,
+      0.0,
+      1.0,
+      0.0,
+      0.6003689169883728,
+      0.6003689169883728,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  ]
+}

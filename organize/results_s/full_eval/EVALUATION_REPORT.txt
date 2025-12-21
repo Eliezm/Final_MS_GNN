@@ -1,0 +1,32 @@
+====================================================================================================
+GNN MERGE STRATEGY - COMPREHENSIVE EVALUATION REPORT
+====================================================================================================
+
+Timestamp: 2025-12-10T11:44:38.333003
+
+EVALUATION OVERVIEW
+----------------------------------------------------------------------------------------------------
+Complete evaluation of GNN-guided merge-and-shrink planning.
+
+KEY OUTPUT FILES
+----------------------------------------------------------------------------------------------------
+  Results CSV:          results_s/full_eval\evaluation_results.csv
+  Summary JSON:         results_s/full_eval\evaluation_summary.json
+  Comparison Report:    results_s/full_eval\comparison_report.txt
+  Plots:                results_s/full_eval\plots/
+
+METRICS EXPLAINED
+----------------------------------------------------------------------------------------------------
+  Solve Rate: % of problems solved
+  Time: Wall clock time (seconds)
+  Expansions: Nodes expanded during search
+  H* Preservation: Quality of heuristic function (GNN-specific, 1.0 = perfect)
+  Efficiency Score: Combined metric (lower = better)
+
+INTERPRETATION
+----------------------------------------------------------------------------------------------------
+  ✓ GOOD:    Solve rate >= 80% with reasonable time
+  ⚠ FAIR:    Solve rate 60-80% or slow execution
+  ✗ POOR:    Solve rate < 60%
+
+====================================================================================================

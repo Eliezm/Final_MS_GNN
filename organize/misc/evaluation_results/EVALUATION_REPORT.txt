@@ -1,0 +1,50 @@
+==========================================================================================
+GNN MERGE STRATEGY - COMPREHENSIVE EVALUATION REPORT
+==========================================================================================
+
+Timestamp: 2025-10-26T23:54:43.431270
+
+EVALUATION OVERVIEW
+------------------------------------------------------------------------------------------
+This report contains the complete evaluation of the trained GNN policy
+against baseline Fast Downward planners on a test set of problems.
+
+KEY FILES
+------------------------------------------------------------------------------------------
+  Detailed results:     evaluation_results.csv
+  Summary statistics:   evaluation_summary.json
+  Comparison report:    comparison_report.txt
+  Plots directory:      plots/
+
+HOW TO INTERPRET RESULTS
+------------------------------------------------------------------------------------------
+1. SOLVE RATE: Percentage of problems solved by each planner
+   - Higher is better. Target: > 80% for GNN on test set.
+
+2. AVERAGE TIME: Mean solution time for solved problems
+   - Lower is better. Measures computational efficiency.
+
+3. EXPANSIONS: Mean number of nodes expanded during search
+   - Lower is better. Indicates heuristic quality.
+
+4. PLAN COST: Quality of solutions found
+   - Lower is better. Indicates solution optimality.
+
+5. EFFICIENCY FRONTIER: Trade-off between time and expansions
+   - Curves closer to origin are better.
+
+NEXT STEPS
+------------------------------------------------------------------------------------------
+1. Review the comparison_report.txt for baseline performance
+2. Check plots/solve_rate_comparison.png for GNN vs baselines
+3. Analyze per_problem_comparison.png for problem-specific insights
+4. Review evaluation_summary.json for detailed statistics
+
+INTERPRETATION GUIDELINES
+------------------------------------------------------------------------------------------
+✅ EXCELLENT: GNN solves >= 90% of problems with time comparable to LM-Cut
+✓  GOOD:      GNN solves >= 80% of problems with reasonable time
+⚠️  FAIR:      GNN solves >= 60% of problems, needs optimization
+❌ POOR:      GNN solves < 60% of problems, requires retraining
+
+==========================================================================================
