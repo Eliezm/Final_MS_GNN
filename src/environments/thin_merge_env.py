@@ -195,9 +195,21 @@ class ThinMergeEnv(gym.Env):
         if translate_result.returncode != 0:
             raise RuntimeError(f"Translator failed: {translate_result.stderr}")
 
-        downward_exe = self.downward_dir / "builds" / "release" / "bin" / "downward.exe"
+        import platform
+
+        # Detect executable name based on OS
+        if platform.system() == "Windows":
+            downward_exe = self.downward_dir / "builds" / "release" / "bin" / "downward.exe"
+        else:
+            # Linux/macOS
+            downward_exe = self.downward_dir / "builds" / "release" / "bin" / "downward"
+
         if not downward_exe.exists():
-            raise FileNotFoundError(f"Downward executable not found: {downward_exe}")
+            raise FileNotFoundError(
+                f"Downward executable not found: {downward_exe}\n"
+                f"Expected location: {self.downward_dir / 'builds' / 'release' / 'bin'}\n"
+                f"OS: {platform.system()}"
+            )
 
         search_config = (
             "astar(merge_and_shrink("

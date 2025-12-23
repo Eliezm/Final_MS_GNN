@@ -9,6 +9,12 @@ import os
 import logging
 from pathlib import Path
 
+import torch
+
+# ✅ FORCE CPU MODE (no GPU on server)
+os.environ['CUDA_VISIBLE_DEVICES'] = ''
+torch.set_num_threads(4)  # Use 4 CPU threads
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)-8s - %(message)s'
