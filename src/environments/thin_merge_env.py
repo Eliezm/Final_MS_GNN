@@ -65,6 +65,10 @@ class ThinMergeEnv(gym.Env):
             reward_weights: Optional[Dict[str, float]] = None,
             debug: bool = False,
     ):
+        # ✅ FIX 4: Ensure CPU-only
+        import torch
+        torch.cuda.is_available = lambda: False
+
         super().__init__()
 
         self.domain_file = os.path.abspath(domain_file)

@@ -32,6 +32,10 @@ class GNNExtractor(nn.Module):
             n_heads: int = 4,
             edge_feature_dim: int = EDGE_FEATURE_DIM,  # 10
     ):
+        # ✅ FIX 2: Force CPU device
+        import torch
+        torch.cuda.is_available = lambda: False  # Pretend CUDA doesn't exist
+
         super().__init__()
 
         self.gnn = GNNModel(

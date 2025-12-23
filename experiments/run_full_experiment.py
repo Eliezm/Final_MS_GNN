@@ -38,6 +38,9 @@ from experiments.core.evaluation_analyzer import ComparisonAnalyzer
 from experiments.core.output_structure import setup_experiment_output, ExperimentOutputManager
 from experiments.core.unified_reporting import UnifiedReporter
 
+os.environ['CUDA_VISIBLE_DEVICES'] = ''  # Hide all GPUs from PyTorch
+
+
 
 def _prepare_training_problems_tuple(benchmarks: List[Tuple], problem_names: List[str]) -> Tuple[
     List[Tuple], List[str]]:
