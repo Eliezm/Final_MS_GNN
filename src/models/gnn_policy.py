@@ -174,32 +174,45 @@ class GNNPolicy(ActorCriticPolicy):
     @torch.no_grad()
     def predict(self, observation: Dict[str, Any], state=None, episode_start=None, deterministic: bool = False):
         """
-        ✅ FIXED: Ensure Python int action return
+        ✅ COMPLETELY FIXED: Ensure Python int action return
         """
         self.eval()
         try:
             x, edge_index, edge_features, num_nodes, num_edges = self._get_data_from_obs(observation)
 
-            if num_edges == 0:
-                # Return (numpy array with Python int, None)
-                action_value = int(0)  # Ensure Python int
+            if num_edges == 0 or num_nodes == 0:
+                # Return numpy array with Python int
+                action_value = int(0)
                 return np.array([action_value], dtype=np.int64), None
 
             edge_logits, _ = self.extractor(x, edge_index, edge_features)
             masked_logits = self._mask_invalid_edges(edge_logits, num_edges)
             action_tensor, _ = self._sample_action(masked_logits, deterministic)
 
-            # ✅ CRITICAL: Extract Python int from tensor
-            action_python_int = int(action_tensor.cpu().item())
+            # ✅ CRITICAL FIX 1: Extract Python int from tensor
+            action_cpu = action_tensor.cpu()
 
-            # Validate
+            if isinstance(action_cpu, torch.Tensor):
+                action_numpy = action_cpu.numpy()
+                if action_numpy.shape == ():  # 0-d array
+                    action_python_int = int(action_numpy.item())
+                else:
+                    action_python_int = int(action_numpy.flat[0])
+            else:
+                action_python_int = int(action_cpu)
+
+            # ✅ CRITICAL FIX 2: Validate action is Python int
             if not isinstance(action_python_int, int) or isinstance(action_python_int, bool):
                 raise TypeError(f"Action must be Python int, got {type(action_python_int)}")
 
+            # ✅ CRITICAL FIX 3: Return as numpy array of ints
             return np.array([action_python_int], dtype=np.int64), None
 
         except Exception as e:
-            logger.error(f"Predict failed: {e}")
+            logger.error(f"[GNN_POLICY] Predict failed: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
+            # Safe fallback
             return np.array([0], dtype=np.int64), None
 
     def forward(self, obs: Dict[str, Any], deterministic: bool = False) -> Tuple[Tensor, Tensor, Tensor]:

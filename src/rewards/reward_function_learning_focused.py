@@ -112,115 +112,71 @@ class LearningFocusedRewardFunctionComplete:
 
     def compute_reward(self, raw_obs: Dict[str, Any]) -> float:
         """
-        Compute scalar reward with emphasis on learning signal AND compression.
-
-        Args:
-            raw_obs: Observation from C++ including reward_signals
+        ✅ FIXED: Compute scalar reward with guaranteed Python float return.
 
         Returns:
-            reward: Scalar in [-2.0, +2.0] with clear learning trend
+            reward: Python float (NOT numpy scalar)
         """
         signals = raw_obs.get('reward_signals', {})
         edge_features = raw_obs.get('edge_features', None)
 
-        # ====================================================================
-        # COMPONENT 1: H* PRESERVATION (60% weight - PRIMARY)
-        # ====================================================================
-        # Gold standard from literature: Greedy bisimulation h-value preservation
-
+        # Compute components
         h_reward, h_details = self._compute_h_preservation_reward_learning(signals)
-
-        # ====================================================================
-        # COMPONENT 2: TRANSITION CONTROL (20% weight - SECONDARY)
-        # ====================================================================
-        # "Transitions are the real killer" - papers
-
         trans_reward, trans_details = self._compute_transition_control_reward_learning(signals)
-
-        # ====================================================================
-        # COMPONENT 3: OPERATOR PROJECTION (12% weight - TERTIARY)
-        # ====================================================================
-        # Label projection and compression potential (REDUCED from 15% for label)
-
         opp_reward, opp_details = self._compute_operator_projection_reward_learning(signals)
-
-        # ====================================================================
-        # COMPONENT 4: LABEL COMBINABILITY (8% weight - COMPRESSION FOCUS)
-        # ====================================================================
-        # ⭐ RESTORED FROM ORIGINAL FUNCTION 1
-        # Critical for achieving SMALL abstractions
-        # High combinability = labels will collapse post-merge = compression
-
         label_reward, label_details = self._compute_label_combinability_reward_learning(signals)
 
-        # ====================================================================
-        # WEIGHTED COMBINATION
-        # ====================================================================
-        # BALANCED: Accuracy (H*) + Size (Label + OPP) + Stability (Transitions)
-
+        # Weighted combination
         final_reward = (
-                0.50 * h_reward +  # PRIMARY: H* preservation
-                0.20 * trans_reward +  # HIGH: Transition control
-                0.15 * opp_reward +  # MEDIUM: Operator projection (reduced)
-                0.15 * label_reward  # MEDIUM: Label combinability (restored!)
+                0.50 * h_reward +
+                0.20 * trans_reward +
+                0.15 * opp_reward +
+                0.15 * label_reward
         )
 
-        # ====================================================================
-        # CATASTROPHIC FAILURE PENALTIES (strict, invariant)
-        # ====================================================================
-
-        # Lost solvability = severe penalty
+        # Catastrophic penalties
         if not signals.get('is_solvable', True):
-            final_reward -= 1.2
-            if self.debug:
-                logger.debug("[REWARD] CATASTROPHIC: Lost solvability (-1.2)")
+            final_reward = final_reward - 1.2
 
-        # Extreme dead-end creation = strong penalty
         if signals.get('dead_end_ratio', 0.0) > 0.8:
-            final_reward -= 0.6
-            if self.debug:
-                logger.debug(f"[REWARD] SEVERE: Dead-end ratio {signals['dead_end_ratio']:.1%} (-0.6)")
+            final_reward = final_reward - 0.6
 
-        # ====================================================================
-        # LEARNING BONUS: Reward consistency in good decisions
-        # ====================================================================
-        # Synergy bonus: When BOTH accuracy AND compression are good
-
+        # Synergy bonus
         h_pres = signals.get('h_star_preservation', 1.0)
         trans_growth = trans_details.get('growth_ratio', 1.0)
         label_comb = signals.get('label_combinability_score', 0.5)
 
-        # TIER 1: EXCELLENT ON ALL FRONTS
         if h_pres > 0.95 and trans_growth < 1.5 and label_comb > 0.75:
-            # All three factors excellent: accuracy + size + stability
-            synergy_bonus = 0.35 * self.progress
-            final_reward += synergy_bonus
-            if self.debug:
-                logger.debug(f"[REWARD] Synergy bonus (Excellent): +{synergy_bonus:.3f}")
-
-        # TIER 2: VERY GOOD COMBINATION
+            final_reward = final_reward + (0.35 * self.progress)
         elif h_pres > 0.92 and trans_growth < 1.8 and label_comb > 0.65:
-            synergy_bonus = 0.20 * self.progress
-            final_reward += synergy_bonus
-            if self.debug:
-                logger.debug(f"[REWARD] Synergy bonus (Very Good): +{synergy_bonus:.3f}")
-
-        # TIER 3: GOOD COMBINATION
+            final_reward = final_reward + (0.20 * self.progress)
         elif h_pres > 0.90 and trans_growth < 2.0 and label_comb > 0.55:
-            synergy_bonus = 0.10 * self.progress
-            final_reward += synergy_bonus
+            final_reward = final_reward + (0.10 * self.progress)
 
-        # ====================================================================
-        # SCALE & CLAMP
-        # ====================================================================
+        # ✅ CRITICAL: Convert to Python float explicitly
+        # Step 1: Use numpy clip but extract immediately
+        clipped = np.clip(final_reward, -2.0, 2.0)
 
-        final_reward = float(np.clip(float(final_reward), -2.0, 2.0))
+        # Step 2: Convert numpy type to Python float
+        if isinstance(clipped, np.ndarray):
+            if clipped.shape == ():  # 0-d array
+                final_reward_python = float(clipped.item())
+            else:
+                final_reward_python = float(clipped.flat[0])
+        elif isinstance(clipped, (np.floating, np.integer)):
+            final_reward_python = float(clipped.item())
+        else:
+            final_reward_python = float(clipped)
+
+        # Step 3: Validate
+        assert isinstance(final_reward_python, float) and not isinstance(final_reward_python, bool), \
+            f"Reward must be Python float, got {type(final_reward_python)}"
 
         if self.debug:
             logger.debug(f"[REWARD] h={h_reward:.3f}, trans={trans_reward:.3f}, "
-                         f"opp={opp_reward:.3f}, label={label_reward:.3f} → Final: {final_reward:.4f}")
+                         f"opp={opp_reward:.3f}, label={label_reward:.3f} → Final: {final_reward_python:.4f}")
 
-        return final_reward
+        return final_reward_python
 
     def _compute_h_preservation_reward_learning(self, signals: Dict) -> Tuple[float, Dict]:
         """

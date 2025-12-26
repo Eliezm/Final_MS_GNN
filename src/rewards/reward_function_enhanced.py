@@ -49,58 +49,19 @@ class EnhancedRewardFunction:
 
     def compute_reward(self, raw_obs: Dict[str, Any]) -> float:
         """
-        Compute scalar reward based on merge quality signals.
-
-        Args:
-            raw_obs: Observation from C++ including reward_signals
+        ✅ FIXED: Compute scalar reward with guaranteed Python float return.
 
         Returns:
-            reward: Scalar in [-2.0, +2.0]
+            reward: Python float (NOT numpy scalar)
         """
         signals = raw_obs.get('reward_signals', {})
         edge_features = raw_obs.get('edge_features', None)
 
-        # ====================================================================
-        # COMPONENT 1: H* PRESERVATION (50% weight) - PRIMARY SIGNAL
-        # ====================================================================
-        # From Nissim et al.: Bisimulation is gold standard
-        # From papers: Greedy bisimulation only requires optimal-path preservation
-
         h_reward, h_details = self._compute_h_preservation_reward(signals)
-
-        # ====================================================================
-        # COMPONENT 2: TRANSITION EXPLOSION CONTROL (20% weight)
-        # ====================================================================
-        # From papers: "Transitions > states in complexity"
-        # Penalize merges causing uncontrolled transition growth
-
         trans_reward, trans_details = self._compute_transition_control_reward(signals)
-
-        # ====================================================================
-        # COMPONENT 3: OPERATOR PROJECTION POTENTIAL (15% weight)
-        # ====================================================================
-        # From Nissim et al.: Label projection is maximal conservative reduction
-        # High OPP score = merge enables label reduction
-
         opp_reward, opp_details = self._compute_operator_projection_reward(signals)
-
-        # ====================================================================
-        # COMPONENT 4: LABEL COMBINABILITY (10% weight)
-        # ====================================================================
-        # From papers: High label combinability → post-merge compression
-
         label_reward, label_details = self._compute_label_combinability_reward(signals)
-
-        # ====================================================================
-        # COMPONENT 5: BONUS SIGNALS (5% weight)
-        # ====================================================================
-        # Architecture-specific insights
-
         bonus_reward, bonus_details = self._compute_bonus_signals(signals, edge_features)
-
-        # ====================================================================
-        # WEIGHTED COMBINATION
-        # ====================================================================
 
         final_reward = (
                 0.50 * h_reward +
@@ -111,19 +72,28 @@ class EnhancedRewardFunction:
         )
 
         if not signals.get('is_solvable', True):
-            final_reward -= 1.0
+            final_reward = final_reward - 1.0
 
         if signals.get('dead_end_ratio', 0.0) > 0.7:
-            final_reward -= 0.5
+            final_reward = final_reward - 0.5
 
-        # ✅ CRITICAL: Ensure Python float
-        final_reward = float(np.clip(float(final_reward), -2.0, 2.0))
+        # ✅ CRITICAL: Convert to Python float explicitly
+        clipped = np.clip(final_reward, -2.0, 2.0)
 
-        # ✅ Validate type
-        if not isinstance(final_reward, float):
-            final_reward = float(final_reward)
+        if isinstance(clipped, np.ndarray):
+            if clipped.shape == ():
+                final_reward_python = float(clipped.item())
+            else:
+                final_reward_python = float(clipped.flat[0])
+        elif isinstance(clipped, (np.floating, np.integer)):
+            final_reward_python = float(clipped.item())
+        else:
+            final_reward_python = float(clipped)
 
-        return final_reward
+        assert isinstance(final_reward_python, float) and not isinstance(final_reward_python, bool), \
+            f"Reward must be Python float, got {type(final_reward_python)}"
+
+        return final_reward_python
 
     def _compute_h_preservation_reward(self, signals: Dict) -> Tuple[float, Dict]:
         """
