@@ -467,17 +467,33 @@ class LearningVerifier:
 # REWARD SIGNAL VALIDATION
 # ============================================================================
 
-def validate_reward_signals(reward_signals: Dict) -> Tuple[bool, Optional[str]]:
-    """Validate reward signals for integrity."""
-    # ✅ FIXED: Only require critical fields; others have safe defaults
-    required_critical_fields = ['is_solvable']  # Only this is truly critical
+def validate_reward_signals(reward_signals: Dict) -> Tuple[bool, Optional[str], bool]:
+    """
+    Validate reward signals with warning for defaults.
+
+    Returns:
+        (is_valid, error_message, using_defaults)
+    """
+    required_critical_fields = ['is_solvable']
+    expected_fields = [
+        'h_star_preservation', 'h_star_before', 'h_star_after',
+        'states_before', 'states_after', 'dead_end_ratio',
+        'opp_score', 'label_combinability_score', 'transition_density'
+    ]
 
     for field in required_critical_fields:
         if field not in reward_signals:
-            return False, f"Missing critical field: {field}"
+            return False, f"Missing critical field: {field}", True
 
-    # ✅ FIXED: Provide sensible defaults for optional fields
-    # These will be used if missing from C++ output
+    # Check for default values (indicates C++ export failure)
+    using_defaults = 0
+    for field in expected_fields:
+        if field not in reward_signals:
+            using_defaults += 1
+
+    has_default_warning = using_defaults > len(expected_fields) // 2
+
+    # Provide sensible defaults
     reward_signals.setdefault('h_star_before', 0)
     reward_signals.setdefault('h_star_after', 0)
     reward_signals.setdefault('h_star_preservation', 1.0)
@@ -491,7 +507,7 @@ def validate_reward_signals(reward_signals: Dict) -> Tuple[bool, Optional[str]]:
     reward_signals.setdefault('reachability_ratio', 1.0)
     reward_signals.setdefault('merge_quality_score', 0.5)
 
-    return True, None
+    return True, None, has_default_warning
 
 
 # ============================================================================

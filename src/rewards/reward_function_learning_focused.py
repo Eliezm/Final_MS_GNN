@@ -178,65 +178,32 @@ class LearningFocusedRewardFunctionComplete:
 
         return final_reward_python
 
+    def update_episode(self, episode: int, total_episodes: int) -> None:
+        """Update episode info without full reinitialization."""
+        self.episode = episode
+        self.total_episodes = total_episodes
+        self.progress = min(1.0, episode / max(1, total_episodes - 1))
+        self._compute_learning_thresholds()
+
     def _compute_h_preservation_reward_learning(self, signals: Dict) -> Tuple[float, Dict]:
-        """
-        H* Preservation with Learning Signal (60% weight).
-
-        Strategy:
-        - >95% preservation: Strong reward (0.5-0.7 range)
-        - 90-95%: Moderate reward (0.1-0.5 range)
-        - 85-90%: Small reward (0.0-0.1 range)
-        - <85%: Penalties (-0.1 to -0.7 range)
-
-        This creates clear separation for learning.
-        """
-        details = {}
-
+        """H* Preservation - Range normalized to [-1.0, +1.0]"""
         h_pres = signals.get('h_star_preservation', 1.0)
 
-        # EXCELLENT: H* well-preserved
         if h_pres >= 0.98:
-            # Nearly perfect - strong reward
-            reward = 0.65 + 0.05 * (h_pres - 0.98) / 0.02  # Range: [0.65, 0.70]
-            quality = "EXCELLENT"
-
+            reward = 0.90 + 0.10 * (h_pres - 0.98) / 0.02  # [0.90, 1.0]
         elif h_pres >= 0.95:
-            # Very good - solid reward
-            reward = 0.50 + 0.15 * (h_pres - 0.95) / 0.03  # Range: [0.50, 0.65]
-            quality = "VERY GOOD"
-
+            reward = 0.70 + 0.20 * (h_pres - 0.95) / 0.03  # [0.70, 0.90]
         elif h_pres >= 0.90:
-            # Good - moderate reward
-            reward = 0.25 + 0.25 * (h_pres - 0.90) / 0.05  # Range: [0.25, 0.50]
-            quality = "GOOD"
-
+            reward = 0.40 + 0.30 * (h_pres - 0.90) / 0.05  # [0.40, 0.70]
         elif h_pres >= 0.85:
-            # Acceptable - small reward
-            reward = 0.05 + 0.20 * (h_pres - 0.85) / 0.05  # Range: [0.05, 0.25]
-            quality = "ACCEPTABLE"
-
+            reward = 0.10 + 0.30 * (h_pres - 0.85) / 0.05  # [0.10, 0.40]
         elif h_pres >= 0.70:
-            # Degraded - small penalty
-            degradation = 1.0 - h_pres
-            penalty = 0.3 * (degradation / 0.15)  # Scale to severity
-            reward = -penalty  # Range: [-0.3, 0.05]
-            quality = "DEGRADED"
-
+            reward = -0.40 + 0.50 * (h_pres - 0.70) / 0.15  # [-0.40, 0.10]
         else:
-            # Severe - large penalty
-            degradation = 1.0 - h_pres
-            penalty = 0.5 + 0.5 * min(1.0, degradation / 0.3)
-            reward = -penalty  # Range: [-1.0, -0.5]
-            quality = "SEVERE"
+            reward = -1.0 + 0.60 * max(0, h_pres) / 0.70  # [-1.0, -0.40]
 
-        if self.debug:
-            logger.debug(f"[REWARD-H*] {quality}: {h_pres:.4f} → {reward:.3f}")
-
-        details['h_star_preservation'] = h_pres
-        details['quality'] = quality
-        details['reward'] = reward
-
-        return reward, details
+        # Now in [-1.0, 1.0] range
+        return reward, {'h_star_preservation': h_pres, 'reward': reward}
 
     def _compute_transition_control_reward_learning(self, signals: Dict) -> Tuple[float, Dict]:
         """

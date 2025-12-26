@@ -161,12 +161,12 @@ class ThinMergeEnv(gym.Env):
         logger.info(f"[THIN_ENV] Using reward function: {self._reward_function_type}")
 
     def set_episode_number(self, episode: int, total_episodes: int = 1500) -> None:
-        """Set current episode for curriculum-aware reward functions."""
         self._episode_number = episode
         self._total_episodes = total_episodes
 
-        # Reinitialize reward function with new episode info
-        if self._reward_function_type == "learning_focused":
+        if self._reward_function is not None and hasattr(self._reward_function, 'update_episode'):
+            self._reward_function.update_episode(episode, total_episodes)
+        elif self._reward_function_type == "learning_focused":
             self._init_reward_function()
 
     def _setup_directories(self):
