@@ -528,6 +528,66 @@ def extract_global_step_from_checkpoint(checkpoint_path: str) -> int:
     return 0
 
 
+def _format_reward_breakdown(
+        episode: int,
+        problem_name: str,
+        episode_reward: float,
+        component_summary: Dict[str, float],
+        h_preservation: float,
+        is_solvable: bool,
+) -> str:
+    """
+    Format a detailed reward breakdown message for display.
+
+    Shows:
+    - Episode number and problem name
+    - Total reward
+    - Component breakdown (H*, transitions, operators, labels, bonuses)
+    - Key metrics (growth ratio, OPP score, reachability, dead-ends)
+    - Solvability status
+    """
+
+    h_pres = component_summary.get('avg_h_preservation', 0)
+    trans_ctrl = component_summary.get('avg_transition_control', 0)
+    opp_proj = component_summary.get('avg_operator_projection', 0)
+    label_comb = component_summary.get('avg_label_combinability', 0)
+    bonus_sig = component_summary.get('avg_bonus_signals', 0)
+
+    h_ratio = component_summary.get('avg_h_star_ratio', 1.0)
+    trans_growth = component_summary.get('avg_transition_growth', 1.0)
+    opp_score = component_summary.get('avg_opp_score', 0.5)
+    label_score = component_summary.get('avg_label_score', 0.5)
+    reach_ratio = component_summary.get('min_reachability', 1.0)
+    dead_end_penalty = component_summary.get('max_dead_end_penalty', 0)
+    solv_penalty = component_summary.get('max_solvability_penalty', 0)
+
+    # Determine status icon
+    status_icon = "✅" if is_solvable else "❌"
+
+    # Build the message
+    msg = f"\n{'=' * 90}\n"
+    msg += f"📊 EPISODE {episode:4d} | {problem_name[:50]:50s}\n"
+    msg += f"{'=' * 90}\n"
+    msg += f"\n💰 Total Reward: {episode_reward:+.4f}\n"
+    msg += f"\n🧮 COMPONENT BREAKDOWN (aggregated over {int(h_pres * 100) if h_pres > 0 else 0} merge steps):\n"
+    msg += f"   H* Preservation:       {h_pres:+.4f}  [Primary: heuristic quality]\n"
+    msg += f"   Transition Control:    {trans_ctrl:+.4f}  [Secondary: explosion avoidance]\n"
+    msg += f"   Operator Projection:   {opp_proj:+.4f}  [Tertiary: compression potential]\n"
+    msg += f"   Label Combinability:   {label_comb:+.4f}  [Quaternary: label reduction]\n"
+    msg += f"   Bonus Signals:         {bonus_sig:+.4f}  [Quinary: architectural insights]\n"
+    msg += f"\n📈 KEY METRICS:\n"
+    msg += f"   H* Ratio:              {h_ratio:.4f}  [Preservation level: 1.0 = perfect]\n"
+    msg += f"   Transition Growth:     {trans_growth:.2f}x  [Growth factor: <2x = good]\n"
+    msg += f"   OPP Score:             {opp_score:.3f}   [Projection: >0.7 = excellent]\n"
+    msg += f"   Label Combinability:   {label_score:.3f}   [Compression: >0.7 = excellent]\n"
+    msg += f"   Reachability Ratio:    {reach_ratio:.1%}   [Coverage: >90% = good]\n"
+    msg += f"   Dead-End Penalty:      {dead_end_penalty:.4f}  [Safety: 0 = no dead-ends]\n"
+    msg += f"   Solvability Penalty:   {solv_penalty:.4f}  [Safety: 0 = solvable]\n"
+    msg += f"\n📍 STATUS: {status_icon} {'SOLVABLE' if is_solvable else 'UNSOLVABLE'}\n"
+    msg += f"{'=' * 90}\n"
+
+    return msg
+
 # ============================================================================
 # TRAINER CLASS
 # ============================================================================
@@ -1095,6 +1155,24 @@ class GNNTrainer:
                     )
                     self.episode_log.append(metrics)
 
+                    # Display detailed reward breakdown
+                    if not episode_error and component_h_pres:  # Only display if episode was successful
+                        breakdown_msg = _format_reward_breakdown(
+                            episode=episode,
+                            problem_name=problem_name,
+                            episode_reward=episode_reward,
+                            component_summary=component_summary,
+                            h_preservation=h_preservation,
+                            is_solvable=is_solvable,
+                        )
+                        pbar.write(breakdown_msg)
+                        self.logger._emit_event(
+                            'episode_reward_breakdown',
+                            episode=episode,
+                            problem_name=problem_name,
+                            reward_breakdown=component_summary,
+                        )
+
                     self.logger.log_episode_completed(
                         episode=episode,
                         problem_name=problem_name,
@@ -1256,3 +1334,4 @@ class GNNTrainer:
 
         except Exception as e:
             logger.debug(f"Cleanup error (non-critical): {e}")
+

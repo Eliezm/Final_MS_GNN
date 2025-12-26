@@ -103,40 +103,25 @@ class EnhancedRewardFunction:
         # ====================================================================
 
         final_reward = (
-                0.50 * h_reward +  # PRIMARY: H* preservation
-                0.20 * trans_reward +  # HIGH: Transition control
-                0.15 * opp_reward +  # MEDIUM: Operator projection
-                0.10 * label_reward +  # MEDIUM: Label combinability
-                0.05 * bonus_reward  # LOW: Bonuses
+                0.50 * h_reward +
+                0.20 * trans_reward +
+                0.15 * opp_reward +
+                0.10 * label_reward +
+                0.05 * bonus_reward
         )
 
-        # ====================================================================
-        # CATASTROPHIC FAILURE PENALTIES
-        # ====================================================================
-
-        # Lost solvability = -1.0 (severe)
         if not signals.get('is_solvable', True):
             final_reward -= 1.0
-            if self.debug:
-                logger.debug("[REWARD] CATASTROPHIC: Lost solvability")
 
-        # Extreme dead-end creation = -0.5
         if signals.get('dead_end_ratio', 0.0) > 0.7:
             final_reward -= 0.5
-            if self.debug:
-                logger.debug(f"[REWARD] SEVERE: Dead-end ratio {signals['dead_end_ratio']:.1%}")
 
-        # ====================================================================
-        # SCALE & CLAMP
-        # ====================================================================
-
-        # ✅ FIX: Ensure final_reward is a Python scalar, not numpy
+        # ✅ CRITICAL: Ensure Python float
         final_reward = float(np.clip(float(final_reward), -2.0, 2.0))
 
-        if self.debug:
-            logger.debug(f"[REWARD] Components: h={h_reward:.3f}, trans={trans_reward:.3f}, "
-                         f"opp={opp_reward:.3f}, label={label_reward:.3f}, bonus={bonus_reward:.3f}")
-            logger.debug(f"[REWARD] Final: {final_reward:.4f} (type: {type(final_reward).__name__})")
+        # ✅ Validate type
+        if not isinstance(final_reward, float):
+            final_reward = float(final_reward)
 
         return final_reward
 

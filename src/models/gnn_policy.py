@@ -173,18 +173,34 @@ class GNNPolicy(ActorCriticPolicy):
 
     @torch.no_grad()
     def predict(self, observation: Dict[str, Any], state=None, episode_start=None, deterministic: bool = False):
+        """
+        ✅ FIXED: Ensure Python int action return
+        """
         self.eval()
         try:
             x, edge_index, edge_features, num_nodes, num_edges = self._get_data_from_obs(observation)
+
             if num_edges == 0:
-                return np.array([0]), None
+                # Return (numpy array with Python int, None)
+                action_value = int(0)  # Ensure Python int
+                return np.array([action_value], dtype=np.int64), None
+
             edge_logits, _ = self.extractor(x, edge_index, edge_features)
             masked_logits = self._mask_invalid_edges(edge_logits, num_edges)
-            action, _ = self._sample_action(masked_logits, deterministic)
-            return np.array([action.cpu().item()]), None
+            action_tensor, _ = self._sample_action(masked_logits, deterministic)
+
+            # ✅ CRITICAL: Extract Python int from tensor
+            action_python_int = int(action_tensor.cpu().item())
+
+            # Validate
+            if not isinstance(action_python_int, int) or isinstance(action_python_int, bool):
+                raise TypeError(f"Action must be Python int, got {type(action_python_int)}")
+
+            return np.array([action_python_int], dtype=np.int64), None
+
         except Exception as e:
             logger.error(f"Predict failed: {e}")
-            return np.array([0]), None
+            return np.array([0], dtype=np.int64), None
 
     def forward(self, obs: Dict[str, Any], deterministic: bool = False) -> Tuple[Tensor, Tensor, Tensor]:
         device = self.device

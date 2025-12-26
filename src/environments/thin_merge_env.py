@@ -779,19 +779,22 @@ class ThinMergeEnv(gym.Env):
 
     def _compute_reward(self, raw_obs: Dict[str, Any]) -> float:
         """
-        ✅ UPDATED: Use integrated reward function (learning-focused or enhanced)
-
-        Supports curriculum learning with episode-aware thresholds.
+        ✅ FIXED: Compute reward and ensure Python float return
         """
-        # Initialize reward function if needed
         if self._reward_function is None:
             self._init_reward_function()
 
-        # ✅ Use the selected reward function
+        # Get reward (might be numpy)
         reward = self._reward_function.compute_reward(raw_obs)
 
-        # Ensure we return Python float, not numpy scalar
-        return float(reward)
+        # ✅ CRITICAL FIX: Convert to Python float explicitly
+        reward_float = float(reward)
+
+        # Validate it's actually a Python float
+        if not isinstance(reward_float, float):
+            raise TypeError(f"Reward must be Python float, got {type(reward_float)}")
+
+        return reward_float
 
     def _action_to_merge_pair(self, action: int) -> Tuple[int, int]:
         if self._cached_edge_index is None or len(self._cached_edge_index) != 2:
@@ -852,6 +855,11 @@ class ThinMergeEnv(gym.Env):
         self.current_iteration += 1
         iteration = self.current_iteration
 
+        # ✅ FIX 1: Ensure action is Python int
+        action = int(action)
+        if not isinstance(action, int) or isinstance(action, bool):
+            raise TypeError(f"Action must be Python int, got {type(action)}")
+
         merge_pair = self._action_to_merge_pair(action)
         logger.info(f"[THIN_ENV] Step {iteration}: action={action} -> merge_pair={merge_pair}")
 
@@ -861,12 +869,11 @@ class ThinMergeEnv(gym.Env):
             raw_obs = self._wait_for_observation(iteration)
         except TimeoutError as e:
             logger.error(f"[THIN_ENV] Timeout: {e}")
-            # ✅ FIX 8: Ensure all returns use Python types
             return (
                 self._last_observation,
                 float(-1.0),  # Python float
-                True,  # Python bool
-                False,  # Python bool
+                bool(True),  # Python bool
+                bool(False),  # Python bool
                 {"error": str(e)}
             )
         except RuntimeError as e:
@@ -874,26 +881,34 @@ class ThinMergeEnv(gym.Env):
             return (
                 self._last_observation,
                 float(-1.0),
-                True,
-                False,
+                bool(True),
+                bool(False),
                 {"error": str(e)}
             )
 
         obs = self._observation_to_tensors(raw_obs)
         self._last_observation = obs
 
-        # ✅ FIX 9: Explicit type conversions
-        reward = float(self._compute_reward(raw_obs))
-        num_active = int(raw_obs.get('num_active_systems', 1))
-        is_done = bool(raw_obs.get('is_terminal', False))
-        terminated = bool((num_active <= 1) or is_done)
-        truncated = bool(iteration >= self.max_merges - 1)
+        # ✅ FIX 2: Explicit type conversions for ALL returns
+        reward = float(self._compute_reward(raw_obs))  # Python float
+        num_active = int(raw_obs.get('num_active_systems', 1))  # Python int
+        is_done = bool(raw_obs.get('is_terminal', False))  # Python bool
+        terminated = bool((num_active <= 1) or is_done)  # Python bool
+        truncated = bool(iteration >= self.max_merges - 1)  # Python bool
+
+        # Validate types
+        assert isinstance(reward, float) and not isinstance(reward, bool), \
+            f"reward must be float, got {type(reward)}"
+        assert isinstance(terminated, bool), f"terminated must be bool, got {type(terminated)}"
+        assert isinstance(truncated, bool), f"truncated must be bool, got {type(truncated)}"
 
         info = {
             "iteration": int(iteration),
-            "merge_pair": merge_pair,
+            "merge_pair": tuple(int(x) for x in merge_pair),  # Tuple of ints
             "num_active_systems": num_active,
             "reward_signals": raw_obs.get('reward_signals', {}),
+            "solved": bool(raw_obs.get('solved', False)),
+            "plan_cost": int(raw_obs.get('plan_cost', 0)),
         }
 
         return obs, reward, terminated, truncated, info
