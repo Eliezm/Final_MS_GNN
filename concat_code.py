@@ -108,12 +108,12 @@ def main():
 
 
 
-    "downward/src/search/merge_and_shrink/merge_and_shrink_algorithm.cc",
-    "downward/src/search/merge_and_shrink/merge_and_shrink_algorithm.h",
-    "downward/src/search/merge_and_shrink/merge_and_shrink_signals.cc",
-    "downward/src/search/merge_and_shrink/merge_and_shrink_signals.h",
-    "downward/src/search/merge_and_shrink/merge_and_shrink_signals_enhanced.cc",
-    "downward/src/search/merge_and_shrink/merge_and_shrink_signals_enhanced.h",
+    # "downward/src/search/merge_and_shrink/merge_and_shrink_algorithm.cc",
+    # "downward/src/search/merge_and_shrink/merge_and_shrink_algorithm.h",
+    # "downward/src/search/merge_and_shrink/merge_and_shrink_signals.cc",
+    # "downward/src/search/merge_and_shrink/merge_and_shrink_signals.h",
+    # "downward/src/search/merge_and_shrink/merge_and_shrink_signals_enhanced.cc",
+    # "downward/src/search/merge_and_shrink/merge_and_shrink_signals_enhanced.h",
     # #
     # "downward/src/search/merge_and_shrink/merge_strategy_factory_gnn.cc",
     # "downward/src/search/merge_and_shrink/merge_strategy_factory_gnn.h",

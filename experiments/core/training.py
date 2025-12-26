@@ -1000,10 +1000,14 @@ class GNNTrainer:
                             reward_signals = info.get('reward_signals', {})
                             merge_pair = info.get('merge_pair', (0, 0))
 
-                            is_valid, error_msg = validate_reward_signals(reward_signals)
+                            is_valid, error_msg, using_defaults = validate_reward_signals(reward_signals)
                             if not is_valid:
                                 pbar.write(f"⚠️  Episode {episode}: Signal validation failed: {error_msg}")
                                 self.logger.log_failure(episode, problem_name, 'signal_validation_failure', error_msg)
+                            if using_defaults and self.debug:
+                                logger.debug(
+                                    f"Episode {episode}: Using default reward signals (C++ export may have failed)")
+
 
                             h_pres = reward_signals.get('h_star_preservation', 1.0)
                             trans_growth = reward_signals.get('growth_ratio', 1.0)
@@ -1393,3 +1397,10 @@ class GNNTrainer:
         except Exception as e:
             logger.debug(f"Cleanup error (non-critical): {e}")
 
+    def close_logger(self):
+        """Close the training logger and finalize log files."""
+        if self.logger is not None:
+            try:
+                self.logger.close()
+            except Exception as e:
+                logger.warning(f"Failed to close logger: {e}")
