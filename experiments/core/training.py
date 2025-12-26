@@ -41,6 +41,25 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+def _extract_action_int(action) -> int:
+    """
+    Extract Python int from action (numpy array, tensor, or scalar).
+
+    Handles the case where model.predict() returns np.array([action]) with shape (1,).
+    """
+    if isinstance(action, np.ndarray):
+        if action.ndim == 0:  # 0-d array like np.array(5)
+            return int(action.item())
+        elif action.size > 0:  # 1-d array like np.array([5])
+            return int(action.flat[0])
+        else:
+            return 0
+    elif hasattr(action, 'item'):  # torch tensor or numpy scalar
+        return int(action.item())
+    else:
+        return int(action)
+
+
 # ============================================================================
 # REPRODUCIBILITY
 # ============================================================================
@@ -923,6 +942,21 @@ class GNNTrainer:
                         try:
                             action, _states = model.predict(obs, deterministic=True)
 
+                            # ✅ CRITICAL FIX: Extract scalar action from numpy array
+                            # model.predict returns np.array([action]) with shape (1,)
+                            # but int() fails on 1-D arrays
+                            if isinstance(action, np.ndarray):
+                                if action.ndim == 0:
+                                    action_int = int(action.item())
+                                elif action.size > 0:
+                                    action_int = int(action.flat[0])
+                                else:
+                                    action_int = 0
+                            elif hasattr(action, 'item'):
+                                action_int = int(action.item())
+                            else:
+                                action_int = int(action)
+
                             gnn_logits = None
                             gnn_action_prob = 0.0
 
@@ -936,14 +970,14 @@ class GNNTrainer:
                                     if hasattr(dist, 'logits'):
                                         gnn_logits = dist.logits.cpu().numpy()[0]
                                         gnn_action_prob = float(
-                                            torch.softmax(dist.logits, dim=-1)[0, int(action)].item()
+                                            torch.softmax(dist.logits, dim=-1)[0, action_int].item()
                                         )
                                     elif hasattr(dist, 'probs'):
-                                        gnn_action_prob = float(dist.probs[0, int(action)].item())
+                                        gnn_action_prob = float(dist.probs[0, action_int].item())
                             except Exception:
                                 pass
 
-                            obs, reward, done, truncated, info = env.step(int(action))
+                            obs, reward, done, truncated, info = env.step(action_int)  # ✅ Uses action_int
                             episode_reward += reward
                             eval_steps += 1
 
@@ -979,7 +1013,7 @@ class GNNTrainer:
                                 episode=episode,
                                 problem_name=problem_name,
                                 selected_merge_pair=merge_pair,
-                                gnn_action_index=int(action),
+                                gnn_action_index=action_int,
                                 gnn_logits=gnn_logits if gnn_logits is not None else np.array([]),
                                 gnn_action_probability=gnn_action_prob,
                                 node_features_used={},
