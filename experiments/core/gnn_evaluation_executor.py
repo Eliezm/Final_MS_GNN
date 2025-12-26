@@ -313,15 +313,24 @@ class MergeExecutor:
 
             for step in range(self.config.max_merges):
                 try:
-                    # Get action from policy
+                    # ✅ FIX 3: Properly detect policy type and extract action
                     if hasattr(policy, 'model'):  # GNN policy
-                        action = policy.select_merge(obs)
+                        # GNN policy: pass full observation dict
+                        action = policy.select_merge(obs)  # Returns Python int
                     else:  # Random policy
-                        num_edges = obs.get('num_edges', 0) if isinstance(obs, dict) else 0
-                        action = policy.select_merge(None, num_edges)
+                        # Random policy: can pass just num_edges
+                        num_edges_available = int(obs.get('num_edges', 1))
+                        action = policy.select_merge(obs, num_edges=num_edges_available)
+
+                    # ✅ FIX 4: Ensure action is Python int before using
+                    action = int(action)
+                    if not isinstance(action, int):
+                        raise TypeError(f"Action must be Python int, got {type(action)}")
+
+                    logger.debug(f"[EXEC] Step {step}: action={action} (type: {type(action).__name__})")
 
                     # Execute step
-                    obs, reward, done, truncated, info = env.step(int(action))
+                    obs, reward, done, truncated, info = env.step(action)
                     num_merges += 1
 
                     # Track metrics

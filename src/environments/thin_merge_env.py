@@ -806,23 +806,31 @@ class ThinMergeEnv(gym.Env):
             raw_obs = self._wait_for_observation(iteration)
         except TimeoutError as e:
             logger.error(f"[THIN_ENV] Timeout: {e}")
-            return self._last_observation, -1.0, True, False, {"error": str(e)}
+            # ✅ FIX 8: Ensure all returns use Python types
+            return (
+                self._last_observation,
+                float(-1.0),  # Python float
+                True,  # Python bool
+                False,  # Python bool
+                {"error": str(e)}
+            )
         except RuntimeError as e:
             logger.error(f"[THIN_ENV] Step failed: {e}")
-            return self._last_observation, -1.0, True, False, {"error": str(e)}
+            return (
+                self._last_observation,
+                float(-1.0),
+                True,
+                False,
+                {"error": str(e)}
+            )
 
         obs = self._observation_to_tensors(raw_obs)
         self._last_observation = obs
 
-        # ✅ FIX: Ensure reward is a Python float, not numpy scalar
-        reward = self._compute_reward(raw_obs)
-        reward = float(reward)  # Convert to Python float
-
-        # ✅ FIX: Ensure num_active_systems is int (not numpy int)
+        # ✅ FIX 9: Explicit type conversions
+        reward = float(self._compute_reward(raw_obs))
         num_active = int(raw_obs.get('num_active_systems', 1))
         is_done = bool(raw_obs.get('is_terminal', False))
-
-        # ✅ FIX: Ensure terminated/truncated are Python booleans
         terminated = bool((num_active <= 1) or is_done)
         truncated = bool(iteration >= self.max_merges - 1)
 
@@ -832,10 +840,6 @@ class ThinMergeEnv(gym.Env):
             "num_active_systems": num_active,
             "reward_signals": raw_obs.get('reward_signals', {}),
         }
-
-        if terminated or truncated:
-            logger.info(f"[THIN_ENV] Episode done: reward={reward:.4f}, steps={iteration + 1}")
-        # logger.info(f"[THIN_ENV] Episode done: reward={reward:.4f}, steps={iteration + 1}")
 
         return obs, reward, terminated, truncated, info
 

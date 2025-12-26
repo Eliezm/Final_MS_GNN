@@ -1,47 +1,40 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-GNN EVALUATION POLICIES - Merge decision strategies
-===================================================
-Implements different merge selection policies for M&S evaluation.
+GNN EVALUATION POLICIES - Merge decision strategies (FIXED)
 """
 
 import numpy as np
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class RandomMergePolicy:
-    """
-    Random merge strategy - selects merge edges randomly.
-
-    Used as baseline comparison against GNN-guided strategy.
-    """
+    """Random merge strategy - selects merge edges randomly."""
 
     def __init__(self, seed: int = 42):
-        """
-        Initialize random merge policy.
-
-        Args:
-            seed: Random seed for reproducibility
-        """
         self.rng = np.random.RandomState(seed)
         self.merge_count = 0
 
-    def select_merge(self, edge_logits: np.ndarray, num_edges: int) -> int:
+    def select_merge(self, obs, num_edges: int = None) -> int:
         """
-        Select a random merge edge.
-
-        Args:
-            edge_logits: Unused (for compatibility with GNN)
-            num_edges: Number of available merge edges
-
-        Returns:
-            Random edge index to merge
+        ✅ FIX: Accept observation dict, extract num_edges
         """
-        if num_edges == 0:
-            return 0
-        action = self.rng.randint(0, num_edges)
+        # Extract num_edges from observation
+        if obs is None:
+            num_edges_to_use = 1
+        elif isinstance(obs, dict):
+            num_edges_to_use = int(obs.get('num_edges', 1))
+        else:
+            num_edges_to_use = int(num_edges) if num_edges else 1
+
+        num_edges_to_use = max(1, num_edges_to_use)
+        action = self.rng.randint(0, num_edges_to_use)
         self.merge_count += 1
-        return action
+
+        # ✅ FIX: Ensure return is Python int
+        return int(action)
 
     def reset(self):
         """Reset merge counter for new problem."""
@@ -49,11 +42,7 @@ class RandomMergePolicy:
 
 
 class GNNMergePolicy:
-    """
-    GNN merge policy wrapper - encapsulates a trained GNN model.
-
-    Provides interface-compatible predictions for merge selection.
-    """
+    """GNN merge policy wrapper - encapsulates a trained GNN model."""
 
     def __init__(self, model):
         """
@@ -65,20 +54,40 @@ class GNNMergePolicy:
         self.model = model
         self.decision_count = 0
 
-    def select_merge(self, obs: dict, deterministic: bool = True) -> int:
+    def select_merge(self, obs, deterministic: bool = True) -> int:
         """
-        Select merge using GNN policy.
+        ✅ FIX: Properly extract action from model.predict() output
 
         Args:
-            obs: Observation from environment
+            obs: Observation dict from environment
             deterministic: Whether to use deterministic policy
 
         Returns:
-            Action index selected by GNN
+            Action index (Python int, not numpy)
         """
-        action, _ = self.model.predict(obs, deterministic=deterministic)
-        self.decision_count += 1
-        return int(action)
+        try:
+            # model.predict returns (action_array, _states)
+            action_array, _states = self.model.predict(obs, deterministic=deterministic)
+
+            # ✅ FIX 1: Extract scalar from numpy array
+            if isinstance(action_array, np.ndarray):
+                action = int(action_array.flat[0])  # Use .flat[0] for any shape
+            else:
+                action = int(action_array)
+
+            self.decision_count += 1
+
+            # ✅ FIX 2: Validate action is Python int
+            assert isinstance(action, int) and not isinstance(action, (np.integer, np.ndarray)), \
+                f"Action must be Python int, got {type(action)}: {action}"
+
+            return action
+
+        except Exception as e:
+            logger.error(f"[GNNPolicy] select_merge failed: {e}")
+            logger.error(f"  obs type: {type(obs)}")
+            logger.error(f"  obs keys: {obs.keys() if isinstance(obs, dict) else 'not dict'}")
+            raise
 
     def reset(self):
         """Reset decision counter."""
