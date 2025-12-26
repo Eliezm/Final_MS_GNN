@@ -935,6 +935,83 @@ class ThinMergeEnv(gym.Env):
 
         return obs, reward, terminated, truncated, info
 
+    def _compute_reward_with_validation(self, raw_obs: Dict[str, Any]) -> float:
+        """
+        ✅ AGGRESSIVE reward computation with triple validation.
+
+        Ensures:
+        1. Reward function returns value
+        2. Value is converted to Python float
+        3. Float is validated as proper Python type
+        4. Value is within valid range
+        """
+        if self._reward_function is None:
+            self._init_reward_function()
+
+        try:
+            # STEP 1: Call reward function
+            reward_raw = self._reward_function.compute_reward(raw_obs)
+
+            # STEP 2: Convert to Python float
+            # Handle numpy scalars, arrays, tensors
+            if isinstance(reward_raw, np.ndarray):
+                if reward_raw.shape == ():  # 0-d array
+                    reward_float = float(reward_raw.item())
+                else:
+                    raise TypeError(f"Reward array shape {reward_raw.shape}, expected scalar")
+
+            elif isinstance(reward_raw, (np.floating, np.integer)):
+                # Numpy scalar type
+                reward_float = float(reward_raw.item())
+
+            elif isinstance(reward_raw, float):
+                # Already Python float
+                reward_float = reward_raw
+
+            else:
+                # Try generic conversion
+                reward_float = float(reward_raw)
+
+            # STEP 3: Validate it's actually Python float
+            if not isinstance(reward_float, float):
+                raise TypeError(f"After conversion, reward is {type(reward_float)}, not float")
+
+            # STEP 4: Check for NaN/Inf
+            if np.isnan(reward_float):
+                logger.warning("[THIN_ENV] Reward is NaN, setting to -1.0")
+                reward_float = -1.0
+            elif np.isinf(reward_float):
+                logger.warning(f"[THIN_ENV] Reward is Inf, clamping to ±2.0")
+                reward_float = 2.0 if reward_float > 0 else -2.0
+
+            # STEP 5: Clamp to valid range
+            reward_float = max(-2.0, min(2.0, reward_float))
+
+            # Final validation
+            assert isinstance(reward_float, float) and not isinstance(reward_float, bool), \
+                f"Final reward validation failed: {type(reward_float)}"
+
+            return reward_float
+
+        except Exception as e:
+            logger.error(f"[THIN_ENV] Reward computation failed: {e}")
+            logger.error(f"  Raw reward: {reward_raw if 'reward_raw' in locals() else 'NOT SET'}")
+            logger.error(f"  Raw type: {type(reward_raw) if 'reward_raw' in locals() else 'N/A'}")
+            import traceback
+            logger.error(f"  Traceback: {traceback.format_exc()}")
+            # Return safe default
+            return -1.0
+
+    def _create_dummy_observation(self) -> Dict[str, Any]:
+        """Create a dummy observation when environment fails."""
+        return {
+            "x": np.zeros((self.MAX_NODES, self.NODE_FEATURE_DIM), dtype=np.float32),
+            "edge_index": np.zeros((2, self.MAX_EDGES), dtype=np.int64),
+            "edge_features": np.zeros((self.MAX_EDGES, self.EDGE_FEATURE_DIM), dtype=np.float32),
+            "num_nodes": np.int32(1),
+            "num_edges": np.int32(0),
+        }
+
     def close(self):
         self._terminate_process()
         logger.info("[THIN_ENV] Environment closed")
