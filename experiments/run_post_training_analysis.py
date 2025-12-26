@@ -287,7 +287,7 @@ def find_experiment_directory(experiment_name: str, base_dir: str = "results") -
 
 
 def load_experiment(experiment_name: str, base_dir: str = "results") -> LoadedExperiment:
-    """Load a trained experiment."""
+    """Load a trained experiment with enhanced logging support."""
     print(f"\n📂 Loading experiment: {experiment_name}")
 
     # Find directory
@@ -314,7 +314,6 @@ def load_experiment(experiment_name: str, base_dir: str = "results") -> LoadedEx
         exp_dir / "training" / "model.zip",
         exp_dir / "checkpoints" / "model_final.zip",
     ]
-    # Also check for latest checkpoint
     checkpoint_dir = exp_dir / "checkpoints"
     if checkpoint_dir.exists():
         checkpoints = sorted(checkpoint_dir.glob("model_step_*.zip"))
@@ -328,18 +327,15 @@ def load_experiment(experiment_name: str, base_dir: str = "results") -> LoadedEx
             break
 
     if not model_path:
-        raise FileNotFoundError(
-            f"Model not found in {exp_dir}\n"
-            f"Checked: {model_candidates}"
-        )
+        raise FileNotFoundError(f"Model not found in {exp_dir}\nChecked: {model_candidates}")
 
     print(f"   Model: {Path(model_path).name}")
 
     # Find training log
     log_candidates = [
-        exp_dir / "training" / "training_log.jsonl",  # ✅ Primary location (from output_structure)
-        exp_dir / "training_log.jsonl",                 # Fallback location
-        exp_dir / "logs" / "training_log.jsonl",        # Alternative location
+        exp_dir / "training" / "training_log.jsonl",
+        exp_dir / "training_log.jsonl",
+        exp_dir / "logs" / "training_log.jsonl",
     ]
 
     training_log_path = None
@@ -348,50 +344,46 @@ def load_experiment(experiment_name: str, base_dir: str = "results") -> LoadedEx
             training_log_path = str(candidate)
             break
 
-    # Load training log
+    # ✅ ENHANCED: Use new logging utilities
+    from experiments.core.logging import load_training_log, EpisodeMetrics
+
     training_log = []
     episode_reward_signals = {}
 
     if training_log_path:
         print(f"   Training log: {Path(training_log_path).name}")
         try:
-            with open(training_log_path, 'r', encoding='utf-8') as f:
-                for line_num, line in enumerate(f):
-                    try:
-                        data = json.loads(line.strip())
-                        # ✅ FIX: Handle missing 'episode' field
-                        if 'episode' not in data and line_num >= 0:
-                            data['episode'] = line_num
-                        metrics = EpisodeMetrics(**data)
-                        training_log.append(metrics)
-
-                        # Build episode_reward_signals
-                        if hasattr(metrics, 'merge_decisions_per_step') and metrics.merge_decisions_per_step:
-                            episode_reward_signals[metrics.episode] = {
-                                'problem_name': metrics.problem_name,
-                                'episode_reward': metrics.reward,
-                                'reward_signals_per_step': metrics.merge_decisions_per_step,
-                                'component_summary': {
-                                    'avg_h_preservation': metrics.component_h_preservation,
-                                    'avg_transition_control': metrics.component_transition_control,
-                                    'avg_operator_projection': metrics.component_operator_projection,
-                                    'avg_label_combinability': metrics.component_label_combinability,
-                                    'avg_bonus_signals': metrics.component_bonus_signals,
-                                    'avg_h_star_ratio': metrics.h_star_ratio,
-                                    'avg_transition_growth': metrics.transition_growth_ratio,
-                                    'avg_opp_score': metrics.opp_score,
-                                    'avg_label_score': metrics.label_combinability_score,
-                                    'min_reachability': metrics.reachability_ratio,
-                                    'max_dead_end_penalty': metrics.penalty_dead_end,
-                                    'max_solvability_penalty': metrics.penalty_solvability_loss,
-                                }
-                            }
-                    except (json.JSONDecodeError, TypeError) as e:
-                        continue
-
+            # ✅ Use enhanced loader
+            training_log = load_training_log(training_log_path)
             print(f"   Loaded {len(training_log)} episodes from training log")
+
+            # Build episode_reward_signals from loaded metrics
+            for metrics in training_log:
+                if metrics.merge_decisions_per_step:
+                    episode_reward_signals[metrics.episode] = {
+                        'problem_name': metrics.problem_name,
+                        'episode_reward': metrics.reward,
+                        'reward_signals_per_step': metrics.merge_decisions_per_step,
+                        'component_summary': {
+                            'avg_h_preservation': metrics.component_h_preservation,
+                            'avg_transition_control': metrics.component_transition_control,
+                            'avg_operator_projection': metrics.component_operator_projection,
+                            'avg_label_combinability': metrics.component_label_combinability,
+                            'avg_bonus_signals': metrics.component_bonus_signals,
+                            'avg_h_star_ratio': metrics.h_star_ratio,
+                            'avg_transition_growth': metrics.transition_growth_ratio,
+                            'avg_opp_score': metrics.opp_score,
+                            'avg_label_score': metrics.label_combinability_score,
+                            'min_reachability': metrics.reachability_ratio,
+                            'max_dead_end_penalty': metrics.penalty_dead_end,
+                            'max_solvability_penalty': metrics.penalty_solvability_loss,
+                        }
+                    }
+
         except Exception as e:
             print(f"   ⚠️ Could not load training log: {e}")
+            import traceback
+            traceback.print_exc()
     else:
         print(f"   ⚠️ No training log found")
 

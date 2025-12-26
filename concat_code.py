@@ -42,6 +42,7 @@ def main():
     "experiments/runners/__init__.py",
     "experiments/runners/experiment_runner.py",
     "experiments/core/__init__.py",
+    "experiments/core/log_analysis_utils.py",
 
     "experiments/core/evaluation.py",
     "experiments/core/benchmark_discovery.py",
