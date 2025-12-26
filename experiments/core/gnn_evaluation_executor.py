@@ -439,10 +439,15 @@ class MergeExecutor:
 
         except Exception as e:
             elapsed = time.time() - start_time if 'start_time' in locals() else 0.0
+
+            # ✅ ENHANCED: Log full traceback for debugging
             logger.error(f"Executor error: {e}")
+            import traceback
+            logger.error(f"Full traceback:\n{traceback.format_exc()}")
 
             return False, 0, 1.0, elapsed, False, {
                 'error': str(e),
+                'error_type': type(e).__name__,
                 'solved': False,
                 'elapsed': elapsed,
                 'num_merges': 0,

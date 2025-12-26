@@ -84,13 +84,13 @@ def validate_done_truncated(done: Any, truncated: Any) -> Tuple[bool, bool]:
 
 def validate_observation(obs: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Validate observation dictionary structure.
+    Validate observation dictionary structure and fix types.
 
     Args:
         obs: Observation from environment
 
     Returns:
-        obs: Validated observation
+        obs: Validated observation with corrected types
 
     Raises:
         TypeError: If observation has invalid structure
@@ -115,6 +115,12 @@ def validate_observation(obs: Dict[str, Any]) -> Dict[str, Any]:
 
     if not isinstance(obs['edge_features'], np.ndarray):
         raise TypeError(f"edge_features must be numpy array, got {type(obs['edge_features'])}")
+
+    # ✅ FIX: Convert numpy int32/int64 to Python int
+    if isinstance(obs.get('num_nodes'), (np.integer, np.ndarray)):
+        obs['num_nodes'] = int(obs['num_nodes'])
+    if isinstance(obs.get('num_edges'), (np.integer, np.ndarray)):
+        obs['num_edges'] = int(obs['num_edges'])
 
     return obs
 
@@ -199,10 +205,19 @@ class StepValidatorWrapper:
                 logger.warning(f"⚠️ Step validation warning (continuing): {e}")
                 # Return anyway, trying to fix what we can
                 try:
+                    # ✅ FIX: Convert types aggressively in non-strict mode
                     reward = float(reward) if not isinstance(reward, float) else reward
                     terminated = bool(terminated)
                     truncated = bool(truncated)
-                except Exception:
+
+                    # ✅ FIX: Fix observation types if possible
+                    if isinstance(obs, dict):
+                        if 'num_nodes' in obs and isinstance(obs['num_nodes'], (np.integer, np.ndarray)):
+                            obs['num_nodes'] = int(obs['num_nodes'])
+                        if 'num_edges' in obs and isinstance(obs['num_edges'], (np.integer, np.ndarray)):
+                            obs['num_edges'] = int(obs['num_edges'])
+                except Exception as fix_error:
+                    logger.warning(f"⚠️ Could not fix types: {fix_error}")
                     pass
                 return obs, reward, terminated, truncated, info
 
