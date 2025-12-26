@@ -12,6 +12,8 @@ Usage:
 """
 
 import numpy as np
+import gymnasium as gym  # ✅ ADD THIS
+from gymnasium import Wrapper  # ✅ ADD THIS
 import logging
 from typing import Dict, Any, Tuple
 
@@ -166,7 +168,8 @@ def validate_step_output(
         raise
 
 
-class StepValidatorWrapper:
+# ✅ FIXED: StepValidatorWrapper now inherits from gymnasium.Wrapper
+class StepValidatorWrapper(gym.Wrapper):
     """Wrapper for environment that validates step() outputs."""
 
     def __init__(self, env, strict: bool = True):
@@ -177,7 +180,7 @@ class StepValidatorWrapper:
             env: Gymnasium environment to wrap
             strict: If True, raise errors; if False, log warnings
         """
-        self.env = env
+        super().__init__(env)  # ✅ Call parent constructor
         self.strict = strict
 
     def step(self, action: int) -> Tuple[Dict, float, bool, bool, Dict]:
@@ -232,10 +235,6 @@ class StepValidatorWrapper:
             logger.warning(f"⚠️ Reset observation validation warning: {e}")
         return obs, info
 
-    def __getattr__(self, name):
-        """Delegate other methods to wrapped env."""
-        return getattr(self.env, name)
-
 
 # Utility function for easy wrapping
 def wrap_with_validation(env, strict: bool = True):
@@ -247,6 +246,7 @@ def wrap_with_validation(env, strict: bool = True):
         strict: If True, raise errors on validation failure
 
     Returns:
-        Wrapped environment
+        Wrapped environment (proper Gymnasium wrapper)
     """
+    # ✅ FIXED: Returns a proper Gymnasium wrapper
     return StepValidatorWrapper(env, strict=strict)

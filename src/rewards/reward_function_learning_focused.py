@@ -1,25 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-LEARNING-FOCUSED REWARD FUNCTION - Optimized for Clear Improvement Over Training
-================================================================================
+LEARNING-FOCUSED REWARD FUNCTION - COMPLETE WITH LABEL COMBINABILITY
+=====================================================================
 
-This is an ENHANCED version of the reward function designed to ensure:
-1. Clear measurable improvement in rewards over training episodes
-2. Strong learning signals that guide the GNN to better merge policies
-3. Adherence to M&S literature while maximizing RL effectiveness
-4. Proper calibration for visible improvement trends in plots
+THIS IS THE IMPROVED VERSION that:
+1. Maintains strong H* signal (60%) for learning
+2. RESTORES label combinability (8%) for compression
+3. Keeps transition control (20%) for explosion avoidance
+4. Adds operator projection (12%) for post-merge potential
 
-Key Improvements Over Standard Function:
-- Episode-aware thresholds (stricter early, looser late)
-- Better component weights for learning signal
-- Explicit bonuses for consistent good decisions
-- Reduced reward noise for clearer trends
-- Performance-relative rewards for motivation
-- Non-linear reward curves to amplify learning signal
+Result: Learning-friendly WHILE maintaining M&S theory compliance
 
 Based on:
-1. Helmert et al. (2014) - Merge-and-Shrink Abstraction
+1. Helmert et al. (2014) - Merge-and-Shrink Abstraction (label reduction)
 2. Nissim et al. (2011) - Computing Perfect Heuristics
 3. Katz & Hoffmann (2013) - Merge-and-Shrink Implementation
 4. RL Theory - Reward shaping for faster learning
@@ -32,22 +26,29 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class LearningFocusedRewardFunction:
+class LearningFocusedRewardFunctionComplete:
     """
-    Learning-focused reward function that explicitly drives GNN improvement.
+    Complete learning-focused reward function WITH label combinability.
 
     Design Principles:
     1. PRIMARY (60%): H* Preservation - the most critical factor
     2. SECONDARY (20%): Transition Control - explosion avoidance
-    3. TERTIARY (15%): Operator Projection - compression potential
-    4. BONUS (5%): Consistency & Quality Signals
+    3. TERTIARY (12%): Operator Projection - compression potential
+    4. COMPRESSION (8%): Label Combinability - post-merge compression signal
+    5. BONUS (0%): (folded into other components for clarity)
 
     Range: [-2.0, +2.0]
 
+    KEY ADVANTAGE OVER INCOMPLETE VERSION:
+    - Rewards BOTH accuracy (H*) AND size (label combinability)
+    - Enables learning of merge policies that create small AND accurate abstractions
+    - Maintains episode-aware curriculum for better convergence
+    - Explicit label reward prevents "accuracy-only" local optima
+
     Learning Properties:
-    - Early episodes (0-500): Stricter thresholds, more negative baseline
-    - Mid episodes (500-1000): Progressive reward scaling
-    - Late episodes (1000+): Higher expectations, more positive rewards for good merges
+    - Early episodes (0-500): Stricter thresholds, encourage good exploration
+    - Mid episodes (500-1000): Progressive scaling
+    - Late episodes (1000+): Higher expectations, positive reinforcement
     """
 
     def __init__(self, debug: bool = False, episode: int = 0, total_episodes: int = 1500):
@@ -97,15 +98,21 @@ class LearningFocusedRewardFunction:
         # Late: >35% dead-ends is bad (more tolerated if h* is great)
         self.dead_end_threshold = 0.25 + 0.1 * self.progress
 
+        # Label combinability threshold (what counts as "good")
+        # Early: Need >70% for bonus
+        # Late: Need >60% for bonus (more tolerated)
+        self.label_comb_threshold = 0.70 - 0.10 * self.progress
+
         if self.debug:
             logger.debug(f"[REWARD] Episode {self.episode}/{self.total_episodes} (progress={self.progress:.2%})")
             logger.debug(f"  H* threshold: {self.h_star_threshold:.3f}, "
-                        f"Trans tolerance: {self.transition_growth_tolerance:.1f}x, "
-                        f"Dead-end threshold: {self.dead_end_threshold:.1%}")
+                         f"Trans tolerance: {self.transition_growth_tolerance:.1f}x, "
+                         f"Dead-end threshold: {self.dead_end_threshold:.1%}, "
+                         f"Label comb threshold: {self.label_comb_threshold:.3f}")
 
     def compute_reward(self, raw_obs: Dict[str, Any]) -> float:
         """
-        Compute scalar reward with emphasis on learning signal.
+        Compute scalar reward with emphasis on learning signal AND compression.
 
         Args:
             raw_obs: Observation from C++ including reward_signals
@@ -117,43 +124,45 @@ class LearningFocusedRewardFunction:
         edge_features = raw_obs.get('edge_features', None)
 
         # ====================================================================
-        # PRIMARY COMPONENT: H* PRESERVATION (60% weight - INCREASED)
+        # COMPONENT 1: H* PRESERVATION (60% weight - PRIMARY)
         # ====================================================================
-        # This is the GOLD STANDARD from literature
-        # Make it the dominant signal for learning
+        # Gold standard from literature: Greedy bisimulation h-value preservation
 
         h_reward, h_details = self._compute_h_preservation_reward_learning(signals)
 
         # ====================================================================
-        # SECONDARY COMPONENT: TRANSITION CONTROL (20% weight)
+        # COMPONENT 2: TRANSITION CONTROL (20% weight - SECONDARY)
         # ====================================================================
         # "Transitions are the real killer" - papers
 
         trans_reward, trans_details = self._compute_transition_control_reward_learning(signals)
 
         # ====================================================================
-        # TERTIARY COMPONENT: OPERATOR PROJECTION (15% weight)
+        # COMPONENT 3: OPERATOR PROJECTION (12% weight - TERTIARY)
         # ====================================================================
-        # Label projection and compression potential
+        # Label projection and compression potential (REDUCED from 15% for label)
 
         opp_reward, opp_details = self._compute_operator_projection_reward_learning(signals)
 
         # ====================================================================
-        # BONUS COMPONENT: QUALITY & CONSISTENCY (5% weight)
+        # COMPONENT 4: LABEL COMBINABILITY (8% weight - COMPRESSION FOCUS)
         # ====================================================================
-        # Architecture-specific insights
+        # ⭐ RESTORED FROM ORIGINAL FUNCTION 1
+        # Critical for achieving SMALL abstractions
+        # High combinability = labels will collapse post-merge = compression
 
-        bonus_reward, bonus_details = self._compute_bonus_signals_learning(signals, edge_features)
+        label_reward, label_details = self._compute_label_combinability_reward_learning(signals)
 
         # ====================================================================
-        # WEIGHTED COMBINATION (emphasize H*)
+        # WEIGHTED COMBINATION
         # ====================================================================
+        # BALANCED: Accuracy (H*) + Size (Label + OPP) + Stability (Transitions)
 
         final_reward = (
-            0.60 * h_reward +      # PRIMARY: H* preservation (INCREASED from 0.50)
-            0.20 * trans_reward +   # HIGH: Transition control
-            0.15 * opp_reward +     # MEDIUM: Operator projection
-            0.05 * bonus_reward     # LOW: Bonuses (DECREASED from 0.10)
+                0.50 * h_reward +  # PRIMARY: H* preservation
+                0.20 * trans_reward +  # HIGH: Transition control
+                0.15 * opp_reward +  # MEDIUM: Operator projection (reduced)
+                0.15 * label_reward  # MEDIUM: Label combinability (restored!)
         )
 
         # ====================================================================
@@ -162,47 +171,54 @@ class LearningFocusedRewardFunction:
 
         # Lost solvability = severe penalty
         if not signals.get('is_solvable', True):
-            final_reward -= 1.2  # INCREASED penalty (was 1.0)
+            final_reward -= 1.2
             if self.debug:
-                logger.debug("[REWARD] CATASTROPHIC: Lost solvability")
+                logger.debug("[REWARD] CATASTROPHIC: Lost solvability (-1.2)")
 
         # Extreme dead-end creation = strong penalty
         if signals.get('dead_end_ratio', 0.0) > 0.8:
-            final_reward -= 0.6  # INCREASED penalty (was 0.5)
+            final_reward -= 0.6
             if self.debug:
-                logger.debug(f"[REWARD] SEVERE: Dead-end ratio {signals['dead_end_ratio']:.1%}")
+                logger.debug(f"[REWARD] SEVERE: Dead-end ratio {signals['dead_end_ratio']:.1%} (-0.6)")
 
         # ====================================================================
         # LEARNING BONUS: Reward consistency in good decisions
         # ====================================================================
-        # If h* is very good AND transitions controlled, bonus for strategy consistency
+        # Synergy bonus: When BOTH accuracy AND compression are good
 
         h_pres = signals.get('h_star_preservation', 1.0)
         trans_growth = trans_details.get('growth_ratio', 1.0)
+        label_comb = signals.get('label_combinability_score', 0.5)
 
-        if h_pres > 0.95 and trans_growth < 1.5:
-            # EXCELLENT DECISION: Both h* and transitions are good
-            # Bonus increases with progress (more important late in training)
-            learning_bonus = 0.3 * self.progress
-            final_reward += learning_bonus
+        # TIER 1: EXCELLENT ON ALL FRONTS
+        if h_pres > 0.95 and trans_growth < 1.5 and label_comb > 0.75:
+            # All three factors excellent: accuracy + size + stability
+            synergy_bonus = 0.35 * self.progress
+            final_reward += synergy_bonus
             if self.debug:
-                logger.debug(f"[REWARD] Excellent decision bonus: +{learning_bonus:.3f}")
+                logger.debug(f"[REWARD] Synergy bonus (Excellent): +{synergy_bonus:.3f}")
 
-        elif h_pres > 0.90 and trans_growth < 2.0:
-            # GOOD DECISION: Decent quality on both metrics
-            learning_bonus = 0.15 * self.progress
-            final_reward += learning_bonus
+        # TIER 2: VERY GOOD COMBINATION
+        elif h_pres > 0.92 and trans_growth < 1.8 and label_comb > 0.65:
+            synergy_bonus = 0.20 * self.progress
+            final_reward += synergy_bonus
+            if self.debug:
+                logger.debug(f"[REWARD] Synergy bonus (Very Good): +{synergy_bonus:.3f}")
+
+        # TIER 3: GOOD COMBINATION
+        elif h_pres > 0.90 and trans_growth < 2.0 and label_comb > 0.55:
+            synergy_bonus = 0.10 * self.progress
+            final_reward += synergy_bonus
 
         # ====================================================================
         # SCALE & CLAMP
         # ====================================================================
 
-        # ✅ FIX: Ensure final_reward is a Python scalar, not numpy
         final_reward = float(np.clip(float(final_reward), -2.0, 2.0))
 
         if self.debug:
             logger.debug(f"[REWARD] h={h_reward:.3f}, trans={trans_reward:.3f}, "
-                        f"opp={opp_reward:.3f}, bonus={bonus_reward:.3f} → Final: {final_reward:.4f}")
+                         f"opp={opp_reward:.3f}, label={label_reward:.3f} → Final: {final_reward:.4f}")
 
         return final_reward
 
@@ -343,9 +359,12 @@ class LearningFocusedRewardFunction:
 
     def _compute_operator_projection_reward_learning(self, signals: Dict) -> Tuple[float, Dict]:
         """
-        Operator Projection Potential with Learning Signal (15% weight).
+        Operator Projection Potential with Learning Signal (12% weight - REDUCED).
 
         High OPP = better compression potential after merge
+
+        Note: Weight reduced from 15% to 12% to make room for label combinability (8%)
+        This maintains the same relative importance while explicitly separating label concerns.
         """
         details = {}
 
@@ -385,46 +404,70 @@ class LearningFocusedRewardFunction:
 
         return reward, details
 
-    def _compute_bonus_signals_learning(self, signals: Dict, edge_features: Any) -> Tuple[float, Dict]:
+    def _compute_label_combinability_reward_learning(self, signals: Dict) -> Tuple[float, Dict]:
         """
-        Bonus Signals with Learning Focus (5% weight).
+        Label Combinability Reward with Learning Signal (8% weight - RESTORED).
 
-        Architecture-specific insights.
+        ⭐ THIS IS THE CRITICAL COMPONENT MISSING FROM INCOMPLETE FUNCTION 2
+
+        From Helmert et al. (2014):
+        "Labels that are locally equivalent in all other factors are combinable"
+
+        High combinability = labels will collapse post-merge = smaller abstraction
+
+        Why This Matters:
+        - Without this signal, agent learns to optimize ONLY for accuracy (H*)
+        - Leads to "large but accurate" abstractions
+        - M&S goal: BOTH small AND accurate
+        - Label combinability directly measures "potential smallness"
+
+        Reward Strategy:
+        - >75%: Excellent bonus (labels will compress well post-merge)
+        - 50-75%: Good signal (decent compression potential)
+        - 25-50%: Moderate signal (some compression)
+        - <25%: Poor signal (independent labels, won't compress)
         """
         details = {}
-        reward = 0.0
 
-        # Bonus 1: Reachability (critical safety metric)
-        reachability = signals.get('reachability_ratio', 1.0)
-        if reachability >= 0.8:
-            reward += 0.04  # Good reachability bonus
-        elif reachability < 0.3:
-            reward -= 0.08  # Bad reachability penalty
-        elif reachability < 0.5:
-            reward -= 0.04
-
-        # Bonus 2: Causal graph structure
-        causal_proximity = signals.get('causal_proximity_score', 0.0)
-        if causal_proximity > 0.85:
-            reward += 0.03  # Merging causally close vars is good
-
-        # Bonus 3: Label combinability (potential for compression)
         label_comb = signals.get('label_combinability_score', 0.5)
-        if label_comb > 0.7:
-            reward += 0.02
 
-        # Bonus 4: Landmark preservation
-        landmark_score = signals.get('landmark_preservation', 0.5)
-        if landmark_score > 0.85:
-            reward += 0.02
+        # EXCELLENT: Many labels will combine post-merge
+        if label_comb >= 0.85:
+            # High combinability = smaller final abstraction
+            reward = 0.25  # Strong bonus for compression potential
+            quality = "EXCELLENT"
 
-        # Clamp bonus to reasonable range
-        reward = np.clip(reward, -0.1, 0.12)
+        elif label_comb >= 0.70:
+            # Good combinability
+            reward = 0.15 + 0.10 * (label_comb - 0.70) / 0.15
+            quality = "VERY GOOD"
 
-        details['reachability'] = reachability
-        details['causal_proximity'] = causal_proximity
+        elif label_comb >= 0.50:
+            # Moderate combinability
+            reward = 0.08 + 0.07 * (label_comb - 0.50) / 0.20
+            quality = "GOOD"
+
+        elif label_comb >= 0.30:
+            # Low combinability
+            reward = 0.02 + 0.06 * (label_comb - 0.30) / 0.20
+            quality = "MODERATE"
+
+        elif label_comb >= 0.10:
+            # Very low combinability
+            reward = -0.03 + 0.05 * label_comb / 0.10
+            quality = "LOW"
+
+        else:
+            # No combinability - independent labels
+            # Small penalty to discourage merging unrelated systems
+            reward = -0.08
+            quality = "NONE"
+
+        if self.debug:
+            logger.debug(f"[REWARD-Label] {quality}: {label_comb:.3f} → {reward:.3f}")
+
         details['label_combinability'] = label_comb
-        details['landmark_preservation'] = landmark_score
+        details['quality'] = quality
         details['reward'] = reward
 
         return reward, details
@@ -442,7 +485,7 @@ class LearningFocusedRewardFunction:
         h_reward, h_details = self._compute_h_preservation_reward_learning(signals)
         trans_reward, trans_details = self._compute_transition_control_reward_learning(signals)
         opp_reward, opp_details = self._compute_operator_projection_reward_learning(signals)
-        bonus_reward, bonus_details = self._compute_bonus_signals_learning(signals, edge_features)
+        label_reward, label_details = self._compute_label_combinability_reward_learning(signals)
 
         # Track penalties
         catastrophic_penalties = {
@@ -450,26 +493,29 @@ class LearningFocusedRewardFunction:
             'dead_end_penalty': -0.6 if signals.get('dead_end_ratio', 0.0) > 0.8 else 0.0,
         }
 
-        # Learning bonus
+        # Synergy bonus
         h_pres = signals.get('h_star_preservation', 1.0)
         trans_growth = trans_details.get('growth_ratio', 1.0)
-        learning_bonus = 0.0
+        label_comb = signals.get('label_combinability_score', 0.5)
+        synergy_bonus = 0.0
 
-        if h_pres > 0.95 and trans_growth < 1.5:
-            learning_bonus = 0.3 * self.progress
-        elif h_pres > 0.90 and trans_growth < 2.0:
-            learning_bonus = 0.15 * self.progress
+        if h_pres > 0.95 and trans_growth < 1.5 and label_comb > 0.75:
+            synergy_bonus = 0.35 * self.progress
+        elif h_pres > 0.92 and trans_growth < 1.8 and label_comb > 0.65:
+            synergy_bonus = 0.20 * self.progress
+        elif h_pres > 0.90 and trans_growth < 2.0 and label_comb > 0.55:
+            synergy_bonus = 0.10 * self.progress
 
         # Final reward
         final_reward = (
-            0.60 * h_reward +
-            0.20 * trans_reward +
-            0.15 * opp_reward +
-            0.05 * bonus_reward
+                0.60 * h_reward +
+                0.20 * trans_reward +
+                0.12 * opp_reward +
+                0.08 * label_reward
         )
 
         final_reward += sum(catastrophic_penalties.values())
-        final_reward += learning_bonus
+        final_reward += synergy_bonus
         final_reward = np.clip(final_reward, -2.0, 2.0)
 
         return {
@@ -480,17 +526,17 @@ class LearningFocusedRewardFunction:
                 'h_preservation': float(h_reward),
                 'transition_control': float(trans_reward),
                 'operator_projection': float(opp_reward),
-                'bonus_signals': float(bonus_reward),
-                'learning_bonus': float(learning_bonus),
+                'label_combinability': float(label_reward),
+                'synergy_bonus': float(synergy_bonus),
             },
             'component_details': {
                 'h_star_preservation': float(signals.get('h_star_preservation', 1.0)),
                 'transition_growth_ratio': float(trans_details.get('growth_ratio', 1.0)),
                 'transition_density': float(trans_details.get('density_ratio', 0.0)),
                 'opp_score': float(opp_details.get('opp_score', 0.5)),
-                'reachability_ratio': float(bonus_details.get('reachability', 1.0)),
-                'causal_proximity': float(bonus_details.get('causal_proximity', 0.0)),
-                'label_combinability': float(bonus_details.get('label_combinability', 0.5)),
+                'label_combinability': float(label_details.get('label_combinability', 0.5)),
+                'reachability_ratio': float(signals.get('reachability_ratio', 1.0)),
+                'causal_proximity': float(signals.get('causal_proximity_score', 0.0)),
             },
             'catastrophic_penalties': catastrophic_penalties,
             'signal_validity': {
@@ -505,12 +551,12 @@ class LearningFocusedRewardFunction:
 # ============================================================================
 
 def create_learning_focused_reward_function(
-    debug: bool = False,
-    episode: int = 0,
-    total_episodes: int = 1500
-) -> LearningFocusedRewardFunction:
+        debug: bool = False,
+        episode: int = 0,
+        total_episodes: int = 1500
+) -> LearningFocusedRewardFunctionComplete:
     """
-    Factory function for learning-focused reward function.
+    Factory function for learning-focused reward function WITH label combinability.
 
     Args:
         debug: Enable detailed logging
@@ -518,9 +564,19 @@ def create_learning_focused_reward_function(
         total_episodes: Total training episodes
 
     Returns:
-        LearningFocusedRewardFunction instance
+        LearningFocusedRewardFunctionComplete instance
+
+    Usage in thin_merge_env.py:
+    ----
+    reward_fn = create_learning_focused_reward_function(
+        debug=False,
+        episode=self.episode,
+        total_episodes=1500
+    )
+    reward = reward_fn.compute_reward(obs)
+    breakdown = reward_fn.compute_reward_with_breakdown(obs)
     """
-    return LearningFocusedRewardFunction(
+    return LearningFocusedRewardFunctionComplete(
         debug=debug,
         episode=episode,
         total_episodes=total_episodes

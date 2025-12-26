@@ -141,6 +141,10 @@ class CurriculumExperimentRunner:
         # PHASE LOOP: Train progressively larger problems
         # ====================================================================
 
+        # Before the phase loop:
+        cumulative_episodes = 0
+        total_all_episodes = sum(phase.num_episodes for phase in self.config.curriculum_phases)
+
         for phase_idx, phase in enumerate(self.config.curriculum_phases, 1):
             print(f"\n{'=' * 100}")
             print(f"📚 CURRICULUM PHASE {phase_idx}/{len(self.config.curriculum_phases)}")
@@ -180,6 +184,8 @@ class CurriculumExperimentRunner:
                 timesteps_per_episode=self.config.timesteps_per_episode,
                 resume_from=current_model_path,
             )
+
+            cumulative_episodes += phase.num_episodes
 
             if not model_path:
                 print(f"\n❌ Phase {phase_idx} training failed")

@@ -23,7 +23,7 @@ import gymnasium as gym
 from gymnasium import spaces
 
 from src.rewards.reward_function_enhanced import EnhancedRewardFunction
-from src.rewards.reward_function_learning_focused import LearningFocusedRewardFunction  # ✅ NEW
+from src.rewards.reward_function_learning_focused import LearningFocusedRewardFunctionComplete  # ✅ NEW
 from src.utils.common_utils import ThinClientConfig
 
 
@@ -92,7 +92,16 @@ class ThinMergeEnv(gym.Env):
         self.max_merges = max_merges
         self.timeout_per_step = timeout_per_step
         self.debug = debug
+        # self.reward_weights = reward_weights or self.DEFAULT_REWARD_WEIGHTS.copy()
+
         self.reward_weights = reward_weights or self.DEFAULT_REWARD_WEIGHTS.copy()
+
+        # ✅ NEW: Initialize reward function (with curriculum support)
+        self._reward_function_type = "learning_focused"  # or "enhanced"
+        self._episode_number = 0
+        self._total_episodes = 1500  # Default: can be overridden
+        self._reward_function = None
+        self._init_reward_function()
 
         self.fd_output_dir = self.downward_dir / "fd_output"
         self.gnn_output_dir = self.downward_dir / "gnn_output"
@@ -129,6 +138,36 @@ class ThinMergeEnv(gym.Env):
 
         logger.info(f"[THIN_ENV] Initialized with {self.NODE_FEATURE_DIM} node features, "
                     f"{self.EDGE_FEATURE_DIM} edge features")
+
+    def _init_reward_function(self):
+        """Initialize reward function based on configured type."""
+        if self._reward_function_type == "learning_focused":
+            from src.rewards.reward_function_learning_focused import (
+                create_learning_focused_reward_function
+            )
+            self._reward_function = create_learning_focused_reward_function(
+                debug=self.debug,
+                episode=self._episode_number,
+                total_episodes=self._total_episodes
+            )
+        else:
+            from src.rewards.reward_function_enhanced import (
+                create_enhanced_reward_function
+            )
+            self._reward_function = create_enhanced_reward_function(
+                debug=self.debug
+            )
+
+        logger.info(f"[THIN_ENV] Using reward function: {self._reward_function_type}")
+
+    def set_episode_number(self, episode: int, total_episodes: int = 1500) -> None:
+        """Set current episode for curriculum-aware reward functions."""
+        self._episode_number = episode
+        self._total_episodes = total_episodes
+
+        # Reinitialize reward function with new episode info
+        if self._reward_function_type == "learning_focused":
+            self._init_reward_function()
 
     def _setup_directories(self):
         self.fd_output_dir.mkdir(parents=True, exist_ok=True)
@@ -715,28 +754,44 @@ class ThinMergeEnv(gym.Env):
     #
     #     return reward
 
+    # def _compute_reward(self, raw_obs: Dict[str, Any]) -> float:
+    #     """
+    #     ENHANCED REWARD FUNCTION - Theory-Informed
+    #
+    #     Based on:
+    #     1. Nissim et al. (2011) - Perfect Heuristics & Bisimulation
+    #     2. Helmert et al. (2014) - M&S Implementation
+    #     3. Katz & Hoffmann (2013) - M&S Lower Bounds
+    #
+    #     Component Weights:
+    #     - H* Preservation (50%)      [Greedy Bisimulation]
+    #     - Transition Control (20%)   [Avoid Explosion]
+    #     - Operator Projection (15%)  [Enable Compression]
+    #     - Label Combinability (10%)  [Label Reduction]
+    #     - Bonuses (5%)              [Architecture Signals]
+    #     """
+    #     # from reward_function_enhanced import EnhancedRewardFunction
+    #
+    #     if not hasattr(self, '_enhanced_reward_fn'):
+    #         self._enhanced_reward_fn = EnhancedRewardFunction(debug=self.debug)
+    #
+    #     return self._enhanced_reward_fn.compute_reward(raw_obs)
+
     def _compute_reward(self, raw_obs: Dict[str, Any]) -> float:
         """
-        ENHANCED REWARD FUNCTION - Theory-Informed
+        ✅ UPDATED: Use integrated reward function (learning-focused or enhanced)
 
-        Based on:
-        1. Nissim et al. (2011) - Perfect Heuristics & Bisimulation
-        2. Helmert et al. (2014) - M&S Implementation
-        3. Katz & Hoffmann (2013) - M&S Lower Bounds
-
-        Component Weights:
-        - H* Preservation (50%)      [Greedy Bisimulation]
-        - Transition Control (20%)   [Avoid Explosion]
-        - Operator Projection (15%)  [Enable Compression]
-        - Label Combinability (10%)  [Label Reduction]
-        - Bonuses (5%)              [Architecture Signals]
+        Supports curriculum learning with episode-aware thresholds.
         """
-        # from reward_function_enhanced import EnhancedRewardFunction
+        # Initialize reward function if needed
+        if self._reward_function is None:
+            self._init_reward_function()
 
-        if not hasattr(self, '_enhanced_reward_fn'):
-            self._enhanced_reward_fn = EnhancedRewardFunction(debug=self.debug)
+        # ✅ Use the selected reward function
+        reward = self._reward_function.compute_reward(raw_obs)
 
-        return self._enhanced_reward_fn.compute_reward(raw_obs)
+        # Ensure we return Python float, not numpy scalar
+        return float(reward)
 
     def _action_to_merge_pair(self, action: int) -> Tuple[int, int]:
         if self._cached_edge_index is None or len(self._cached_edge_index) != 2:

@@ -648,9 +648,14 @@ class GNNTrainer:
                 downward_dir=str(downward_path)
             )
 
+        # ✅ NEW: Configure reward function
+        if hasattr(env, '_reward_function_type'):
+            env._reward_function_type = "learning_focused"  # Switch to learning-focused
+            env._init_reward_function()
+
         # ✅ NEW: Wrap with validation to catch type errors early
-        env = self.Monitor(env)
         env = wrap_with_validation(env, strict=False)  # Non-strict: log warnings instead of crashing
+        env = self.Monitor(env)
 
         return env
 
@@ -753,6 +758,9 @@ class GNNTrainer:
                 disable=False
             )
 
+            # ✅ NEW: Get total episodes for curriculum
+            total_training_episodes = num_episodes
+
             for episode, problem_idx in pbar:
                 domain_file, problem_file = self.benchmarks[problem_idx]
                 problem_name = self.problem_names[problem_idx]
@@ -786,6 +794,10 @@ class GNNTrainer:
                     train_seed = self.seed + episode
 
                     env = self._create_env(domain_file, problem_file, seed=train_seed)
+
+                    # ✅ NEW: Set episode number for curriculum-aware reward
+                    if hasattr(env, 'set_episode_number'):
+                        env.set_episode_number(episode, total_episodes=total_training_episodes)
 
                     if model is None:
                         model = self.PPO(
@@ -842,6 +854,10 @@ class GNNTrainer:
                     dead_end_penalties = []
                     solvability_penalties = []
                     reward_signals_per_step = []
+
+                    # Every 5 episodes, do aggressive cleanup
+                    if (episode + 1) % 5 == 0:
+                        self._explicit_cleanup()
 
                     for step in range(self.max_merges):
                         try:
@@ -1209,3 +1225,34 @@ class GNNTrainer:
             self.close_logger()
         except:
             pass
+
+    def _explicit_cleanup(self):
+        """Aggressive cleanup between episodes to prevent resource accumulation."""
+        import gc
+        import psutil
+
+        try:
+            # Force garbage collection
+            gc.collect()
+
+            # Kill any lingering FD/translate processes
+            try:
+                current_process = psutil.Process()
+                for child in current_process.children(recursive=True):
+                    try:
+                        if any(name in child.name().lower() for name in ['downward', 'translate', 'python']):
+                            if child.pid != current_process.pid:  # Don't kill ourselves
+                                child.kill()
+                    except:
+                        pass
+            except:
+                pass
+
+            # Clear signal files
+            try:
+                cleanup_signal_files()
+            except:
+                pass
+
+        except Exception as e:
+            logger.debug(f"Cleanup error (non-critical): {e}")

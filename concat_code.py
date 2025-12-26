@@ -35,8 +35,8 @@ def main():
     "experiments/__init__.py",
     "experiments/run_experiment.py",
     "experiments/run_full_experiment.py",
-    "experiments/run_post_training_analysis.py"
-    "experiments/validate_pipeline.py"
+    "experiments/run_post_training_analysis.py",
+    "experiments/validate_pipeline.py",
     "experiments/configs/__init__.py",
     "experiments/configs/experiment_configs.py",
     "experiments/runners/__init__.py",
@@ -103,6 +103,7 @@ def main():
     "src/models/gnn_model.py",
     "src/models/gnn_policy.py",
     "src/rewards/reward_function_enhanced.py",
+    "src/rewards/reward_function_learning_focused.py",
 
 
 

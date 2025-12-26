@@ -135,6 +135,18 @@ DEFAULT_REWARD_WEIGHTS = {
     'w_solvability': 0.15,
 }
 
+REWARD_FUNCTION_CONFIG = {
+    'type': 'learning_focused',  # 'learning_focused' or 'enhanced'
+    'learning_focused': {
+        'debug': False,
+        'total_episodes': 1500,
+        'use_curriculum': True,  # Enable episode-aware thresholds
+    },
+    'enhanced': {
+        'debug': False,
+    }
+}
+
 
 # ============================================================================
 # TRAINING HELPERS (UPDATED FOR THIN CLIENT)
@@ -150,6 +162,7 @@ def train_gnn_model(
         reward_weights: Optional[Dict[str, float]] = None,
         max_merges: int = 50,
         timeout_per_step: float = 120.0,
+        reward_function_config: Optional[Dict] = None,  # ✅ NEW
 ) -> Optional[str]:
     """
     Train GNN model on benchmarks using ThinMergeEnv.
@@ -159,6 +172,9 @@ def train_gnn_model(
     """
     if exp_logger is None:
         exp_logger = logging.getLogger("train_gnn")
+
+    if reward_function_config is None:
+        reward_function_config = REWARD_FUNCTION_CONFIG  # ✅ NEW
 
     try:
         from stable_baselines3 import PPO
