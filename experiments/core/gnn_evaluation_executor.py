@@ -62,9 +62,10 @@ class MergeExecutor:
             problem_file: str,
             seed: int,
     ):
-        """Create ThinMergeEnv with proper error handling."""
+        """Create ThinMergeEnv with proper error handling and validation."""
         try:
             from src.environments.thin_merge_env import ThinMergeEnv
+            from src.utils.step_validator import wrap_with_validation  # ✅ NEW: Validation
 
             try:
                 env = ThinMergeEnv(
@@ -87,6 +88,9 @@ class MergeExecutor:
                     debug=self.config.debug,
                     downward_dir=self.config.downward_dir,
                 )
+
+            # ✅ NEW: Wrap with validation to catch type errors
+            env = wrap_with_validation(env, strict=False)
 
             return env
 

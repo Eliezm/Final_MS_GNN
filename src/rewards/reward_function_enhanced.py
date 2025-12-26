@@ -130,14 +130,15 @@ class EnhancedRewardFunction:
         # SCALE & CLAMP
         # ====================================================================
 
-        final_reward = np.clip(final_reward, -2.0, 2.0)
+        # ✅ FIX: Ensure final_reward is a Python scalar, not numpy
+        final_reward = float(np.clip(float(final_reward), -2.0, 2.0))
 
         if self.debug:
             logger.debug(f"[REWARD] Components: h={h_reward:.3f}, trans={trans_reward:.3f}, "
                          f"opp={opp_reward:.3f}, label={label_reward:.3f}, bonus={bonus_reward:.3f}")
-            logger.debug(f"[REWARD] Final: {final_reward:.4f}")
+            logger.debug(f"[REWARD] Final: {final_reward:.4f} (type: {type(final_reward).__name__})")
 
-        return float(final_reward)
+        return final_reward
 
     def _compute_h_preservation_reward(self, signals: Dict) -> Tuple[float, Dict]:
         """

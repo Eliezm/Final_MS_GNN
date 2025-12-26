@@ -23,6 +23,7 @@ import gymnasium as gym
 from gymnasium import spaces
 
 from src.rewards.reward_function_enhanced import EnhancedRewardFunction
+from src.rewards.reward_function_learning_focused import LearningFocusedRewardFunction  # ✅ NEW
 from src.utils.common_utils import ThinClientConfig
 
 
@@ -813,16 +814,20 @@ class ThinMergeEnv(gym.Env):
         obs = self._observation_to_tensors(raw_obs)
         self._last_observation = obs
 
+        # ✅ FIX: Ensure reward is a Python float, not numpy scalar
         reward = self._compute_reward(raw_obs)
+        reward = float(reward)  # Convert to Python float
 
-        num_active = raw_obs.get('num_active_systems', 1)
-        is_done = raw_obs.get('is_terminal', False)
+        # ✅ FIX: Ensure num_active_systems is int (not numpy int)
+        num_active = int(raw_obs.get('num_active_systems', 1))
+        is_done = bool(raw_obs.get('is_terminal', False))
 
-        terminated = (num_active <= 1) or is_done
-        truncated = (iteration >= self.max_merges - 1)
+        # ✅ FIX: Ensure terminated/truncated are Python booleans
+        terminated = bool((num_active <= 1) or is_done)
+        truncated = bool(iteration >= self.max_merges - 1)
 
         info = {
-            "iteration": iteration,
+            "iteration": int(iteration),
             "merge_pair": merge_pair,
             "num_active_systems": num_active,
             "reward_signals": raw_obs.get('reward_signals', {}),

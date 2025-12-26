@@ -31,6 +31,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from experiments.shared_experiment_utils import DEFAULT_REWARD_WEIGHTS, cleanup_signal_files
 from experiments.core.logging import EnhancedSilentTrainingLogger, EpisodeMetrics, MergeDecisionTrace
+from src.utils.step_validator import wrap_with_validation  # ✅ NEW: Step output validation
 
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 warnings.filterwarnings('ignore', category=FutureWarning)
@@ -622,7 +623,7 @@ class GNNTrainer:
         return self.experiment_id
 
     def _create_env(self, domain_file: str, problem_file: str, seed: int):
-        """Create environment with error handling."""
+        """Create environment with error handling and validation."""
         downward_path = PROJECT_ROOT / "downward"
 
         try:
@@ -647,7 +648,11 @@ class GNNTrainer:
                 downward_dir=str(downward_path)
             )
 
-        return self.Monitor(env)
+        # ✅ NEW: Wrap with validation to catch type errors early
+        env = self.Monitor(env)
+        env = wrap_with_validation(env, strict=False)  # Non-strict: log warnings instead of crashing
+
+        return env
 
     def _problem_cycle_generator(self, start_episode: int, num_episodes: int):
         """

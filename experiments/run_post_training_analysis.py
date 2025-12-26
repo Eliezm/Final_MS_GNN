@@ -24,6 +24,8 @@ This script:
 All outputs go to: results/{experiment_name}/post_analysis/
 """
 
+
+
 import sys
 import os
 import json
@@ -335,8 +337,9 @@ def load_experiment(experiment_name: str, base_dir: str = "results") -> LoadedEx
 
     # Find training log
     log_candidates = [
-        exp_dir / "training_log.jsonl",
-        exp_dir / "training" / "training_log.jsonl",
+        exp_dir / "training" / "training_log.jsonl",  # ✅ Primary location (from output_structure)
+        exp_dir / "training_log.jsonl",                 # Fallback location
+        exp_dir / "logs" / "training_log.jsonl",        # Alternative location
     ]
 
     training_log_path = None
@@ -352,10 +355,13 @@ def load_experiment(experiment_name: str, base_dir: str = "results") -> LoadedEx
     if training_log_path:
         print(f"   Training log: {Path(training_log_path).name}")
         try:
-            with open(training_log_path, 'r') as f:
+            with open(training_log_path, 'r', encoding='utf-8') as f:
                 for line_num, line in enumerate(f):
                     try:
                         data = json.loads(line.strip())
+                        # ✅ FIX: Handle missing 'episode' field
+                        if 'episode' not in data and line_num >= 0:
+                            data['episode'] = line_num
                         metrics = EpisodeMetrics(**data)
                         training_log.append(metrics)
 
