@@ -1644,24 +1644,23 @@ class EpisodeMetricsCallback(BaseCallback):
     """
     Callback to capture detailed metrics from PPO training.
 
-    This REPLACES the separate evaluation pass by extracting
-    metrics directly from the training rollout.
-
-    Key insight: We don't need a separate evaluation pass!
-    The training run IS the episode. This callback captures everything.
+    ✅ ENHANCED: Now prints and logs step-wise rewards for analysis.
     """
 
-    def __init__(self, episode_num: int, problem_name: str, reward_function, verbose: int = 0):
+    def __init__(self, episode_num: int, problem_name: str, reward_function,
+                 verbose: int = 0, print_step_rewards: bool = True):
         super().__init__(verbose)
         self.episode_num = episode_num
         self.problem_name = problem_name
         self.reward_function = reward_function
+        self.print_step_rewards = print_step_rewards
 
         # Step-level data
         self.step_rewards: List[float] = []
         self.step_infos: List[Dict] = []
         self.reward_signals_per_step: List[Dict] = []
         self.merge_decisions: List[Dict] = []
+        self.step_reward_logs: List['StepRewardLog'] = []  # ✅ NEW: Detailed logs
 
         # Episode aggregates
         self.total_reward = 0.0
@@ -1693,6 +1692,8 @@ class EpisodeMetricsCallback(BaseCallback):
 
     def _on_step(self) -> bool:
         """Called after each environment step during training."""
+        from experiments.core.logging import StepRewardLog
+
         # Extract step data from PPO's locals
         reward = self.locals.get('rewards', [0])[0]
         info = self.locals.get('infos', [{}])[0]
@@ -1719,11 +1720,15 @@ class EpisodeMetricsCallback(BaseCallback):
         self.num_active_systems = info.get('num_active_systems', 0)
 
         # Extract detailed signals
+        h_star_before = reward_signals.get('h_star_before', 0)
+        h_star_after = reward_signals.get('h_star_after', 0)
         trans_growth = reward_signals.get('growth_ratio', 1.0)
         opp_score = reward_signals.get('opp_score', 0.5)
         label_comb = reward_signals.get('label_combinability_score', 0.5)
         reachability = reward_signals.get('reachability_ratio', 1.0)
         dead_end_ratio = reward_signals.get('dead_end_ratio', 0.0)
+        states_before = reward_signals.get('states_before', 0)
+        states_after = reward_signals.get('states_after', 0)
 
         self.h_star_ratios.append(h_pres)
         self.transition_growths.append(trans_growth)
@@ -1734,18 +1739,24 @@ class EpisodeMetricsCallback(BaseCallback):
         self.solvability_penalties.append(0.0 if self.is_solvable else 1.0)
 
         # Compute component breakdown using reward function
+        comp_h, comp_trans, comp_opp, comp_label, comp_bonus = 0.0, 0.0, 0.0, 0.0, 0.0
         if self.reward_function is not None:
             try:
                 raw_obs = {'reward_signals': reward_signals, 'edge_features': None}
                 breakdown = self.reward_function.compute_reward_with_breakdown(raw_obs)
 
-                self.component_h_pres.append(breakdown['components']['h_preservation'])
-                self.component_trans.append(breakdown['components']['transition_control'])
-                self.component_opp.append(breakdown['components']['operator_projection'])
-                self.component_label.append(breakdown['components']['label_combinability'])
-                self.component_bonus.append(breakdown['components']['bonus_signals'])
+                comp_h = breakdown['components']['h_preservation']
+                comp_trans = breakdown['components']['transition_control']
+                comp_opp = breakdown['components']['operator_projection']
+                comp_label = breakdown['components']['label_combinability']
+                comp_bonus = breakdown['components']['bonus_signals']
+
+                self.component_h_pres.append(comp_h)
+                self.component_trans.append(comp_trans)
+                self.component_opp.append(comp_opp)
+                self.component_label.append(comp_label)
+                self.component_bonus.append(comp_bonus)
             except Exception as e:
-                # Fallback values
                 self.component_h_pres.append(0.0)
                 self.component_trans.append(0.0)
                 self.component_opp.append(0.0)
@@ -1753,8 +1764,8 @@ class EpisodeMetricsCallback(BaseCallback):
                 self.component_bonus.append(0.0)
 
         # Merge quality categorization
-        is_good = (h_pres > 0.8) and (trans_growth < 2.0)
-        is_bad = (h_pres < 0.7) or (trans_growth > 5.0)
+        is_good = (h_pres > 0.9) and (trans_growth < 2.0)
+        is_bad = (h_pres < 0.7) or (trans_growth > 5.0) or not self.is_solvable
 
         if is_bad:
             quality_category = 'bad'
@@ -1763,31 +1774,94 @@ class EpisodeMetricsCallback(BaseCallback):
             quality_category = 'poor'
             quality_score = 0.25
         elif trans_growth > 3.0:
-            quality_category = 'moderate'
+            quality_category = 'neutral'
             quality_score = 0.5
-        elif is_good:
+        elif is_good and h_pres > 0.95:
             quality_category = 'excellent'
             quality_score = 1.0
-        else:
+        elif is_good:
             quality_category = 'good'
             quality_score = 0.75
+        else:
+            quality_category = 'neutral'
+            quality_score = 0.5
 
         self.merge_quality_scores.append(quality_score)
+
+        # =====================================================================
+        # ✅ NEW: Create detailed step reward log
+        # =====================================================================
+        step_log = StepRewardLog(
+            episode=self.episode_num,
+            step=self.num_steps - 1,
+            problem_name=self.problem_name,
+            reward=reward_float,
+            component_h_preservation=comp_h,
+            component_transition_control=comp_trans,
+            component_operator_projection=comp_opp,
+            component_label_combinability=comp_label,
+            component_bonus_signals=comp_bonus,
+            h_star_before=h_star_before,
+            h_star_after=h_star_after,
+            h_star_preservation_ratio=h_pres,
+            transition_growth_ratio=trans_growth,
+            opp_score=opp_score,
+            label_combinability_score=label_comb,
+            states_before=states_before,
+            states_after=states_after,
+            is_solvable=self.is_solvable,
+            dead_end_ratio=dead_end_ratio,
+            reachability_ratio=reachability,
+            merge_pair=tuple(merge_pair) if isinstance(merge_pair, (list, tuple)) else (0, 0),
+            action_index=action_int,
+            num_candidates=info.get('num_edges', 0),
+            is_good_merge=is_good,
+            is_bad_merge=is_bad,
+            merge_quality_category=quality_category,
+        )
+        self.step_reward_logs.append(step_log)
+
+        # =====================================================================
+        # ✅ NEW: Print step reward if enabled
+        # =====================================================================
+        if self.print_step_rewards:
+            step_num = self.num_steps - 1
+            quality_emoji = {
+                'excellent': '⭐',
+                'good': '✓',
+                'neutral': '○',
+                'poor': '△',
+                'bad': '✗'
+            }.get(quality_category, '?')
+
+            print(f"    Step {step_num:3d} | R={reward_float:+.4f} | "
+                  f"h*={h_pres:.3f} | growth={trans_growth:.2f}x | "
+                  f"OPP={opp_score:.2f} | Label={label_comb:.2f} | "
+                  f"{quality_emoji} {quality_category}")
 
         # Store per-step data for analysis
         self.reward_signals_per_step.append({
             'step': self.num_steps - 1,
             'reward': reward_float,
             'h_star_preservation': h_pres,
+            'h_star_before': h_star_before,
+            'h_star_after': h_star_after,
             'transition_growth': trans_growth,
             'opp_score': opp_score,
             'label_combinability': label_comb,
             'reachability_ratio': reachability,
             'dead_end_ratio': dead_end_ratio,
+            'states_before': states_before,
+            'states_after': states_after,
             'is_solvable': self.is_solvable,
             'merge_pair': merge_pair,
             'action': action_int,
             'merge_quality_category': quality_category,
+            'component_h': comp_h,
+            'component_trans': comp_trans,
+            'component_opp': comp_opp,
+            'component_label': comp_label,
+            'component_bonus': comp_bonus,
         })
 
         # Store merge decision trace
@@ -1842,7 +1916,43 @@ class EpisodeMetricsCallback(BaseCallback):
             'step_rewards': self.step_rewards,
             'selected_actions': self.selected_actions,
             'merge_quality_scores': self.merge_quality_scores,
+            'step_reward_logs': [s.to_dict() for s in self.step_reward_logs],  # ✅ NEW
         }
+
+    def get_step_reward_summary(self) -> 'EpisodeStepRewardSummary':
+        """Get summary statistics for step-wise rewards."""
+        from experiments.core.logging import EpisodeStepRewardSummary
+        return EpisodeStepRewardSummary.from_step_logs(self.step_reward_logs)
+
+    def print_episode_summary(self):
+        """Print summary of step rewards for this episode."""
+        if not self.step_reward_logs:
+            return
+
+        summary = self.get_step_reward_summary()
+
+        print(f"\n{'=' * 70}")
+        print(f"EPISODE {self.episode_num} STEP REWARD SUMMARY ({self.problem_name})")
+        print(f"{'=' * 70}")
+        print(f"  Total Steps: {summary.num_steps}")
+        print(f"  Total Reward: {self.total_reward:.4f}")
+        print(f"  Avg Reward/Step: {self.total_reward / max(1, summary.num_steps):.4f}")
+        print(f"\n  Phase-wise Analysis:")
+        print(f"    Early (steps 0-{summary.num_steps // 3}):  avg={summary.early_avg_reward:+.4f}")
+        print(
+            f"    Mid   (steps {summary.num_steps // 3}-{2 * summary.num_steps // 3}): avg={summary.mid_avg_reward:+.4f}")
+        print(f"    Late  (steps {2 * summary.num_steps // 3}-{summary.num_steps}): avg={summary.late_avg_reward:+.4f}")
+        print(f"    Trend: {summary.reward_trend.upper()}")
+        print(f"\n  Best/Worst Steps:")
+        print(f"    Best:  Step {summary.best_step_idx} with reward {summary.best_step_reward:+.4f}")
+        print(f"    Worst: Step {summary.worst_step_idx} with reward {summary.worst_step_reward:+.4f}")
+        print(f"\n  Merge Quality Distribution:")
+        print(f"    ⭐ Excellent: {summary.num_excellent_merges}")
+        print(f"    ✓  Good:      {summary.num_good_merges}")
+        print(f"    ○  Neutral:   {summary.num_neutral_merges}")
+        print(f"    △  Poor:      {summary.num_poor_merges}")
+        print(f"    ✗  Bad:       {summary.num_bad_merges}")
+        print(f"{'=' * 70}\n")
 
 
 # ============================================================================
@@ -2267,6 +2377,8 @@ class GNNTrainer:
                         episode_num=episode,
                         problem_name=problem_name,
                         reward_function=self._reward_function,
+                        print_step_rewards=True,  # ✅ Enable step-by-step printing
+
                     )
 
                     # ========================================================
@@ -2285,6 +2397,10 @@ class GNNTrainer:
                     # ========================================================
                     # STEP 5: Extract metrics from callback (NOT from eval pass!)
                     # ========================================================
+                    # ✅ NEW: Print episode summary after training
+                    if callback.num_steps > 0:
+                        callback.print_episode_summary()
+
                     ep_metrics = callback.get_episode_metrics()
 
                     episode_reward = ep_metrics['total_reward']
@@ -2364,6 +2480,8 @@ class GNNTrainer:
                         metrics={'step_time_ms': step_time_ms, 'peak_memory_mb': peak_memory_mb},
                         component_breakdown=component_summary,
                     )
+
+
 
                     # Display progress
                     successful_episodes = [m for m in self.episode_log if m.error is None]

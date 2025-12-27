@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import List, Optional
 from collections import defaultdict
 import numpy as np
+from matplotlib import pyplot as plt
 
 from experiments.core.logging import EpisodeMetrics
 from experiments.core.visualization.plotting_utils import (
@@ -169,3 +170,130 @@ def plot_learning_curves(
         return plot_path
 
     return None
+
+
+def plot_step_reward_progression(
+        training_log: List['EpisodeMetrics'],
+        output_dir: str,
+) -> Optional[Path]:
+    """
+    Plot 33: Step reward progression analysis.
+
+    Shows:
+    - Average reward by step position (early/mid/late)
+    - Reward variance across episodes by position
+    - Component contribution by step position
+    """
+    from experiments.core.analysis.analysis_step_rewards import analyze_step_rewards_from_training_log
+
+    output_path = Path(output_dir) / "plots"
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    analysis = analyze_step_rewards_from_training_log(training_log)
+
+    if "error" in analysis:
+        return None
+
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+
+    # Plot 1: Phase-wise average rewards
+    ax1 = axes[0, 0]
+    pos = analysis.get("step_position_analysis", {})
+    phases = ['Early', 'Mid', 'Late']
+    avgs = [
+        pos.get('early_step_avg_reward', 0),
+        pos.get('mid_step_avg_reward', 0),
+        pos.get('late_step_avg_reward', 0),
+    ]
+    stds = [
+        pos.get('early_step_std_reward', 0),
+        pos.get('mid_step_std_reward', 0),
+        pos.get('late_step_std_reward', 0),
+    ]
+
+    colors = ['#3498db', '#f39c12', '#2ecc71']
+    bars = ax1.bar(phases, avgs, yerr=stds, capsize=5, color=colors, alpha=0.8)
+    ax1.axhline(y=0, color='black', linestyle='-', linewidth=0.5)
+    ax1.set_ylabel('Average Reward')
+    ax1.set_title('Reward by Merge Phase')
+    ax1.grid(axis='y', alpha=0.3)
+
+    # Add value labels
+    for bar, avg in zip(bars, avgs):
+        ax1.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.02,
+                 f'{avg:+.3f}', ha='center', va='bottom', fontsize=10)
+
+    # Plot 2: Position-wise statistics
+    ax2 = axes[0, 1]
+    step_stats = analysis.get("step_position_stats", {})
+    positions = sorted([int(k.split('_')[1]) for k in step_stats.keys()])
+    pos_avgs = [step_stats.get(f"position_{p}", {}).get('mean_reward', 0) for p in positions]
+    pos_stds = [step_stats.get(f"position_{p}", {}).get('std_reward', 0) for p in positions]
+
+    ax2.errorbar(positions, pos_avgs, yerr=pos_stds, marker='o', capsize=3,
+                 color='#9b59b6', linewidth=2, markersize=8)
+    ax2.axhline(y=0, color='black', linestyle='-', linewidth=0.5)
+    ax2.set_xlabel('Normalized Step Position (0=start, 10=end)')
+    ax2.set_ylabel('Average Reward')
+    ax2.set_title('Reward by Step Position')
+    ax2.grid(alpha=0.3)
+
+    # Plot 3: Component trends
+    ax3 = axes[1, 0]
+    comp = analysis.get("step_component_analysis", {})
+
+    components = ['H* Pres.', 'Trans. Growth', 'OPP', 'Label Comb.']
+    early_vals = [
+        comp.get('early_h_preservation', 1.0),
+        comp.get('early_transition_growth', 1.0) / 5.0,  # Normalize
+        comp.get('early_opp_score', 0.5),
+        comp.get('early_label_comb', 0.5),
+    ]
+    late_vals = [
+        comp.get('late_h_preservation', 1.0),
+        comp.get('late_transition_growth', 1.0) / 5.0,
+        comp.get('late_opp_score', 0.5),
+        comp.get('late_label_comb', 0.5),
+    ]
+
+    x = np.arange(len(components))
+    width = 0.35
+
+    ax3.bar(x - width / 2, early_vals, width, label='Early', color='#3498db', alpha=0.8)
+    ax3.bar(x + width / 2, late_vals, width, label='Late', color='#2ecc71', alpha=0.8)
+    ax3.set_ylabel('Normalized Value')
+    ax3.set_title('Component Values: Early vs Late Steps')
+    ax3.set_xticks(x)
+    ax3.set_xticklabels(components)
+    ax3.legend()
+    ax3.grid(axis='y', alpha=0.3)
+
+    # Plot 4: Quality distribution
+    ax4 = axes[1, 1]
+    quality_dist = analysis.get("quality_distribution", {})
+
+    categories = ['excellent', 'good', 'neutral', 'poor', 'bad']
+    early_counts = [quality_dist.get('early', {}).get(c, 0) for c in categories]
+    late_counts = [quality_dist.get('late', {}).get(c, 0) for c in categories]
+
+    x = np.arange(len(categories))
+    width = 0.35
+
+    ax4.bar(x - width / 2, early_counts, width, label='Early', color='#3498db', alpha=0.8)
+    ax4.bar(x + width / 2, late_counts, width, label='Late', color='#2ecc71', alpha=0.8)
+    ax4.set_ylabel('Count')
+    ax4.set_title('Merge Quality Distribution: Early vs Late')
+    ax4.set_xticks(x)
+    ax4.set_xticklabels(['Excellent', 'Good', 'Neutral', 'Poor', 'Bad'])
+    ax4.legend()
+    ax4.grid(axis='y', alpha=0.3)
+
+    plt.suptitle('Step-Wise Reward Analysis', fontsize=14, fontweight='bold')
+    plt.tight_layout()
+
+    plot_path = output_path / "33_step_reward_progression.png"
+    plt.savefig(plot_path, dpi=150, bbox_inches='tight')
+    plt.close()
+
+    print(f"✓ Step reward plot saved: {plot_path}")
+    return plot_path

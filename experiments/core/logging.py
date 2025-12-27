@@ -291,6 +291,199 @@ class MergeDecisionTrace:
         )
 
 
+# Add this import at the top
+from statistics import mean, stdev
+
+
+# Add this new dataclass after MergeDecisionTrace
+@dataclass
+class StepRewardLog:
+    """Detailed reward log for a single merge step."""
+
+    episode: int
+    step: int
+    problem_name: str
+    timestamp: float = field(default_factory=time.time)
+
+    # Raw reward
+    reward: float = 0.0
+
+    # Reward components (from breakdown)
+    component_h_preservation: float = 0.0
+    component_transition_control: float = 0.0
+    component_operator_projection: float = 0.0
+    component_label_combinability: float = 0.0
+    component_bonus_signals: float = 0.0
+
+    # Key signals that drove the reward
+    h_star_before: float = 0.0
+    h_star_after: float = 0.0
+    h_star_preservation_ratio: float = 1.0
+    transition_growth_ratio: float = 1.0
+    opp_score: float = 0.5
+    label_combinability_score: float = 0.5
+
+    # State info
+    states_before: int = 0
+    states_after: int = 0
+    is_solvable: bool = True
+    dead_end_ratio: float = 0.0
+    reachability_ratio: float = 1.0
+
+    # Merge decision info
+    merge_pair: Tuple[int, int] = (0, 0)
+    action_index: int = 0
+    num_candidates: int = 0
+
+    # Quality classification
+    is_good_merge: bool = False
+    is_bad_merge: bool = False
+    merge_quality_category: str = "neutral"  # excellent, good, neutral, poor, bad
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to JSON-serializable dict."""
+        return _serialize_value(asdict(self))
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'StepRewardLog':
+        """Create from dict."""
+        defaults = {
+            'episode': 0,
+            'step': 0,
+            'problem_name': '',
+            'timestamp': time.time(),
+            'reward': 0.0,
+            'component_h_preservation': 0.0,
+            'component_transition_control': 0.0,
+            'component_operator_projection': 0.0,
+            'component_label_combinability': 0.0,
+            'component_bonus_signals': 0.0,
+            'h_star_before': 0.0,
+            'h_star_after': 0.0,
+            'h_star_preservation_ratio': 1.0,
+            'transition_growth_ratio': 1.0,
+            'opp_score': 0.5,
+            'label_combinability_score': 0.5,
+            'states_before': 0,
+            'states_after': 0,
+            'is_solvable': True,
+            'dead_end_ratio': 0.0,
+            'reachability_ratio': 1.0,
+            'merge_pair': (0, 0),
+            'action_index': 0,
+            'num_candidates': 0,
+            'is_good_merge': False,
+            'is_bad_merge': False,
+            'merge_quality_category': 'neutral',
+        }
+        merged = {**defaults, **data}
+        if isinstance(merged.get('merge_pair'), list):
+            merged['merge_pair'] = tuple(merged['merge_pair'])
+        return cls(**{k: v for k, v in merged.items() if k in defaults})
+
+
+@dataclass
+class EpisodeStepRewardSummary:
+    """Summary of step-wise rewards for an episode - for analysis."""
+
+    episode: int
+    problem_name: str
+    num_steps: int
+
+    # Per-step rewards
+    step_rewards: List[float] = field(default_factory=list)
+
+    # Phase-wise analysis (divide steps into early/mid/late)
+    early_avg_reward: float = 0.0  # First 1/3 of steps
+    mid_avg_reward: float = 0.0  # Middle 1/3 of steps
+    late_avg_reward: float = 0.0  # Last 1/3 of steps
+
+    # Trend analysis
+    reward_trend: str = "stable"  # improving, declining, stable
+    reward_variance: float = 0.0
+
+    # Best/worst steps
+    best_step_idx: int = 0
+    best_step_reward: float = 0.0
+    worst_step_idx: int = 0
+    worst_step_reward: float = 0.0
+
+    # Quality distribution
+    num_excellent_merges: int = 0
+    num_good_merges: int = 0
+    num_neutral_merges: int = 0
+    num_poor_merges: int = 0
+    num_bad_merges: int = 0
+
+    @classmethod
+    def from_step_logs(cls, step_logs: List[StepRewardLog]) -> 'EpisodeStepRewardSummary':
+        """Compute summary from list of step logs."""
+        if not step_logs:
+            return cls(episode=0, problem_name='', num_steps=0)
+
+        episode = step_logs[0].episode
+        problem_name = step_logs[0].problem_name
+        num_steps = len(step_logs)
+
+        step_rewards = [s.reward for s in step_logs]
+
+        # Phase-wise analysis
+        third = max(1, num_steps // 3)
+        early_rewards = step_rewards[:third]
+        mid_rewards = step_rewards[third:2 * third]
+        late_rewards = step_rewards[2 * third:]
+
+        early_avg = mean(early_rewards) if early_rewards else 0.0
+        mid_avg = mean(mid_rewards) if mid_rewards else 0.0
+        late_avg = mean(late_rewards) if late_rewards else 0.0
+
+        # Trend analysis
+        if late_avg > early_avg + 0.1:
+            trend = "improving"
+        elif late_avg < early_avg - 0.1:
+            trend = "declining"
+        else:
+            trend = "stable"
+
+        variance = stdev(step_rewards) if len(step_rewards) > 1 else 0.0
+
+        # Best/worst
+        best_idx = int(np.argmax(step_rewards))
+        worst_idx = int(np.argmin(step_rewards))
+
+        # Quality distribution
+        quality_counts = {
+            'excellent': sum(1 for s in step_logs if s.merge_quality_category == 'excellent'),
+            'good': sum(1 for s in step_logs if s.merge_quality_category == 'good'),
+            'neutral': sum(1 for s in step_logs if s.merge_quality_category == 'neutral'),
+            'poor': sum(1 for s in step_logs if s.merge_quality_category == 'poor'),
+            'bad': sum(1 for s in step_logs if s.merge_quality_category == 'bad'),
+        }
+
+        return cls(
+            episode=episode,
+            problem_name=problem_name,
+            num_steps=num_steps,
+            step_rewards=step_rewards,
+            early_avg_reward=early_avg,
+            mid_avg_reward=mid_avg,
+            late_avg_reward=late_avg,
+            reward_trend=trend,
+            reward_variance=variance,
+            best_step_idx=best_idx,
+            best_step_reward=step_rewards[best_idx],
+            worst_step_idx=worst_idx,
+            worst_step_reward=step_rewards[worst_idx],
+            num_excellent_merges=quality_counts['excellent'],
+            num_good_merges=quality_counts['good'],
+            num_neutral_merges=quality_counts['neutral'],
+            num_poor_merges=quality_counts['poor'],
+            num_bad_merges=quality_counts['bad'],
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        return _serialize_value(asdict(self))
+
 @dataclass
 class TrainingSummaryStats:
     """Aggregated statistics for a training run - for summary reports."""

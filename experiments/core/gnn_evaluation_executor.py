@@ -262,7 +262,7 @@ class MergeExecutor:
             seed: int = 42,
     ) -> Tuple[bool, int, float, float, bool, Dict[str, Any]]:
         """
-        ✅ FIXED v3: Aggressive resource cleanup prevents 3rd run halt
+        ✅ FIXED v4: Aggressive resource cleanup + Step-wise reward tracking
 
         Key fixes:
         1. Pre-cleanup before any work
@@ -270,6 +270,7 @@ class MergeExecutor:
         3. Process termination with force kill
         4. Proper environment disposal
         5. Better FD output parsing
+        6. NEW: Step-by-step reward logging
         """
 
         # ✅ STEP 0: PRE-CLEANUP - Kill any zombies from previous runs
@@ -297,6 +298,11 @@ class MergeExecutor:
         except:
             pass
 
+        # ✅ NEW: Track step-wise rewards
+        step_rewards = []
+        step_details = []
+        total_reward = 0.0
+
         try:
             env = self._create_environment(domain_file, problem_file, seed)
             obs, _ = env.reset()
@@ -311,7 +317,13 @@ class MergeExecutor:
             # PHASE 1: RUN MERGE STEPS (with aggressive timeout)
             # ================================================================
 
+            done = False
+            truncated = False
+
             for step in range(self.config.max_merges):
+                if done or truncated:
+                    break
+
                 try:
                     # ✅ FIX 3: Properly detect policy type and extract action
                     if hasattr(policy, 'model'):  # GNN policy
@@ -323,7 +335,11 @@ class MergeExecutor:
                         action = policy.select_merge(obs, num_edges=num_edges_available)
 
                     # ✅ FIX 4: Ensure action is Python int before using
-                    action = int(action)
+                    if hasattr(action, 'item'):
+                        action = int(action.item())
+                    else:
+                        action = int(action)
+
                     if not isinstance(action, int):
                         raise TypeError(f"Action must be Python int, got {type(action)}")
 
@@ -331,13 +347,40 @@ class MergeExecutor:
 
                     # Execute step
                     obs, reward, done, truncated, info = env.step(action)
+
                     num_merges += 1
+
+                    # ✅ NEW: Track step reward
+                    reward_float = float(reward)
+                    step_rewards.append(reward_float)
+                    total_reward += reward_float
 
                     # Track metrics
                     reward_signals = info.get('reward_signals', {})
                     h_preservation = reward_signals.get('h_star_preservation', 1.0)
                     is_solvable = reward_signals.get('is_solvable', True)
                     final_info = dict(info)
+
+                    # ✅ NEW: Capture step details
+                    step_detail = {
+                        'step': step,
+                        'reward': reward_float,
+                        'action': action,
+                        'merge_pair': info.get('merge_pair', (0, 0)),
+                        'h_star_preservation': reward_signals.get('h_star_preservation', 1.0),
+                        'transition_growth': reward_signals.get('growth_ratio', 1.0),
+                        'opp_score': reward_signals.get('opp_score', 0.5),
+                        'label_combinability': reward_signals.get('label_combinability_score', 0.5),
+                        'is_solvable': reward_signals.get('is_solvable', True),
+                        'num_active_systems': info.get('num_active_systems', 0),
+                    }
+                    step_details.append(step_detail)
+
+                    # ✅ NEW: Print step reward
+                    print(f"    Step {step:3d} | R={reward_float:+.4f} | "
+                          f"h*={step_detail['h_star_preservation']:.3f} | "
+                          f"growth={step_detail['transition_growth']:.2f}x | "
+                          f"systems={step_detail['num_active_systems']}")
 
                     if done or truncated:
                         logger.debug(f"Merge process done/truncated at step {step}")
@@ -434,6 +477,13 @@ class MergeExecutor:
                 if env_solved:
                     solved = True
 
+            # ✅ NEW: Print summary of step rewards
+            if step_rewards:
+                print(f"    ────────────────────────────────────────────────────")
+                print(f"    Total Reward: {total_reward:+.4f} over {len(step_rewards)} steps")
+                if len(step_rewards) > 0:
+                    print(f"    Avg Reward/Step: {total_reward / len(step_rewards):+.4f}")
+
             return True, num_merges, h_preservation, elapsed_total, is_solvable, {
                 **final_info,
                 'solved': solved,
@@ -444,6 +494,11 @@ class MergeExecutor:
                 'num_merges': num_merges,
                 'h_preservation': h_preservation,
                 'fd_log_path': str(fd_log_path) if fd_log_path else None,
+                # ✅ NEW: Step reward tracking fields
+                'step_rewards': step_rewards,
+                'step_details': step_details,
+                'total_reward': total_reward,
+                'num_steps': len(step_rewards),
             }
 
         except Exception as e:
@@ -460,6 +515,11 @@ class MergeExecutor:
                 'solved': False,
                 'elapsed': elapsed,
                 'num_merges': 0,
+                # ✅ NEW: Include empty step rewards on error
+                'step_rewards': step_rewards,
+                'step_details': step_details,
+                'total_reward': total_reward,
+                'num_steps': len(step_rewards),
             }
 
         finally:

@@ -76,6 +76,14 @@ from experiments.core.analysis.analysis_validation import (
     generate_literature_alignment_report,
 )
 
+from experiments.core.analysis.analysis_step_rewards import (
+    analyze_step_rewards_from_training_log,
+    print_step_reward_analysis,
+    export_step_rewards_csv,
+    StepPositionAnalysis,
+    StepComponentAnalysis,
+)
+
 # ============================================================================
 # PUBLIC API
 # ============================================================================
@@ -114,6 +122,13 @@ __all__ = [
 
     # Validation
     "generate_literature_alignment_report",
+
+    # Step reward analysis
+    "analyze_step_rewards_from_training_log",
+    "print_step_reward_analysis",
+    "export_step_rewards_csv",
+    "StepPositionAnalysis",
+    "StepComponentAnalysis",
 ]
 
 
