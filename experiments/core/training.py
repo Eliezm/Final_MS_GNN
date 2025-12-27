@@ -33,6 +33,9 @@ from experiments.shared_experiment_utils import DEFAULT_REWARD_WEIGHTS, cleanup_
 from experiments.core.logging import EnhancedSilentTrainingLogger, EpisodeMetrics, MergeDecisionTrace
 from src.utils.step_validator import wrap_with_validation  # ✅ NEW: Step output validation
 
+from src.rewards.reward_function_focused import create_focused_reward_function
+
+
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 warnings.filterwarnings('ignore', category=FutureWarning)
 
@@ -1060,8 +1063,9 @@ class GNNTrainer:
 
                             component_decisions_this_episode.append(decision_trace)
 
-                            from src.rewards.reward_function_enhanced import create_enhanced_reward_function
-                            reward_func = create_enhanced_reward_function(debug=False)
+                            # REPLACE WITH:
+                            from src.rewards.reward_function_focused import create_focused_reward_function
+                            reward_func = create_focused_reward_function(debug=False)
 
                             raw_obs = {
                                 'reward_signals': reward_signals,
@@ -1141,6 +1145,7 @@ class GNNTrainer:
                         'avg_operator_projection': float(np.mean(component_opp)) if component_opp else 0.0,
                         'avg_label_combinability': float(np.mean(component_label)) if component_label else 0.0,
                         'avg_bonus_signals': float(np.mean(component_bonus)) if component_bonus else 0.0,
+                        # Signal details
                         'avg_h_star_ratio': float(np.mean(h_star_ratios)) if h_star_ratios else 1.0,
                         'avg_transition_growth': float(np.mean(transition_growths)) if transition_growths else 1.0,
                         'avg_opp_score': float(np.mean(opp_scores)) if opp_scores else 0.5,

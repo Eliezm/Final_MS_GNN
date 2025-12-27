@@ -406,11 +406,16 @@ class ExperimentRunner:
             output_base_dir: str = "results",
     ):
         self.config = config
+        self.reward_function_config = reward_function_config or REWARD_FUNCTION_CONFIG
+
+
         self.output_base_dir = Path(output_base_dir)
         self.output_dir = self.output_base_dir / config.name
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
         set_all_seeds(config.seed)
+
+
 
     def _prepare_training_problems(self) -> Tuple[str, List[Tuple[str, str]], List[str]]:
         """Prepare training problems."""

@@ -52,7 +52,7 @@ def main():
     # "experiments/core/evaluation_metrics.py",
     # "experiments/core/evaluation_orchestrator.py",
     # "experiments/core/evaluation_plots.py",
-
+    #
     # "experiments/core/gnn_random_evaluation.py",
     # "experiments/core/gnn_evaluation_evaluators.py",
     # "experiments/core/gnn_evaluation_executor.py",
@@ -96,7 +96,7 @@ def main():
     # "experiments/core/visualization/plots_11_generalization.py",
     # "experiments/core/visualization/plots_12_curriculum.py",
     # "experiments/core/visualization/plotting_utils.py",
-
+    #
     "src/environments/thin_merge_env.py",
     "src/communication/communication_protocol.py",
     "src/utils/common_utils.py",
@@ -105,15 +105,15 @@ def main():
     "src/models/gnn_policy.py",
     "src/rewards/reward_function_enhanced.py",
     "src/rewards/reward_function_learning_focused.py",
-
-
-
-    # "downward/src/search/merge_and_shrink/merge_and_shrink_algorithm.cc",
-    # "downward/src/search/merge_and_shrink/merge_and_shrink_algorithm.h",
-    # "downward/src/search/merge_and_shrink/merge_and_shrink_signals.cc",
-    # "downward/src/search/merge_and_shrink/merge_and_shrink_signals.h",
-    # "downward/src/search/merge_and_shrink/merge_and_shrink_signals_enhanced.cc",
-    # "downward/src/search/merge_and_shrink/merge_and_shrink_signals_enhanced.h",
+    #
+    #
+    #
+    "downward/src/search/merge_and_shrink/merge_and_shrink_algorithm.cc",
+    "downward/src/search/merge_and_shrink/merge_and_shrink_algorithm.h",
+    "downward/src/search/merge_and_shrink/merge_and_shrink_signals.cc",
+    "downward/src/search/merge_and_shrink/merge_and_shrink_signals.h",
+    "downward/src/search/merge_and_shrink/merge_and_shrink_signals_enhanced.cc",
+    "downward/src/search/merge_and_shrink/merge_and_shrink_signals_enhanced.h",
     # #
     # "downward/src/search/merge_and_shrink/merge_strategy_factory_gnn.cc",
     # "downward/src/search/merge_and_shrink/merge_strategy_factory_gnn.h",

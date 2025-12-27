@@ -26,6 +26,9 @@ from src.rewards.reward_function_enhanced import EnhancedRewardFunction
 from src.rewards.reward_function_learning_focused import LearningFocusedRewardFunctionComplete  # ✅ NEW
 from src.utils.common_utils import ThinClientConfig
 
+# NEW - Add this import at the top of the file (after other imports):
+from src.rewards.reward_function_focused import FocusedRewardFunction, create_focused_reward_function
+
 
 logger = logging.getLogger(__name__)
 
@@ -97,6 +100,7 @@ class ThinMergeEnv(gym.Env):
         self.reward_weights = reward_weights or self.DEFAULT_REWARD_WEIGHTS.copy()
 
         # ✅ NEW: Initialize reward function (with curriculum support)
+        # self._reward_function_type = "learning_focused"  # or "enhanced"
         self._reward_function_type = "learning_focused"  # or "enhanced"
         self._episode_number = 0
         self._total_episodes = 1500  # Default: can be overridden
@@ -139,35 +143,26 @@ class ThinMergeEnv(gym.Env):
         logger.info(f"[THIN_ENV] Initialized with {self.NODE_FEATURE_DIM} node features, "
                     f"{self.EDGE_FEATURE_DIM} edge features")
 
-    def _init_reward_function(self):
-        """Initialize reward function based on configured type."""
-        if self._reward_function_type == "learning_focused":
-            from src.rewards.reward_function_learning_focused import (
-                create_learning_focused_reward_function
-            )
-            self._reward_function = create_learning_focused_reward_function(
-                debug=self.debug,
-                episode=self._episode_number,
-                total_episodes=self._total_episodes
-            )
-        else:
-            from src.rewards.reward_function_enhanced import (
-                create_enhanced_reward_function
-            )
-            self._reward_function = create_enhanced_reward_function(
-                debug=self.debug
-            )
+    # ============================================================================
+    # FIND AND REPLACE _init_reward_function METHOD (around line 110-130)
+    # ============================================================================
 
-        logger.info(f"[THIN_ENV] Using reward function: {self._reward_function_type}")
+    def _init_reward_function(self):
+        """Initialize the focused reward function."""
+        self._reward_function = create_focused_reward_function(debug=self.debug)
+        logger.info(f"[THIN_ENV] Using FocusedRewardFunction")
+
+    # ============================================================================
+    # FIND AND REPLACE set_episode_number METHOD (around line 135-145)
+    # ============================================================================
 
     def set_episode_number(self, episode: int, total_episodes: int = 1500) -> None:
+        """Update episode number (for compatibility, no-op for focused reward)."""
         self._episode_number = episode
         self._total_episodes = total_episodes
-
-        if self._reward_function is not None and hasattr(self._reward_function, 'update_episode'):
-            self._reward_function.update_episode(episode, total_episodes)
-        elif self._reward_function_type == "learning_focused":
-            self._init_reward_function()
+        # FocusedRewardFunction doesn't use episode-aware thresholds
+        if self._reward_function is not None and hasattr(self._reward_function, 'reset'):
+            self._reward_function.reset()
 
     def _setup_directories(self):
         self.fd_output_dir.mkdir(parents=True, exist_ok=True)
@@ -777,24 +772,41 @@ class ThinMergeEnv(gym.Env):
     #
     #     return self._enhanced_reward_fn.compute_reward(raw_obs)
 
+    # ============================================================================
+    # FIND AND REPLACE _compute_reward METHOD (around line 350-400)
+    # ============================================================================
+
     def _compute_reward(self, raw_obs: Dict[str, Any]) -> float:
         """
-        ✅ FIXED: Compute reward and ensure Python float return
+        Compute reward using FocusedRewardFunction.
+
+        Returns:
+            reward: Python float in [-1.0, +1.0]
         """
         if self._reward_function is None:
             self._init_reward_function()
 
-        # Get reward (might be numpy)
-        reward = self._reward_function.compute_reward(raw_obs)
+        try:
+            reward = self._reward_function.compute_reward(raw_obs)
 
-        # ✅ CRITICAL FIX: Convert to Python float explicitly
-        reward_float = float(reward)
+            # Ensure Python float
+            if isinstance(reward, np.ndarray):
+                reward = float(reward.item() if reward.shape == () else reward.flat[0])
+            elif isinstance(reward, (np.floating, np.integer)):
+                reward = float(reward.item())
+            else:
+                reward = float(reward)
 
-        # Validate it's actually a Python float
-        if not isinstance(reward_float, float):
-            raise TypeError(f"Reward must be Python float, got {type(reward_float)}")
+            # Final validation
+            if np.isnan(reward) or np.isinf(reward):
+                logger.warning("[THIN_ENV] Reward is NaN/Inf, returning 0.0")
+                return 0.0
 
-        return reward_float
+            return reward
+
+        except Exception as e:
+            logger.error(f"[THIN_ENV] Reward computation failed: {e}")
+            return 0.0
 
     def _action_to_merge_pair(self, action: int) -> Tuple[int, int]:
         if self._cached_edge_index is None or len(self._cached_edge_index) != 2:
