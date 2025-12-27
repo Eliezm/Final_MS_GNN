@@ -88,8 +88,8 @@ class ExperimentConfig:
 
     # Training hyperparameters
     num_train_episodes: int = 100
-    timesteps_per_episode: int = 50
-    max_merges: int = 50
+    timesteps_per_episode: int = 128  # Was 50, now >= n_steps(64)
+    max_merges: int = 128  # Increase max_merges accordingly
     timeout_per_step: float = 120.0
     checkpoint_interval: int = 500
     eval_runs_per_problem: int = 3
@@ -118,6 +118,8 @@ BLOCKSWORLD_EXP_1_MEDIUM_TRAIN = ExperimentConfig(
     name="blocksworld_exp_1_medium_train",
     description="[PAPER EXP 1] Train on MEDIUM → Test S/M(seen)/M(unseen)/L",
     domain=Domain.BLOCKSWORLD,
+    max_merges=128,  # ← Increased from default 50
+    timesteps_per_episode=128,  # ← Increased from 50
     train_problem_size=ProblemSize.MEDIUM,
     train_problem_pattern="benchmarks/blocksworld/medium/problem_medium_*.pddl",
     train_num_problems=15,
@@ -163,7 +165,7 @@ BLOCKSWORLD_EXP_1_MEDIUM_TRAIN = ExperimentConfig(
             is_seen=False,
         ),
     ],
-    num_train_episodes=1500,
+    num_train_episodes=1000,
     checkpoint_interval=300,
     seed=42,
 )
@@ -177,6 +179,8 @@ BLOCKSWORLD_EXP_2_LARGE_TRAIN = ExperimentConfig(
     name="blocksworld_exp_2_large_train",
     description="[PAPER EXP 2] Train on LARGE → Test S/M/L(seen)/L(unseen)",
     domain=Domain.BLOCKSWORLD,
+    timesteps_per_episode=128,  # ✅ CHANGED from 50
+    max_merges=128,  # ✅ CHANGED from 50
     train_problem_size=ProblemSize.LARGE,
     train_problem_pattern="benchmarks/blocksworld/large/problem_large_*.pddl",
     train_num_problems=15,
@@ -222,7 +226,7 @@ BLOCKSWORLD_EXP_2_LARGE_TRAIN = ExperimentConfig(
             is_seen=False,
         ),
     ],
-    num_train_episodes=1500,
+    num_train_episodes=1000,
     checkpoint_interval=300,
     timeout_per_step=180.0,  # Longer timeout for large problems
     seed=42,
@@ -237,6 +241,8 @@ BLOCKSWORLD_EXP_3_CURRICULUM = ExperimentConfig(
     name="blocksworld_exp_3_curriculum",
     description="[PAPER EXP 3] Curriculum S→M→L + Logistics transfer test",
     domain=Domain.BLOCKSWORLD,
+    timesteps_per_episode=128,  # ✅ CHANGED from 50
+    max_merges=128,  # ✅ CHANGED from 50
     train_problem_size=ProblemSize.SMALL,  # Starts with small
     train_problem_pattern="benchmarks/blocksworld/small/problem_small_*.pddl",
     train_num_problems=10,

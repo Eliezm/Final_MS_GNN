@@ -160,7 +160,7 @@ def train_gnn_model(
         exp_logger: Optional[logging.Logger] = None,
         tb_log_name: str = "experiment_training",
         reward_weights: Optional[Dict[str, float]] = None,
-        max_merges: int = 50,
+        max_merges: int = 128,  # ✅ CHANGED from 50
         timeout_per_step: float = 120.0,
         reward_function_config: Optional[Dict] = None,  # ✅ NEW
 ) -> Optional[str]:
