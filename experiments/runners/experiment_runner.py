@@ -18,7 +18,8 @@ from experiments.configs.experiment_configs import ExperimentConfig, TestConfig
 from experiments.core.training import GNNTrainer, set_all_seeds, save_json_atomic
 from experiments.core.analysis import analyze_training_results
 from experiments.core.visualization import generate_all_plots
-from experiments.shared_experiment_utils import DEFAULT_REWARD_WEIGHTS
+from experiments.shared_experiment_utils import DEFAULT_REWARD_WEIGHTS, REWARD_FUNCTION_CONFIG
+
 
 def select_problems(
         problem_pattern: str,
@@ -406,7 +407,7 @@ class ExperimentRunner:
             output_base_dir: str = "results",
     ):
         self.config = config
-        self.reward_function_config = reward_function_config or REWARD_FUNCTION_CONFIG
+        # self.reward_function_config = reward_function_config or REWARD_FUNCTION_CONFIG
 
 
         self.output_base_dir = Path(output_base_dir)
@@ -513,6 +514,207 @@ class ExperimentRunner:
             "results": eval_results,
             "num_solved": sum(1 for r in eval_results if r.solved),
             "num_problems": len(eval_results),
+        }
+
+    def run_test_with_dedicated_output(
+            self,
+            model_path: str,
+            test_config: TestConfig,
+    ) -> Dict:
+        """
+        Execute testing phase with DEDICATED output folder per test set.
+
+        Creates:
+            testing/{test_config.name}/
+                ├── results.json
+                ├── comparison.json
+                ├── plots/
+                │   ├── solve_rate.png
+                │   └── time_comparison.png
+                └── summary.txt
+        """
+        from experiments.core.gnn_random_evaluation import GNNPolicyEvaluator, RandomMergeEvaluator
+        from experiments.core.evaluation_plots import GenerateEvaluationPlots
+        from experiments.core.evaluation_analyzer import ComparisonAnalyzer
+
+        print(f"\n📋 Testing: {test_config.name}")
+        print(f"   Domain: {test_config.domain.value}")
+        print(f"   Size: {test_config.problem_size.value}")
+        print(f"   Description: {test_config.description}")
+
+        # Create dedicated output directory for this test set
+        test_output_dir = self.output_dir / "testing" / test_config.name
+        test_output_dir.mkdir(parents=True, exist_ok=True)
+        (test_output_dir / "plots").mkdir(exist_ok=True)
+
+        problem_files, problem_names = select_problems(
+            test_config.problem_pattern,
+            test_config.num_problems,
+            self.config.seed + 1000
+        )
+
+        domain_file = get_domain_file(test_config.domain.value)
+
+        # =========================================================================
+        # RUN GNN EVALUATION
+        # =========================================================================
+
+        gnn_evaluator = GNNPolicyEvaluator(
+            model_path=model_path,
+            downward_dir=str(PROJECT_ROOT / "downward"),
+            max_merges=self.config.max_merges,
+            timeout_per_step=self.config.timeout_per_step,
+        )
+
+        gnn_results = gnn_evaluator.evaluate_problems(
+            domain_file=domain_file,
+            problem_files=problem_files,
+            num_runs_per_problem=test_config.num_runs_per_problem,
+        )
+
+        # =========================================================================
+        # RUN RANDOM EVALUATION
+        # =========================================================================
+
+        random_evaluator = RandomMergeEvaluator(
+            downward_dir=str(PROJECT_ROOT / "downward"),
+            max_merges=self.config.max_merges,
+            timeout_per_step=self.config.timeout_per_step,
+        )
+
+        random_results = random_evaluator.evaluate_problems(
+            domain_file=domain_file,
+            problem_files=problem_files,
+            num_runs_per_problem=test_config.num_runs_per_problem,
+        )
+
+        # =========================================================================
+        # COMPUTE STATISTICS
+        # =========================================================================
+
+        all_results = gnn_results + random_results
+
+        gnn_stats = {}
+        random_stats = {}
+
+        if all_results:
+            analyzer = ComparisonAnalyzer(all_results)
+
+            try:
+                gnn_stats = analyzer.get_aggregate_statistics("GNN").to_dict()
+            except:
+                gnn_stats = {}
+
+            try:
+                random_stats = analyzer.get_aggregate_statistics("Random").to_dict()
+            except:
+                random_stats = {}
+
+        # =========================================================================
+        # SAVE RESULTS
+        # =========================================================================
+
+        results_data = {
+            "test_config": test_config.to_dict(),
+            "gnn_results": [r.to_dict() for r in gnn_results],
+            "random_results": [r.to_dict() for r in random_results],
+            "gnn_statistics": gnn_stats,
+            "random_statistics": random_stats,
+            "summary": {
+                "gnn_solved": sum(1 for r in gnn_results if r.solved),
+                "gnn_total": len(gnn_results),
+                "random_solved": sum(1 for r in random_results if r.solved),
+                "random_total": len(random_results),
+            }
+        }
+
+        # Save detailed results
+        with open(test_output_dir / "results.json", 'w') as f:
+            json.dump(results_data, f, indent=2, default=str)
+
+        # Save comparison
+        comparison_data = {
+            "GNN": gnn_stats,
+            "Random": random_stats,
+            "improvement": {
+                "solve_rate_diff": gnn_stats.get('solve_rate_pct', 0) - random_stats.get('solve_rate_pct', 0),
+                "time_ratio": (random_stats.get('mean_time_sec', 1) / max(0.001, gnn_stats.get('mean_time_sec', 1)))
+                if gnn_stats.get('mean_time_sec', 0) > 0 else 0,
+            }
+        }
+
+        with open(test_output_dir / "comparison.json", 'w') as f:
+            json.dump(comparison_data, f, indent=2, default=str)
+
+        # =========================================================================
+        # GENERATE TEST-SPECIFIC PLOTS
+        # =========================================================================
+
+        try:
+            plotter = GenerateEvaluationPlots(output_dir=str(test_output_dir / "plots"))
+            plotter.generate_all_plots(
+                statistics={"GNN": gnn_stats, "Random": random_stats},
+                results=all_results,
+                gnn_results=gnn_stats,
+            )
+            print(f"   ✓ Plots saved to: {test_output_dir / 'plots'}")
+        except Exception as e:
+            print(f"   ⚠️ Plot generation failed: {e}")
+
+        # =========================================================================
+        # SAVE HUMAN-READABLE SUMMARY
+        # =========================================================================
+
+        summary_text = f"""
+    {'=' * 80}
+    TEST SET: {test_config.name}
+    {'=' * 80}
+
+    Description: {test_config.description}
+    Domain: {test_config.domain.value}
+    Problem Size: {test_config.problem_size.value}
+    Problems Tested: {len(problem_files)}
+    Runs per Problem: {test_config.num_runs_per_problem}
+
+    {'=' * 80}
+    RESULTS SUMMARY
+    {'=' * 80}
+
+    GNN Policy:
+      - Solved: {results_data['summary']['gnn_solved']}/{results_data['summary']['gnn_total']}
+      - Solve Rate: {gnn_stats.get('solve_rate_pct', 0):.1f}%
+      - Mean Time: {gnn_stats.get('mean_time_sec', 0):.3f}s
+      - Mean Expansions: {gnn_stats.get('mean_expansions', 0):,}
+      - H* Preservation: {gnn_stats.get('mean_h_preservation', 1.0):.4f}
+
+    Random Merge:
+      - Solved: {results_data['summary']['random_solved']}/{results_data['summary']['random_total']}
+      - Solve Rate: {random_stats.get('solve_rate_pct', 0):.1f}%
+      - Mean Time: {random_stats.get('mean_time_sec', 0):.3f}s
+      - Mean Expansions: {random_stats.get('mean_expansions', 0):,}
+
+    {'=' * 80}
+    COMPARISON
+    {'=' * 80}
+
+    GNN vs Random Improvement:
+      - Solve Rate: {comparison_data['improvement']['solve_rate_diff']:+.1f}%
+      - Speedup: {comparison_data['improvement']['time_ratio']:.2f}x
+
+    {'=' * 80}
+    """
+
+        with open(test_output_dir / "summary.txt", 'w') as f:
+            f.write(summary_text)
+
+        print(f"   ✓ Results saved to: {test_output_dir}")
+
+        return {
+            "test_config": test_config.name,
+            "output_dir": str(test_output_dir),
+            "results": results_data,
+            "num_problems": len(problem_files),
+            "num_solved": results_data['summary']['gnn_solved'],
         }
 
     def run_test(
