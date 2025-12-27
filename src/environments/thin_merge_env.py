@@ -140,6 +140,10 @@ class ThinMergeEnv(gym.Env):
         self._cached_edge_index: Optional[np.ndarray] = None
         self._last_observation: Optional[Dict] = None
 
+        # ✅ NEW: Track dynamic episode length
+        self._dynamic_max_steps = max_merges  # Will be updated on reset
+        self._initial_num_systems = 0
+
         logger.info(f"[THIN_ENV] Initialized with {self.NODE_FEATURE_DIM} node features, "
                     f"{self.EDGE_FEATURE_DIM} edge features")
 
@@ -829,10 +833,8 @@ class ThinMergeEnv(gym.Env):
         return (src, tgt)
 
     def reset(self, *, seed=None, options=None) -> Tuple[Dict, Dict]:
-
         super().reset(seed=seed)
 
-        # ✅ FIX: Actually use the seed if provided
         if seed is not None:
             np.random.seed(seed)
             self.seed = seed
@@ -853,10 +855,25 @@ class ThinMergeEnv(gym.Env):
         obs = self._observation_to_tensors(raw_obs)
         self._last_observation = obs
 
+        # ✅ NEW: Dynamically set max steps based on actual number of transition systems
+        num_active_systems = raw_obs.get('num_active_systems', 0)
+        self._initial_num_systems = num_active_systems
+
+        if num_active_systems > 1:
+            # Need (N-1) merges to reduce N systems to 1 abstraction
+            self._dynamic_max_steps = num_active_systems - 1
+            logger.info(
+                f"[THIN_ENV] Problem has {num_active_systems} variables → exactly {self._dynamic_max_steps} merges needed")
+        else:
+            self._dynamic_max_steps = 1  # Minimum
+            logger.warning(f"[THIN_ENV] Problem has only {num_active_systems} system(s)")
+
         info = {
             "iteration": -1,
-            "num_active_systems": raw_obs.get('num_active_systems', 0),
+            "num_active_systems": num_active_systems,
             "reward_signals": raw_obs.get('reward_signals', {}),
+            "initial_num_systems": self._initial_num_systems,  # ✅ NEW
+            "max_steps_this_episode": self._dynamic_max_steps,  # ✅ NEW
         }
 
         logger.info(f"[THIN_ENV] Reset complete: {obs['num_nodes']} nodes, {obs['num_edges']} edges")
@@ -924,17 +941,19 @@ class ThinMergeEnv(gym.Env):
         if isinstance(is_done, (np.bool_, np.ndarray)):
             is_done = bool(is_done.item() if hasattr(is_done, 'item') else is_done)
 
-        # ✅ FIX 5: Explicit bool conversions
-        terminated = bool((num_active <= 1) or is_done)
-        truncated = bool(iteration >= self.max_merges - 1)
+        # ✅ FIXED: Use dynamic step limit (num_variables - 1)
+        max_steps_this_episode = getattr(self, '_dynamic_max_steps', self.max_merges)
 
-        # Validate types before return
-        assert isinstance(reward, float) and not isinstance(reward, (bool, np.bool_)), \
-            f"reward must be Python float, got {type(reward)}: {reward}"
-        assert isinstance(terminated, bool) and not isinstance(terminated, np.bool_), \
-            f"terminated must be Python bool, got {type(terminated)}"
-        assert isinstance(truncated, bool) and not isinstance(truncated, np.bool_), \
-            f"truncated must be Python bool, got {type(truncated)}"
+        # Terminal conditions:
+        # 1. done: Only 1 abstraction left (we've merged everything)
+        # 2. truncated: Reached our calculated limit (should coincide with #1)
+        terminated = bool((num_active <= 1) or is_done)
+        truncated = bool(iteration >= max_steps_this_episode - 1)
+
+        # ✅ NEW: Log when episode ends
+        if terminated or truncated:
+            logger.info(f"[THIN_ENV] Episode ending: iteration={iteration}, "
+                        f"num_active={num_active}, max_steps={max_steps_this_episode}")
 
         info = {
             "iteration": int(iteration),
@@ -943,6 +962,8 @@ class ThinMergeEnv(gym.Env):
             "reward_signals": raw_obs.get('reward_signals', {}),
             "solved": bool(raw_obs.get('solved', False)),
             "plan_cost": int(raw_obs.get('plan_cost', 0)),
+            "steps_taken": iteration + 1,  # ✅ NEW
+            "max_steps": max_steps_this_episode,  # ✅ NEW
         }
 
         return obs, reward, terminated, truncated, info

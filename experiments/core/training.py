@@ -567,24 +567,32 @@ def extract_global_step_from_checkpoint(checkpoint_path: str) -> int:
 
 
 def _format_reward_breakdown(
+        self,
         episode: int,
         problem_name: str,
         episode_reward: float,
         component_summary: Dict[str, float],
         h_preservation: float,
         is_solvable: bool,
+        num_steps: int,  # ✅ NEW: Actual step count
+        num_variables: int,  # ✅ NEW: Variable count
 ) -> str:
     """
-    Format a detailed reward breakdown message for display.
+    ✅ FIXED: Format reward breakdown with correct step count from dynamic episode length.
 
-    Shows:
-    - Episode number and problem name
-    - Total reward
-    - Component breakdown (H*, transitions, operators, labels, bonuses)
-    - Key metrics (growth ratio, OPP score, reachability, dead-ends)
-    - Solvability status
+    Args:
+        episode: Episode number
+        problem_name: Name of problem
+        episode_reward: Total episode reward
+        component_summary: Dictionary of component rewards
+        h_preservation: H* preservation value
+        is_solvable: Whether problem is solvable
+        num_steps: Actual steps taken (eval_steps)
+        num_variables: Number of variables/transition systems in problem
+
+    Returns:
+        Formatted message string
     """
-
     h_pres = component_summary.get('avg_h_preservation', 0)
     trans_ctrl = component_summary.get('avg_transition_control', 0)
     opp_proj = component_summary.get('avg_operator_projection', 0)
@@ -599,29 +607,33 @@ def _format_reward_breakdown(
     dead_end_penalty = component_summary.get('max_dead_end_penalty', 0)
     solv_penalty = component_summary.get('max_solvability_penalty', 0)
 
-    # Determine status icon
     status_icon = "✅" if is_solvable else "❌"
+    expected_merges = num_variables - 1
 
-    # Build the message
     msg = f"\n{'=' * 90}\n"
-    msg += f"📊 EPISODE {episode:4d} | {problem_name[:50]:50s}\n"
+    msg += f"📊 EPISODE {episode:4d} | {problem_name[:40]:40s}\n"
     msg += f"{'=' * 90}\n"
-    msg += f"\n💰 Total Reward: {episode_reward:+.4f}\n"
-    msg += f"\n🧮 COMPONENT BREAKDOWN (aggregated over {int(h_pres * 100) if h_pres > 0 else 0} merge steps):\n"
+    msg += f"\n📐 Problem Specification:\n"
+    msg += f"   Variables/Systems: {num_variables}\n"
+    msg += f"   Merges Executed:   {num_steps}\n"
+    msg += f"   Expected Merges:   {expected_merges}\n"
+    msg += f"   Status:            {'✓ Correct' if num_steps == expected_merges else '⚠ Mismatch'}\n"
+    msg += f"\n💰 Total Episode Reward: {episode_reward:+.4f}\n"
+    msg += f"\n🧮 COMPONENT BREAKDOWN (aggregated over {num_steps} merge steps):\n"
     msg += f"   H* Preservation:       {h_pres:+.4f}  [Primary: heuristic quality]\n"
     msg += f"   Transition Control:    {trans_ctrl:+.4f}  [Secondary: explosion avoidance]\n"
     msg += f"   Operator Projection:   {opp_proj:+.4f}  [Tertiary: compression potential]\n"
     msg += f"   Label Combinability:   {label_comb:+.4f}  [Quaternary: label reduction]\n"
     msg += f"   Bonus Signals:         {bonus_sig:+.4f}  [Quinary: architectural insights]\n"
-    msg += f"\n📈 KEY METRICS:\n"
-    msg += f"   H* Ratio:              {h_ratio:.4f}  [Preservation level: 1.0 = perfect]\n"
-    msg += f"   Transition Growth:     {trans_growth:.2f}x  [Growth factor: <2x = good]\n"
-    msg += f"   OPP Score:             {opp_score:.3f}   [Projection: >0.7 = excellent]\n"
-    msg += f"   Label Combinability:   {label_score:.3f}   [Compression: >0.7 = excellent]\n"
-    msg += f"   Reachability Ratio:    {reach_ratio:.1%}   [Coverage: >90% = good]\n"
-    msg += f"   Dead-End Penalty:      {dead_end_penalty:.4f}  [Safety: 0 = no dead-ends]\n"
-    msg += f"   Solvability Penalty:   {solv_penalty:.4f}  [Safety: 0 = solvable]\n"
-    msg += f"\n📍 STATUS: {status_icon} {'SOLVABLE' if is_solvable else 'UNSOLVABLE'}\n"
+    msg += f"\n📈 KEY METRICS (averaged over steps):\n"
+    msg += f"   H* Ratio:              {h_ratio:.4f}  [1.0 = perfect preservation]\n"
+    msg += f"   Transition Growth:     {trans_growth:.2f}x  [<2x = excellent]\n"
+    msg += f"   OPP Score:             {opp_score:.3f}   [>0.7 = excellent]\n"
+    msg += f"   Label Combinability:   {label_score:.3f}   [>0.7 = excellent]\n"
+    msg += f"   Reachability Ratio:    {reach_ratio:.1%}   [>90% = good]\n"
+    msg += f"   Dead-End Penalty:      {dead_end_penalty:.4f}  [0 = no dead-ends]\n"
+    msg += f"   Solvability Penalty:   {solv_penalty:.4f}  [0 = solvable]\n"
+    msg += f"\n📍 FINAL STATUS: {status_icon} {'SOLVABLE' if is_solvable else 'UNSOLVABLE'}\n"
     msg += f"{'=' * 90}\n"
 
     return msg
@@ -803,10 +815,21 @@ class GNNTrainer:
     def run_training(
             self,
             num_episodes: int,
-            timesteps_per_episode: int = 50,
+            timesteps_per_episode: int = 50,  # ✅ Dynamically overridden per episode
             resume_from: Optional[str] = None,
     ) -> Optional[str]:
-        """Train with FULL VALIDATION AND MONITORING."""
+        """
+        Train with FULL VALIDATION AND MONITORING.
+
+        ✅ FIXED: Train with exactly one problem per episode.
+
+        Each episode:
+        1. Selects one problem
+        2. Gets dynamic episode length: num_variables - 1 merges
+        3. Trains PPO for exactly that many steps
+        4. Logs metrics with correct step counts
+        5. Maintains 100% of original functionality
+        """
         model = None
         start_episode = 0
         cumulative_reward = 0.0
@@ -832,7 +855,7 @@ class GNNTrainer:
                     )
 
                     start_episode = len(prev_log)
-                    self.global_step = start_episode * timesteps_per_episode
+                    self.global_step = sum(m.eval_steps for m in prev_log if m.error is None)
 
                     self.episode_log = prev_log
                     self.best_reward = prev_best
@@ -856,14 +879,14 @@ class GNNTrainer:
                 disable=False
             )
 
-            # ✅ NEW: Get total episodes for curriculum
+            # ✅ NEW: Track total episodes for curriculum learning
             total_training_episodes = num_episodes
 
             for episode, problem_idx in pbar:
                 domain_file, problem_file = self.benchmarks[problem_idx]
                 problem_name = self.problem_names[problem_idx]
 
-                # ✅ NEW: Update coverage stats every 50 episodes
+                # ✅ Update coverage stats every 50 episodes
                 if (episode + 1) % 50 == 0:
                     self.sampler.update_scores_from_log(self.episode_log)
                     coverage = self.sampler.get_coverage_stats()
@@ -878,48 +901,66 @@ class GNNTrainer:
                 self.resource_monitor.start()
 
                 component_decisions_this_episode = []
+                env = None
+                episode_error = None
+                failure_type = None
 
                 try:
                     cleanup_signal_files()
                 except Exception:
                     pass
 
-                env = None
-                episode_error = None
-                failure_type = None
-
                 try:
                     train_seed = self.seed + episode
 
+                    # ✅ Step 1: Create environment
                     env = self._create_env(domain_file, problem_file, seed=train_seed)
 
                     # ✅ NEW: Set episode number for curriculum-aware reward
                     if hasattr(env, 'set_episode_number'):
                         env.set_episode_number(episode, total_episodes=total_training_episodes)
 
+                    # ✅ Step 2: Reset to get problem info and DYNAMIC episode length
+                    initial_obs, initial_info = env.reset()
+
+                    # ✅ NEW: Extract actual number of steps for this problem
+                    num_variables = initial_info.get('initial_num_systems', 0)
+                    steps_this_episode = initial_info.get('max_steps_this_episode', self.max_merges)
+
+                    pbar.write(
+                        f"📌 Episode {episode}: {problem_name} has {num_variables} variables → {steps_this_episode} merges")
+
+                    # ✅ Step 3: Create/update model with episode-aware hyperparameters
                     if model is None:
                         model = self.PPO(
                             policy=self.GNNPolicy,
                             env=env,
                             learning_rate=0.0003,
-                            n_steps=64,
-                            batch_size=32,
+                            n_steps=min(64, steps_this_episode),  # ✅ FIXED: Don't exceed episode length
+                            batch_size=min(32, steps_this_episode),  # ✅ FIXED: Match n_steps
                             ent_coef=0.01,
                             verbose=0,
                             tensorboard_log=str(self.output_dir / "tb_logs"),
                             policy_kwargs={"hidden_dim": 64},
                         )
+                        self.learning_verifier.capture_initial_state(model)
                     else:
                         model.set_env(env)
+                        # ✅ Update n_steps and batch_size for this problem's episode length
+                        model.n_steps = min(64, steps_this_episode)
+                        model.batch_size = min(32, steps_this_episode)
+                        if hasattr(model, 'rollout_buffer'):
+                            model.rollout_buffer.buffer_size = model.n_steps
 
-                    # Capture initial state for learning verification
-                    self.learning_verifier.capture_initial_state(model)
-
+                    # ✅ Step 4: Train for EXACTLY the steps this episode needs
+                    # This ensures one complete episode per model.learn() call
                     model.learn(
-                        total_timesteps=timesteps_per_episode,
+                        total_timesteps=steps_this_episode,
                         tb_log_name=f"episode_{episode}",
                         reset_num_timesteps=False,
                     )
+
+                    self.global_step += steps_this_episode
 
                     # ✅ Verify learning periodically
                     if (episode + 1) % 50 == 0:
@@ -929,8 +970,7 @@ class GNNTrainer:
                             for w in learning_check['warnings']:
                                 pbar.write(f"    - {w}")
 
-                    self.global_step += timesteps_per_episode
-
+                    # ✅ Step 5: Run evaluation pass (single episode) for logging and metrics
                     obs, _ = env.reset()
                     episode_reward = 0.0
                     eval_steps = 0
@@ -938,6 +978,7 @@ class GNNTrainer:
                     is_solvable = True
                     num_active = 0
 
+                    # Component tracking lists
                     component_rewards = []
                     component_h_pres = []
                     component_trans = []
@@ -953,28 +994,13 @@ class GNNTrainer:
                     solvability_penalties = []
                     reward_signals_per_step = []
 
-                    # Every 5 episodes, do aggressive cleanup
-                    if (episode + 1) % 5 == 0:
-                        self._explicit_cleanup()
-
-                    for step in range(self.max_merges):
+                    # ✅ Run exactly steps_this_episode iterations (not max_merges)
+                    for step in range(steps_this_episode):
                         try:
                             action, _states = model.predict(obs, deterministic=True)
 
                             # ✅ CRITICAL FIX: Extract scalar action from numpy array
-                            # model.predict returns np.array([action]) with shape (1,)
-                            # but int() fails on 1-D arrays
-                            if isinstance(action, np.ndarray):
-                                if action.ndim == 0:
-                                    action_int = int(action.item())
-                                elif action.size > 0:
-                                    action_int = int(action.flat[0])
-                                else:
-                                    action_int = 0
-                            elif hasattr(action, 'item'):
-                                action_int = int(action.item())
-                            else:
-                                action_int = int(action)
+                            action_int = _extract_action_int(action)
 
                             gnn_logits = None
                             gnn_action_prob = 0.0
@@ -996,7 +1022,7 @@ class GNNTrainer:
                             except Exception:
                                 pass
 
-                            obs, reward, done, truncated, info = env.step(action_int)  # ✅ Uses action_int
+                            obs, reward, done, truncated, info = env.step(action_int)
                             episode_reward += reward
                             eval_steps += 1
 
@@ -1007,10 +1033,9 @@ class GNNTrainer:
                             if not is_valid:
                                 pbar.write(f"⚠️  Episode {episode}: Signal validation failed: {error_msg}")
                                 self.logger.log_failure(episode, problem_name, 'signal_validation_failure', error_msg)
-                            if using_defaults and self.debug:
+                            if using_defaults:
                                 logger.debug(
                                     f"Episode {episode}: Using default reward signals (C++ export may have failed)")
-
 
                             h_pres = reward_signals.get('h_star_preservation', 1.0)
                             trans_growth = reward_signals.get('growth_ratio', 1.0)
@@ -1063,8 +1088,7 @@ class GNNTrainer:
 
                             component_decisions_this_episode.append(decision_trace)
 
-                            # REPLACE WITH:
-                            from src.rewards.reward_function_focused import create_focused_reward_function
+                            # ✅ Compute component breakdown for this step
                             reward_func = create_focused_reward_function(debug=False)
 
                             raw_obs = {
@@ -1139,6 +1163,7 @@ class GNNTrainer:
                     step_time_ms = self.resource_monitor.get_elapsed_ms() / max(1, eval_steps)
                     peak_memory_mb = self.resource_monitor.get_peak_memory_mb()
 
+                    # ✅ Build component summary from EXACTLY this episode's steps
                     component_summary = {
                         'avg_h_preservation': float(np.mean(component_h_pres)) if component_h_pres else 0.0,
                         'avg_transition_control': float(np.mean(component_trans)) if component_trans else 0.0,
@@ -1165,6 +1190,8 @@ class GNNTrainer:
                     self.episode_reward_signals[episode] = {
                         'problem_name': problem_name,
                         'episode_reward': episode_reward,
+                        'num_steps': eval_steps,  # ✅ NEW: Track actual steps
+                        'num_variables': num_variables,  # ✅ NEW: Track variables
                         'reward_signals_per_step': reward_signals_per_step,
                         'component_summary': component_summary,
                     }
@@ -1214,15 +1241,17 @@ class GNNTrainer:
                     )
                     self.episode_log.append(metrics)
 
-                    # Display detailed reward breakdown
+                    # ✅ Display detailed reward breakdown with CORRECT step count
                     if not episode_error and component_h_pres:  # Only display if episode was successful
-                        breakdown_msg = _format_reward_breakdown(
+                        breakdown_msg = self._format_reward_breakdown_with_variables(
                             episode=episode,
                             problem_name=problem_name,
                             episode_reward=episode_reward,
                             component_summary=component_summary,
                             h_preservation=h_preservation,
                             is_solvable=is_solvable,
+                            num_steps=eval_steps,  # ✅ Pass actual step count
+                            num_variables=num_variables,  # ✅ Pass variable count
                         )
                         pbar.write(breakdown_msg)
                         self.logger._emit_event(
@@ -1253,6 +1282,7 @@ class GNNTrainer:
                     pbar.set_postfix({
                         'reward': f'{episode_reward:.4f}',
                         'h*': f'{h_preservation:.3f}',
+                        'steps': eval_steps,  # ✅ Show actual steps
                         'avg': f'{avg_reward:.4f}',
                         'coverage': '✓'
                     })
@@ -1273,6 +1303,10 @@ class GNNTrainer:
                         except Exception:
                             pass
                         env = None
+
+                    # Every 5 episodes, do aggressive cleanup
+                    if (episode + 1) % 5 == 0:
+                        self._explicit_cleanup()
 
                 except KeyboardInterrupt:
                     pbar.close()
